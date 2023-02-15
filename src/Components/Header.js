@@ -38,6 +38,9 @@ const Header = () => {
           <Link to={"/student"} className="cursor-pointer">
             Home
           </Link>
+          <Link to={"/more"} className="cursor-pointer">
+            Know more
+          </Link>
         </Navbar.Collapse>
       </Navbar>
     </>

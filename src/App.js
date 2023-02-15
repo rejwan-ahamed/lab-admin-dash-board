@@ -5,6 +5,7 @@ import AnswerQuestion from "./Pages/AnswerQuestion";
 import Home from "./Pages/Home";
 import LeaderDashBoard from "./Pages/LeaderDashBoard";
 import Login from "./Pages/Login";
+import More from "./Pages/More";
 import Register from "./Pages/Register";
 import StudentDashboard from "./Pages/StudentDashboard";
 import StudentLogin from "./Pages/StudentLogin";
@@ -19,6 +20,7 @@ function App() {
     { path: "/add_question", element: <AddQuestion></AddQuestion> },
     { path: "/student", element: <StudentDashboard></StudentDashboard> },
     { path: "/ans", element: <AnswerQuestion></AnswerQuestion> },
+    { path: "/more", element: <More></More> },
   ]);
   return (
     <div className="App">
