@@ -116,7 +116,7 @@ const Home = () => (
             <div className="group-filed flex flex-col w-[18rem]">
               <select
                 id="countries"
-                class="h-[3rem] rounded-t-lg border-b-0 bg-gray-50 border border-black text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                class="h-[3rem] rounded-t-lg border-b-0 bg-gray-50 border border-black text-gray-900 text-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
               >
                 <option selected>Select group</option>
                 <option value="US">United States</option>
@@ -166,7 +166,7 @@ const Home = () => (
           </label>
           <select
             id="countries"
-            class="bg-gray-50 border border-black text-gray-900 text-sm rounded-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="bg-gray-50 border border-black text-gray-900 text-sm rounded-sm  focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
           >
             <option selected>Choose a country</option>
             <option value="US">United States</option>
