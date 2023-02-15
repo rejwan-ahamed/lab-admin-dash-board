@@ -12,26 +12,32 @@ const Header = () => {
       >
         <Navbar.Brand to="/navbars">
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Open Source
+            Open Source <sup className="">beta</sup>
           </span>
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
-          <Link to={'/'} active={true} className="cursor-pointer">
-            Home
+          <Link to={"/"} active={true} className="cursor-pointer">
+            Dashboard
           </Link>
-          <Link to={'/leader'} className="cursor-pointer">
+          <Link to={"/leader"} className="cursor-pointer">
             Leader
           </Link>
-          <Navbar.Link href="/navbars" className="cursor-pointer">
-            Services
-          </Navbar.Link>
-          <Navbar.Link href="/navbars" className="cursor-pointer">
-            Pricing
-          </Navbar.Link>
-          <Navbar.Link href="/navbars" className="cursor-pointer">
-            Contact
-          </Navbar.Link>
+          <Link to={"/login"} className="cursor-pointer">
+            Admin login
+          </Link>
+          <Link to={"/register"} className="cursor-pointer">
+            Register
+          </Link>
+          <Link to={"/student_login"} className="cursor-pointer">
+            Student login
+          </Link>
+          <Link to={"/add_question"} className="cursor-pointer">
+            Add question
+          </Link>
+          <Link to={"/student"} className="cursor-pointer">
+            Home
+          </Link>
         </Navbar.Collapse>
       </Navbar>
     </>

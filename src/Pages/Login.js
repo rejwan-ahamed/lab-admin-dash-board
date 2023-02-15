@@ -4,6 +4,7 @@ const Login = () => {
   return (
     <div>
       <div className="login-main w-full flex flex-col justify-center items-center xl:h-screen font-general">
+        <h1 className="text-[25px] font-general font-[600] text-left mb-10">Open Source <sup className="font-[550]">beta</sup></h1>
         <form className="w-[18rem] text-left">
           <div className="mb-6">
             <label
@@ -15,7 +16,7 @@ const Login = () => {
             <input
               type="email"
               id="email"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
+              className="text-black font-[500] bg-gray-50 border border-gray-300 text-sm rounded-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
               placeholder="john.doe@company.com"
               required
             />

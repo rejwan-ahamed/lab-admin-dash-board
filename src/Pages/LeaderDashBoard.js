@@ -27,7 +27,7 @@ const Home = () => (
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-6 h-6 cursor-pointer duration-300 hover:text-red-600"
                 >
                   <path
                     strokeLinecap="round"
@@ -48,7 +48,7 @@ const Home = () => (
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-6 h-6 cursor-pointer duration-300 hover:text-red-600"
                 >
                   <path
                     strokeLinecap="round"
@@ -69,7 +69,7 @@ const Home = () => (
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-6 h-6 cursor-pointer duration-300 hover:text-red-600"
                 >
                   <path
                     strokeLinecap="round"
@@ -82,7 +82,7 @@ const Home = () => (
           </div>
         </div>
         <div className="group-table-list font-general mb-8 mt-16">
-          <h3 className="text-left font-general font-[500] text-violet-600 mb-4 border border-violet-600 rounded-full py-1 px-4 max-w-max">All questions assign by group leader</h3>
+          <h3 className="text-left font-general font-[500] text-violet-600 mb-4 border border-violet-600 rounded-full py-1 px-4 max-w-max">All group member status</h3>
  
           <div class="relative overflow-x-auto">
             <table class="border border-black w-full text-sm text-left text-gray-500 dark:text-gray-400">
