@@ -26,9 +26,9 @@ const More = () => {
   return (
     <div>
       <Header></Header>
-      <div className="wrapper-main flex">
-        <div className="left-part w-[50%]">
-          <p className="font-general font-[500] px-40 py-10 text-left">
+      <div className="wrapper-main block w-full lg:flex max-w-[1560px] mx-auto">
+        <div className="left-part lg:w-[50%]">
+          <p className="font-general font-[500] px-4 lg:px-20 xl:px-40 2xl:px-40 py-10 text-left">
             Dear friend,<br></br>
             <br></br>I want to share with you a story about a personal project
             that is near and dear to my heart. It's a project that started with
@@ -67,26 +67,26 @@ const More = () => {
             Thank you for listening.
           </p>
         </div>
-        <div className="right-part w-[50%] flex relative">
+        <div className="right-part hidden lg:w-[50%] lg:flex relative">
           <div
             ref={(el) => (img1 = el)}
-            className="opacity-0 relative mt-20 right-side w-[50%] h-[40rem] bg-[url('https://mir-s3-cdn-cf.behance.net/project_modules/fs/65552f153671777.6339ccd4345eb.jpg')] bg-cover bg-no-repeat bg-center z-20 duration-500 hover:z-30 hover:h-[50rem]"
+            className="opacity-0 relative mt-20 right-side lg:w-[50%] lg:h-[30rem] 2xl:w-[50%] 2xl:h-[40rem] h-[40rem] bg-[url('https://mir-s3-cdn-cf.behance.net/project_modules/fs/65552f153671777.6339ccd4345eb.jpg')] bg-cover bg-no-repeat bg-center z-20 duration-500 hover:z-30 lg:hover:h-[40rem] 2xl:hover:h-[50rem] "
           ></div>
           <div
             ref={(ela) => (img2 = ela)}
-            className="opacity-0 absolute top-52 left-52 z-10 right-side w-[50%] h-[40rem] bg-[url('https://mir-s3-cdn-cf.behance.net/project_modules/1400/b0ca5f154545749.635eb0616d090.jpg')] bg-cover bg-no-repeat bg-center duration-500 hover:z-30 hover:h-[50rem] hover:bg-center-left"
+            className="opacity-0 absolute top-52 left-52 z-10 right-side  h-[40rem] lg:w-[50%] lg:h-[30rem] lg:left-40 lg:top-40  2xl:top-52 2xl:left-52 2xl:w-[50%] 2xl:h-[40rem] bg-[url('https://mir-s3-cdn-cf.behance.net/project_modules/1400/b0ca5f154545749.635eb0616d090.jpg')] bg-cover bg-no-repeat bg-center duration-500 hover:z-30 lg:hover:h-[40rem] 2xl:hover:h-[50rem]  hover:bg-center-left"
           ></div>
         </div>
       </div>
 
-      <div className="bottom-part text-left px-40 pb-40 font-general font-[500] ">
+      <div className="bottom-part text-left px-4 pb-10 font-general font-[500] max-w-[1560px] mx-auto lg:px-20 lg:pb-40 xl:px-40 2xl:px-40 2xl:pb-40 ">
         <p className="mb-4">
           Open Source project by{" "}
           <mark className="bg-[#ebff00] py-1 cursor-pointer">
             REJWAN AHAMED
           </mark>
         </p>
-        <mark className="mt-4 py-1 bg-[#ebff00]">
+        <mark className="mt-4 py-1 bg-[#ebff00] leading-[33px]">
           Want to contribute on the project mail me at rejwanahamed85@gmail.com
           or join me telegram at +880 1725281740
         </mark>

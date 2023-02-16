@@ -5,8 +5,8 @@ const Home = () => (
   <div>
     <Header></Header>
     {/* search the student my class roll */}
-    <div className="main-wrapper px-20">
-      <div className="search-student border-b px-20 font-general flex ">
+    <div className="main-wrapper max-w-[1560px] mx-auto">
+      <div className="search-student border-b sm:px-20 xl:px-40 font-general flex ">
         <div className="left-part border-r py-20 w-[50%]">
           <form action="" className="flex flex-col items-start w-[25rem]">
             <label htmlFor="student-roll" className="font-[500] text-xl mb-2">
@@ -69,8 +69,8 @@ const Home = () => (
       </div>
 
       {/* create group */}
-      <div className="create-group-main flex font-general px-20 border-b">
-        <div className="left-part border-r py-20 w-[40%]">
+      <div className="create-group-main flex font-general sm:px-20 xl:px-40 border-b">
+        <div className="left-part border-r py-20 sm:w-[50%] xl:w-[40%]">
           <form action="" className="flex flex-col items-start">
             <h2 className="font-[500] text-xl mb-3">Create A new group</h2>
             <div className="group-filed flex flex-col w-[80%]">
@@ -110,10 +110,10 @@ const Home = () => (
           <h1 className="text-center">will show all the group list</h1>
           <img src="/images/group.svg" className="w-[18rem]" alt="" srcset="" />
         </div>
-        <div className="right-part py-20 pl-10 w-[40%] flex flex-col items-center justify-center">
+        <div className="right-part py-20 pl-10 sm:w-[30%] xl:w-[40%] flex flex-col items-center justify-center">
           <form action="" className="flex flex-col items-start">
             <h2 className="font-[500] text-xl mb-3">Update group leader</h2>
-            <div className="group-filed flex flex-col w-[18rem]">
+            <div className="group-filed flex flex-col w-[12rem] xl:w-[18rem]">
               <select
                 id="countries"
                 class="h-[3rem] rounded-t-lg border-b-0 bg-gray-50 border text-gray-900 text-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
@@ -150,19 +150,20 @@ const Home = () => (
           </form>
 
           <p className="text-left text-violet-600 mt-4 w-[90%] font-[500]">
-            ** Enter previous group leader roll and new group leader roll to update group.
+            ** Enter previous group leader roll and new group leader roll to
+            update group.
           </p>
         </div>
       </div>
 
-      <div className="group-details px-20 py-20">
+      <div className="group-details sm:px-20   xl:px-40 py-20">
         {/* select group */}
         <div className="select-group-details w-[15rem] text-left font-general">
           <label
             for="countries"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Select an option
+            Select group
           </label>
           <select
             id="countries"

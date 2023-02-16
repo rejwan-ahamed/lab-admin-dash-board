@@ -5,7 +5,7 @@ const AddQuestion = () => {
   return (
     <div>
       <Header></Header>
-      <div className="add-question-ma px-40 py-20">
+      <div className="add-question-ma px-4 py-10 lg:px-20 lg:py-20 xl:px-40 xl:py-20 max-w-[1560px] mx-auto">
         <h1 className="text-2xl font-general font-[500] text-left">
           Add question for group <samp className="text-violet-600">A</samp>
         </h1>
@@ -24,10 +24,10 @@ const AddQuestion = () => {
             placeholder="Write your thoughts here..."
           ></textarea>
           <div className="button-group flex gap-2 justify-start w-full mt-6">
-            <button className="bg-violet-500 px-4 py-2 text-white border rounded-sm font-general font-[550] duration-500 hover:bg-transparent hover:text-violet-600 hover:border-violet-500">
-              Submit ans
+            <button className="bg-violet-200 px-6 py-2 text-violet-600 border-violet-600 border rounded-sm font-general font-[550] duration-500 hover:bg-transparent hover:text-violet-600 hover:border-violet-500">
+              Submit Question
             </button>
-            <button className="bg-red-600 px-4 py-2 text-white border rounded-sm font-general font-[550] duration-500 hover:bg-transparent hover:text-red-600 hover:border-red-600">
+            <button className="bg-red-200 px-6 py-2 border-red-600 text-red-600 border rounded-sm font-general font-[550] duration-500 hover:bg-transparent hover:text-red-600 hover:border-red-600">
               Cancel
             </button>
           </div>

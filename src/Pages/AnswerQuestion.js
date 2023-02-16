@@ -26,8 +26,12 @@ const AnswerQuestion = () => {
           onChange={setValue}
         ></ReactQuill>
         <div className="button-group flex gap-2 justify-start w-full mt-6">
-            <button className="bg-violet-500 px-4 py-2 text-white border rounded-sm font-general font-[550] duration-500 hover:bg-transparent hover:text-violet-600 hover:border-violet-500">Submit ans</button>
-            <button className="bg-red-600 px-4 py-2 text-white border rounded-sm font-general font-[550] duration-500 hover:bg-transparent hover:text-red-600 hover:border-red-600">Cancel</button>
+          <button className="bg-violet-200 px-6 py-2 text-violet-600 border-violet-600 border rounded-sm font-general font-[550] duration-500 hover:bg-transparent hover:text-violet-600 hover:border-violet-500">
+            Submit Answer
+          </button>
+          <button className="bg-red-200 px-6 py-2 border-red-600 text-red-600 border rounded-sm font-general font-[550] duration-500 hover:bg-transparent hover:text-red-600 hover:border-red-600">
+            Cancel
+          </button>
         </div>
       </div>
     </div>

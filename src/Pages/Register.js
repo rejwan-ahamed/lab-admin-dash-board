@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const Register = () => {
   return (
     <div>
-      <div className="register-wrapper-main flex">
-        <div className="left-side w-[50%]">
+      <div className="register-wrapper-main block sm:flex">
+        <div className="left-side w-full lg:w-[50%]">
           <div className="have-account border-b py-4 font-general font-[500] flex justify-center cursor-pointer bg-gray-50 sticky top-0">
             <h3 className="flex">
               Already have an account
@@ -29,7 +29,7 @@ const Register = () => {
               </Link>{" "}
             </h3>
           </div>
-          <div className="login-main w-full flex flex-col justify-center items-center xl:h-screen font-general">
+          <div className="login-main w-full flex flex-col justify-center items-center h-screen sm:h-screen font-general">
             <h1 className="text-[25px] font-general font-[600] text-left mb-10">
               Open Source <sup className="font-[550]">beta</sup>
             </h1>
@@ -108,7 +108,7 @@ const Register = () => {
             </form>
           </div>
         </div>
-        <div className=" right-side w-[50%] bg-[url('https://mir-s3-cdn-cf.behance.net/project_modules/fs/65552f153671777.6339ccd4345eb.jpg')] bg-cover bg-no-repeat bg-center"></div>
+        <div className=" right-side w-[50%] bg-[url('https://mir-s3-cdn-cf.behance.net/project_modules/fs/65552f153671777.6339ccd4345eb.jpg')] bg-cover bg-no-repeat bg-center hidden xl:block"></div>
       </div>
     </div>
   );
