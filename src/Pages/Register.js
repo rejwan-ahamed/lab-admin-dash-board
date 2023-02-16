@@ -30,7 +30,7 @@ const Register = () => {
             </h3>
           </div>
           <div className="login-main w-full flex flex-col justify-center items-center h-screen sm:h-screen font-general">
-            <h1 className="text-[25px] font-general font-[600] text-left mb-10">
+            <h1 className="text-[25px] font-general font-[600] text-left mb-10 dark:text-white">
               Open Source <sup className="font-[550]">beta</sup>
             </h1>
             <form className="w-[18rem] text-left">

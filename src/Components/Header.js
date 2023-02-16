@@ -5,22 +5,29 @@ import "../Css/Main.css";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const [defaults, setDefault] = useState("light");
+
+  useEffect(() => {
+    let themeStatus = localStorage.getItem("status");
+    setDefault(themeStatus);
+  });
 
   // set theme
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
-    if (theme === "dark") {
+    if (defaults === "dark") {
       document.documentElement.classList.add("dark");
       document.body.style.backgroundColor = "black";
     } else {
       document.documentElement.classList.remove("dark");
       document.body.style.backgroundColor = "white";
     }
-  }, [theme]);
+  }, [defaults]);
 
   const handelTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
+    localStorage.setItem("status", theme);
   };
 
   const buttonControl = () => {
@@ -35,7 +42,7 @@ const Header = () => {
         <Navbar
           fluid={true}
           rounded={true}
-          className=" xl:px-40 font-general max-w-[1560px] mx-auto rounded-none duration-500 bg-white dark:bg-[#000000]  dark:text-white"
+          className=" xl:px-40 font-general max-w-[1560px] mx-auto rounded-none duration-500 bg-white dark:bg-transparent dark:text-white"
         >
           <Navbar.Brand to="/navbars">
             <span className="self-center whitespace-nowrap text-xl font-semibold text-black dark:text-[#ebff00] dark:duration-500">
