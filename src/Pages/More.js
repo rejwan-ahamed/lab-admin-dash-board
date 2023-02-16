@@ -24,11 +24,11 @@ const More = () => {
     });
   });
   return (
-    <div>
+    <div className="bg-white dark:bg-black duration-500">
       <Header></Header>
       <div className="wrapper-main block w-full lg:flex max-w-[1560px] mx-auto">
         <div className="left-part lg:w-[50%]">
-          <p className="font-general font-[500] px-4 lg:px-20 xl:px-40 2xl:px-40 py-10 text-left">
+          <p className="font-general font-[500] px-4 lg:px-20 xl:px-40 2xl:px-40 py-10 text-left dark:text-white">
             Dear friend,<br></br>
             <br></br>I want to share with you a story about a personal project
             that is near and dear to my heart. It's a project that started with
@@ -80,7 +80,7 @@ const More = () => {
       </div>
 
       <div className="bottom-part text-left px-4 pb-10 font-general font-[500] max-w-[1560px] mx-auto lg:px-20 lg:pb-40 xl:px-40 2xl:px-40 2xl:pb-40 ">
-        <p className="mb-4">
+        <p className="mb-4 dark:text-white">
           Open Source project by{" "}
           <mark className="bg-[#ebff00] py-1 cursor-pointer">
             REJWAN AHAMED

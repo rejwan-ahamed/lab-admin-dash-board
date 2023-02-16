@@ -6,10 +6,10 @@ const StudentLogin = () => {
     <div>
       <div className="register-wrapper-main block lg:flex">
         <div className="left-side w-full lg:w-[50%]">
-          <div className="have-account border-b py-4 font-general font-[500] flex justify-center cursor-pointer bg-gray-50 sticky top-0">
+          <div className="have-account border-b py-4 font-general font-[500] flex justify-center cursor-pointer bg-gray-50 sticky top-0 dark:bg-black dark:text-white">
             <h3 className="flex">
               Don't have an account
-              <Link to={'/register'} className="ml-2 flex gap-1 text-violet-600 rounded-full bg-violet-100 px-2 duration-500 hover:bg-violet-200">
+              <Link to={'/register'} className="ml-2 flex gap-1 text-violet-600 rounded-full bg-violet-100 px-2 duration-500 hover:bg-violet-200 dark:bg-[#ebff00] dark:text-black">
                 {" "}
                 register
                 <svg
@@ -44,7 +44,7 @@ const StudentLogin = () => {
                 <input
                   type="text"
                   id="email"
-                  className="text-black font-[500] border border-gray-300 text-sm rounded-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
+                  className="text-black font-[500] border border-gray-300 text-sm rounded-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#ebff00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#ebff00] dark:focus:border-[#ebff00]"
                   placeholder="test subject 24"
                   required
                 />
@@ -60,7 +60,7 @@ const StudentLogin = () => {
                 <input
                   type="password"
                   id="password"
-                  className="border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
+                  className="border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#ebff00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#ebff00] dark:focus:border-[#ebff00]"
                   placeholder="•••••••••"
                   required
                 />
@@ -68,7 +68,7 @@ const StudentLogin = () => {
 
               <button
                 type="submit"
-                className="w-full flex justify-center text-white border border-violet-600 bg-violet-600 rounded-sm py-2 font-[550] duration-300 hover:border-violet-600 hover:bg-transparent hover:text-violet-600 "
+                className="w-full flex justify-center text-white border border-violet-600 bg-violet-600 rounded-sm py-2 font-[550] duration-300 hover:border-violet-600 hover:bg-transparent hover:text-violet-600 dark:bg-[#ebff00] dark:text-black dark:border-[#ebff00] dark:hover:bg-transparent dark:duration-500 dark:hover:text-[#ebff00]"
               >
                 Login
               </button>

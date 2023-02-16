@@ -9,7 +9,10 @@ const Home = () => (
       <div className="search-student border-b sm:px-20 xl:px-40 font-general flex ">
         <div className="left-part border-r py-20 w-[50%]">
           <form action="" className="flex flex-col items-start w-[25rem]">
-            <label htmlFor="student-roll" className="font-[500] text-xl mb-2">
+            <label
+              htmlFor="student-roll"
+              className="font-[500] text-xl mb-2 dark:text-[#EBFF00]"
+            >
               Student roll
             </label>
             <div className="search-main flex items-center gap-2 rounded-sm w-full">
@@ -17,9 +20,9 @@ const Home = () => (
                 type="number"
                 name="student-roll"
                 id=""
-                className="h-[2rem] border   focus:ring-violet-600"
+                className="h-[2rem] border   focus:ring-violet-600 dark:focus:ring-[#EBFF00] dark:border-[#EBFF00] dark:bg-black"
               />
-              <button className="bg-violet-200 h-[2rem] px-2 text-violet-600 border border-violet-500 rounded-sm ">
+              <button className="bg-violet-200 h-[2rem] px-2 text-violet-600 border border-violet-500 rounded-sm dark:text-[#EBFF00] dark:border-[#EBFF00] dark:bg-[#eaff0069]">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -38,31 +41,40 @@ const Home = () => (
             </div>
           </form>
 
-          <p className="text-left text-violet-600 mt-3 w-[50%] font-[500]">
+          <p className="text-left text-violet-600 mt-3 w-[50%] font-[500] dark:text-[#EBFF00]">
             ** Enter student class roll to get the details of the student.
             Please enter valid student roll.
           </p>
         </div>
         {/* right side */}
         <div className="right-part py-20 pl-20 w-[50%]">
-          <h1 className="font-[500] text-violet-600 text-xl underline text-left mb-2">
+          <h1 className="font-[500] text-violet-600 dark:text-[#EBFF00] text-xl underline text-left mb-2">
             Student details
           </h1>
           <div className="student-details text-left">
-            <p className="font-[500] text-violet-400 text-[18px]">
-              Name: <span className="text-violet-600">Rejwan</span>
+            <p className="font-[500] text-violet-400 text-[18px] dark:text-[#eaff00ab]">
+              Name:{" "}
+              <span className="text-violet-600 dark:text-[#EBFF00]">
+                Rejwan
+              </span>
             </p>
-            <p className="font-[500] text-violet-400 text-[18px]">
-              Roll: <span className="text-violet-600">106</span>
+            <p className="font-[500] text-violet-400 text-[18px] dark:text-[#eaff00ab]">
+              Roll:{" "}
+              <span className="text-violet-600 dark:text-[#EBFF00]">106</span>
             </p>
-            <p className="font-[500] text-violet-400 text-[18px]">
-              Section: <span className="text-violet-600">B</span>
+            <p className="font-[500] text-violet-400 text-[18px] dark:text-[#eaff00ab]">
+              Section:{" "}
+              <span className="text-violet-600 dark:text-[#EBFF00]">B</span>
             </p>
-            <p className="font-[500] text-violet-400 text-[18px]">
-              Status: <span className="text-violet-600">Leader</span>
+            <p className="font-[500] text-violet-400 text-[18px] dark:text-[#eaff00ab]">
+              Status:{" "}
+              <span className="text-violet-600 dark:text-[#EBFF00]">
+                Leader
+              </span>
             </p>
-            <p className="font-[500] text-violet-400 text-[18px]">
-              Task submission: <span className="text-violet-600">23</span>
+            <p className="font-[500] text-violet-400 text-[18px] dark:text-[#eaff00ab]">
+              Task submission:{" "}
+              <span className="text-violet-600 dark:text-[#EBFF00]">23</span>
             </p>
           </div>
         </div>
@@ -72,43 +84,59 @@ const Home = () => (
       <div className="create-group-main flex font-general sm:px-20 xl:px-40 border-b">
         <div className="left-part border-r py-20 sm:w-[50%] xl:w-[40%]">
           <form action="" className="flex flex-col items-start">
-            <h2 className="font-[500] text-xl mb-3">Create A new group</h2>
+            <h2 className="font-[500] text-xl mb-3 dark:text-white">
+              Create A new group
+            </h2>
             <div className="group-filed flex flex-col w-[80%]">
               <input
                 type="text"
                 name=""
                 id=""
                 placeholder="group name"
-                className="h-[3rem] rounded-t-lg hover:ring-violet-600"
+                className="h-[3rem] rounded-t-lg hover:ring-violet-600 dark:bg-black dark:ring-[#EBFF00] dark:border-[#EBFF00]"
               />
               <input
                 type="text"
                 name=""
                 id=""
                 placeholder="group leader roll"
-                className="h-[3rem] border-y-0 hover:ring-violet-600"
+                className="h-[3rem] border-y-0 hover:ring-violet-600 dark:bg-black dark:ring-[#EBFF00] dark:border-[#EBFF00]"
               />
               <button
                 type="text"
                 name=""
                 id=""
                 placeholder="group name"
-                className="h-[3rem] rounded-b-lg bg-violet-600 text-white hover:ring-violet-600"
+                className="h-[3rem] rounded-b-lg bg-violet-600 text-white hover:ring-violet-600 dark:bg-[#EBFF00] font-[500] dark:text-black dark:border-[#EBFF00]"
               >
                 Create group
               </button>
             </div>
           </form>
 
-          <p className="text-left text-violet-600 mt-4 w-[90%] font-[500]">
+          <p className="text-left text-violet-600 mt-4 w-[90%] font-[500] dark:text-[#EBFF00]">
             ** Enter enter a valid group name for ex:(A) and assign a valid roll
             to create a group leader for the group.
           </p>
         </div>
         {/* right side */}
-        <div className="middle-part py-20 pl-20 w-[50%] flex flex-col justify-center border-r">
-          <h1 className="text-center">will show all the group list</h1>
-          <img src="/images/group.svg" className="w-[18rem]" alt="" srcset="" />
+        <div className="middle-part px-8 py-8 w-[50%] flex flex-col justify-start border-r">
+          {/* <h1 className="font-general font-[500] text-xl">No group found</h1> */}
+          <h1 className="font-general font-[500] text-xl text-left border-b py-2 dark:text-white">
+            A group leader name
+          </h1>
+          <h1 className="font-general font-[500] text-xl text-left border-b py-2 dark:text-white">
+            A group leader name
+          </h1>
+          <h1 className="font-general font-[500] text-xl text-left border-b py-2 dark:text-white">
+            A group leader name
+          </h1>
+          <h1 className="font-general font-[500] text-xl text-left border-b py-2 dark:text-white">
+            A group leader name
+          </h1>
+
+          {/* {document.body.style.backgroundColor === "light"? <img src="/images/group.svg" className="w-[18rem]" alt="" srcset="" />: <img src="/public/images/dark.svg" className="w-[18rem]" alt="" srcset="" />} */}
+          {/* <img src="/images/group.svg" className="w-[18rem]" alt="" srcset="" /> */}
         </div>
         <div className="right-part py-20 pl-10 sm:w-[30%] xl:w-[40%] flex flex-col items-center justify-center">
           <form action="" className="flex flex-col items-start">
@@ -116,7 +144,7 @@ const Home = () => (
             <div className="group-filed flex flex-col w-[12rem] xl:w-[18rem]">
               <select
                 id="countries"
-                class="h-[3rem] rounded-t-lg border-b-0 bg-gray-50 border text-gray-900 text-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
+                class="h-[3rem] rounded-t-lg border-b-0 bg-gray-50 border text-gray-900 text-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#EBFF00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#EBFF00] dark:focus:border-[#EBFF00]"
               >
                 <option selected>Select group</option>
                 <option value="US">United States</option>
@@ -129,27 +157,27 @@ const Home = () => (
                 name=""
                 id=""
                 placeholder="Previous group leader roll"
-                className="h-[3rem] hover:ring-violet-600"
+                className="h-[3rem] hover:ring-violet-600 dark:hover:ring-[#EBFF00] dark:bg-black dark:border-[#EBFF00]"
               />
               <input
                 type="text"
                 name=""
                 id=""
                 placeholder="New group leader roll"
-                className="h-[3rem] border-y-0 hover:ring-violet-600"
+                className="h-[3rem] border-y-0 hover:ring-violet-600 dark:hover:ring-[#EBFF00] dark:bg-black dark:border-[#EBFF00]"
               />
               <button
                 type="text"
                 name=""
                 id=""
-                className="h-[3rem] rounded-b-lg bg-violet-600 text-white hover:ring-violet-600"
+                className="h-[3rem] rounded-b-lg bg-violet-600 text-white hover:ring-violet-600 dark:hover:ring-[#EBFF00] dark:bg-[#EBFF00] dark:text-black font-[500] dark:border-[#EBFF00]"
               >
                 Update
               </button>
             </div>
           </form>
 
-          <p className="text-left text-violet-600 mt-4 w-[90%] font-[500]">
+          <p className="text-left text-violet-600 mt-4 w-[90%] font-[500] dark:text-[#EBFF00]">
             ** Enter previous group leader roll and new group leader roll to
             update group.
           </p>
@@ -167,7 +195,7 @@ const Home = () => (
           </label>
           <select
             id="countries"
-            class="bg-gray-50 border border-black text-gray-900 text-sm rounded-sm  focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
+            class="bg-gray-50 border border-black text-gray-900 text-sm rounded-sm  focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-white dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#EBFF00] dark:focus:border-[#EBFF00]"
           >
             <option selected>Choose a country</option>
             <option value="US">United States</option>
@@ -179,8 +207,8 @@ const Home = () => (
 
         <div className="group-table-list mt-10 font-general">
           <div class="relative overflow-x-auto">
-            <table class="border border-black w-full text-sm text-left text-gray-500 dark:text-gray-400">
-              <thead class="text-xs text-gray-700 uppercase border-b border-black">
+            <table class="border border-black w-full text-sm text-left text-black dark:text-white dark:border-white">
+              <thead class="text-xs text-black uppercase border-b border-black dark:text-white dark:border-b-white">
                 <tr>
                   <th scope="col" class="px-6 py-3">
                     group name
@@ -200,58 +228,76 @@ const Home = () => (
                 </tr>
               </thead>
               <tbody>
-                <tr class="bg-white border-b border-black">
+                <tr class="bg-white border-b border-black dark:border-white dark:bg-black">
                   <th
                     scope="row"
                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
                     A
                   </th>
-                  <td class="px-6 py-4 text-violet-500 font-[500]">Rejwan</td>
-                  <td class="px-6 py-4 text-violet-500 font-[500]">106</td>
-                  <td class="px-6 py-4 text-violet-500 font-[500]">Leader</td>
-                  <td class="px-6 py-4 text-violet-500 font-[500] border-l border-black">
-                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                  <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
+                    Rejwan
+                  </td>
+                  <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
+                    106
+                  </td>
+                  <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
+                    Leader
+                  </td>
+                  <td class="px-3 py-4 text-violet-500 font-[500] dark:text-[#ebff00] border-l border-black sm:px-6 dark:border-l-white">
+                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-500">
                       <div
-                        className="bg-violet-600 h-2.5 rounded-full duration-300"
-                        style={{ width: "45%" }}
+                        className="bg-violet-600 h-2.5 rounded-full duration-500 dark:bg-[#ebff00]"
+                        style={{ width: "95%" }}
                       ></div>
                     </div>
                   </td>
                 </tr>
-                <tr class="bg-white border-b border-black">
+                <tr class="bg-white border-b border-black dark:border-white dark:bg-black">
                   <th
                     scope="row"
                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
                     A
                   </th>
-                  <td class="px-6 py-4 text-violet-500 font-[500]">Rejwan</td>
-                  <td class="px-6 py-4 text-violet-500 font-[500]">106</td>
-                  <td class="px-6 py-4 text-violet-500 font-[500]">Leader</td>
-                  <td class="px-6 py-4 text-violet-500 font-[500] border-l border-black">
-                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                  <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
+                    Rejwan
+                  </td>
+                  <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
+                    106
+                  </td>
+                  <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
+                    Leader
+                  </td>
+                  <td class="px-3 py-4 text-violet-500 font-[500] dark:text-[#ebff00] border-l border-black sm:px-6 dark:border-l-white">
+                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-500">
                       <div
-                        className="bg-violet-600 h-2.5 rounded-full duration-300"
-                        style={{ width: "5%" }}
+                        className="bg-violet-600 h-2.5 rounded-full duration-500 dark:bg-[#ebff00]"
+                        style={{ width: "95%" }}
                       ></div>
                     </div>
                   </td>
                 </tr>
-                <tr class="bg-white border-b border-black">
+                <tr class="bg-white border-b border-black dark:border-white dark:bg-black">
                   <th
                     scope="row"
                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
                     A
                   </th>
-                  <td class="px-6 py-4 text-violet-500 font-[500]">Rejwan</td>
-                  <td class="px-6 py-4 text-violet-500 font-[500]">106</td>
-                  <td class="px-6 py-4 text-violet-500 font-[500]">Leader</td>
-                  <td class="px-6 py-4 text-violet-500 font-[500] border-l border-black">
-                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                  <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
+                    Rejwan
+                  </td>
+                  <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
+                    106
+                  </td>
+                  <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
+                    Leader
+                  </td>
+                  <td class="px-3 py-4 text-violet-500 font-[500] dark:text-[#ebff00] border-l border-black sm:px-6 dark:border-l-white">
+                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-500">
                       <div
-                        className="bg-violet-600 h-2.5 rounded-full duration-500"
+                        className="bg-violet-600 h-2.5 rounded-full duration-500 dark:bg-[#ebff00]"
                         style={{ width: "95%" }}
                       ></div>
                     </div>
