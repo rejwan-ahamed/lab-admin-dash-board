@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Header from "../Components/Header";
+import { TweenMax, Power3, gsap } from "gsap";
 
 const More = () => {
+  let img1 = useRef(null);
+  let img2 = useRef(null);
+
+  // animation part here
+  useEffect(() => {
+    TweenMax.from(img2, 0.3, { y: 30, opacity: 0, ease: Power3.easeInOut });
+    TweenMax.to(img2, 0.3, {
+      y: 0,
+      opacity: 1,
+      ease: Power3.easeInOut,
+    });
+
+    TweenMax.from(img1, 0.3, { y: 60, opacity: 0, ease: Power3.easeInOut });
+    TweenMax.to(img1, 0.3, {
+      delay: 0.4,
+      y: 0,
+      opacity: 1,
+      ease: Power3.easeInOut,
+    });
+  });
   return (
     <div>
       <Header></Header>
@@ -47,9 +68,48 @@ const More = () => {
           </p>
         </div>
         <div className="right-part w-[50%] flex relative">
-          <div className="relative mt-20 right-side w-[50%] h-[40rem] bg-[url('https://mir-s3-cdn-cf.behance.net/project_modules/fs/65552f153671777.6339ccd4345eb.jpg')] bg-cover bg-no-repeat bg-center z-20 duration-500 hover:z-30 hover:h-[50rem]"></div>
-          <div className="absolute top-52 left-52 z-10 right-side w-[50%] h-[40rem] bg-[url('https://mir-s3-cdn-cf.behance.net/project_modules/1400/b0ca5f154545749.635eb0616d090.jpg')] bg-cover bg-no-repeat bg-center duration-500 hover:z-30 hover:h-[50rem] hover:bg-center-left"></div>
+          <div
+            ref={(el) => (img1 = el)}
+            className="opacity-0 relative mt-20 right-side w-[50%] h-[40rem] bg-[url('https://mir-s3-cdn-cf.behance.net/project_modules/fs/65552f153671777.6339ccd4345eb.jpg')] bg-cover bg-no-repeat bg-center z-20 duration-500 hover:z-30 hover:h-[50rem]"
+          ></div>
+          <div
+            ref={(ela) => (img2 = ela)}
+            className="opacity-0 absolute top-52 left-52 z-10 right-side w-[50%] h-[40rem] bg-[url('https://mir-s3-cdn-cf.behance.net/project_modules/1400/b0ca5f154545749.635eb0616d090.jpg')] bg-cover bg-no-repeat bg-center duration-500 hover:z-30 hover:h-[50rem] hover:bg-center-left"
+          ></div>
         </div>
+      </div>
+
+      <div className="bottom-part text-left px-40 pb-40 font-general font-[500] ">
+        <p className="mb-4">
+          Open Source project by{" "}
+          <mark className="bg-[#ebff00] py-1 cursor-pointer">
+            REJWAN AHAMED
+          </mark>
+        </p>
+        <mark className="mt-4 py-1 bg-[#ebff00]">
+          Want to contribute on the project mail me at rejwanahamed85@gmail.com
+          or join me telegram at +880 1725281740
+        </mark>
+        {/* <p className="mt-4">
+          <span className="text-blue-600 cursor-pointer ">
+            rejwanahamed85@gmail.com
+          </span>
+        </p>
+        <p className="mt-2">
+          <span className="text-blue-600 cursor-pointer ">github</span>
+        </p>
+        <p className="mt-2">
+          <span className="text-blue-600 cursor-pointer ">facebook</span>
+        </p>
+        <p className="mt-2">
+          <span className="text-blue-600 cursor-pointer ">instagram</span>
+        </p>
+        <p className="mt-2">
+          <span className="text-blue-600 cursor-pointer ">Bechance</span>
+        </p>
+        <p className="mt-2 mb-4">
+          <span className="text-blue-600 cursor-pointer ">dribbble</span>
+        </p> */}
       </div>
     </div>
   );
