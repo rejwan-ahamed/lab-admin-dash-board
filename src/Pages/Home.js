@@ -6,9 +6,12 @@ const Home = () => (
     <Header></Header>
     {/* search the student my class roll */}
     <div className="main-wrapper max-w-[1560px] mx-auto">
-      <div className="search-student border-b sm:px-20 xl:px-40 font-general flex ">
-        <div className="left-part border-r py-20 w-[50%]">
-          <form action="" className="flex flex-col items-start w-[25rem]">
+      <div className="search-student border-b grid grid-cols-3 ">
+        <div className="left-part border-r pl-40 py-20 dark:text-white">
+          <form
+            action=""
+            className="flex flex-col items-start w-[25rem] font-general"
+          >
             <label
               htmlFor="student-roll"
               className="font-[500] text-xl mb-2 dark:text-[#EBFF00]"
@@ -41,13 +44,13 @@ const Home = () => (
             </div>
           </form>
 
-          <p className="text-left text-violet-600 mt-3 w-[50%] font-[500] dark:text-[#EBFF00]">
+          <p className="text-left text-violet-600 mt-3 w-[80%] font-[500] dark:text-[#EBFF00] font-general">
             ** Enter student class roll to get the details of the student.
             Please enter valid student roll.
           </p>
         </div>
         {/* right side */}
-        <div className="right-part py-20 pl-20 w-[50%]">
+        <div className="right-part pl-20 py-20 font-general">
           <h1 className="font-[500] text-violet-600 dark:text-[#EBFF00] text-xl underline text-left mb-2">
             Student details
           </h1>
@@ -78,11 +81,8 @@ const Home = () => (
             </p>
           </div>
         </div>
-      </div>
 
-      {/* create group */}
-      <div className="create-group-main flex font-general sm:px-20 xl:px-40 border-b">
-        <div className="left-part border-r py-20 sm:w-[50%] xl:w-[40%]">
+        <div className="left-part border-l pl-20 pr-16 py-20 font-general dark:text-white">
           <form action="" className="flex flex-col items-start">
             <h2 className="font-[500] text-xl mb-3 dark:text-white">
               Create A new group
@@ -93,15 +93,9 @@ const Home = () => (
                 name=""
                 id=""
                 placeholder="group name"
-                className="h-[3rem] rounded-t-lg hover:ring-violet-600 dark:bg-black dark:ring-[#EBFF00] dark:border-[#EBFF00]"
+                className="h-[3rem] rounded-t-lg hover:ring-violet-600 dark:bg-black dark:ring-[#EBFF00] dark:border-[#EBFF00] dark:placeholder:text-white"
               />
-              <input
-                type="text"
-                name=""
-                id=""
-                placeholder="group leader roll"
-                className="h-[3rem] border-y-0 hover:ring-violet-600 dark:bg-black dark:ring-[#EBFF00] dark:border-[#EBFF00]"
-              />
+
               <button
                 type="text"
                 name=""
@@ -119,8 +113,52 @@ const Home = () => (
             to create a group leader for the group.
           </p>
         </div>
+      </div>
+
+      {/* create group */}
+      <div className="create-group-main font-general border-b grid grid-cols-3">
+        <div className="left-part border-r pl-40 py-20 dark:text-white">
+          <form action="" className="flex flex-col items-start">
+            <h2 className="font-[500] text-xl mb-3 dark:text-white">
+              Assign a group leader
+            </h2>
+            <div className="group-filed flex flex-col w-[80%]">
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder="group name"
+                className="h-[3rem] rounded-t-lg hover:ring-violet-600 dark:bg-black dark:ring-[#EBFF00] dark:border-[#EBFF00] dark:placeholder:text-white"
+              />
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder="group leader roll"
+                className="h-[3rem] border-y-0 hover:ring-violet-600 dark:bg-black dark:ring-[#EBFF00] dark:border-[#EBFF00] dark:placeholder:text-white"
+              />
+              <button
+                type="text"
+                name=""
+                id=""
+                placeholder="group name"
+                className="h-[3rem] rounded-b-lg bg-violet-600 text-white hover:ring-violet-600 dark:bg-[#EBFF00] font-[500] dark:text-black dark:border-[#EBFF00]"
+              >
+                Assign leader
+              </button>
+            </div>
+          </form>
+
+          <p className="text-left text-violet-600 mt-4 w-[90%] font-[500] dark:text-[#EBFF00]">
+            ** Enter enter a valid group name for ex:(A) and assign a valid roll
+            to create a group leader for the group.
+          </p>
+        </div>
         {/* right side */}
-        <div className="middle-part px-8 py-8 w-[50%] flex flex-col justify-start border-r">
+        <div className="middle-part pl-20 pr-20 py-20  flex flex-col justify-start border-r">
+          <h1 className="mb-4 text-sm font-general font-[500] text-left rounded-full px-3 py-[3px] max-w-max border border-violet-600 text-violet-600 dark:border-[#EBFF00]  dark:text-[#EBFF00]">
+            All recently crated groups names
+          </h1>
           {/* <h1 className="font-general font-[500] text-xl">No group found</h1> */}
           <h1 className="font-general font-[500] text-xl text-left border-b py-2 dark:text-white">
             A group leader name
@@ -138,10 +176,12 @@ const Home = () => (
           {/* {document.body.style.backgroundColor === "light"? <img src="/images/group.svg" className="w-[18rem]" alt="" srcset="" />: <img src="/public/images/dark.svg" className="w-[18rem]" alt="" srcset="" />} */}
           {/* <img src="/images/group.svg" className="w-[18rem]" alt="" srcset="" /> */}
         </div>
-        <div className="right-part py-20 pl-10 sm:w-[30%] xl:w-[40%] flex flex-col items-center justify-center">
-          <form action="" className="flex flex-col items-start">
-            <h2 className="font-[500] text-xl mb-3">Update group leader</h2>
-            <div className="group-filed flex flex-col w-[12rem] xl:w-[18rem]">
+        <div className="right-part flex flex-col items-start justify-center pl-20 pr-16 py-20 dark:text-white">
+          <form action="" className="flex flex-col items-start w-full">
+            <h2 className="font-[500] text-xl mb-3 dark:text-white">
+              Update group leader
+            </h2>
+            <div className="group-filed flex flex-col w-[80%]">
               <select
                 id="countries"
                 class="h-[3rem] rounded-t-lg border-b-0 bg-gray-50 border text-gray-900 text-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#EBFF00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#EBFF00] dark:focus:border-[#EBFF00]"
@@ -157,20 +197,20 @@ const Home = () => (
                 name=""
                 id=""
                 placeholder="Previous group leader roll"
-                className="h-[3rem] hover:ring-violet-600 dark:hover:ring-[#EBFF00] dark:bg-black dark:border-[#EBFF00]"
+                className="h-[3rem] hover:ring-violet-600 dark:hover:ring-[#EBFF00] dark:bg-black dark:border-[#EBFF00] dark:placeholder:text-white"
               />
               <input
                 type="text"
                 name=""
                 id=""
                 placeholder="New group leader roll"
-                className="h-[3rem] border-y-0 hover:ring-violet-600 dark:hover:ring-[#EBFF00] dark:bg-black dark:border-[#EBFF00]"
+                className="h-[3rem] border-y-0 hover:ring-violet-600 dark:hover:ring-[#EBFF00] dark:bg-black dark:border-[#EBFF00] dark:placeholder:text-white"
               />
               <button
                 type="text"
                 name=""
                 id=""
-                className="h-[3rem] rounded-b-lg bg-violet-600 text-white hover:ring-violet-600 dark:hover:ring-[#EBFF00] dark:bg-[#EBFF00] dark:text-black font-[500] dark:border-[#EBFF00]"
+                className="h-[3rem] rounded-b-lg bg-violet-600 text-white hover:ring-violet-600 dark:hover:ring-[#EBFF00] dark:bg-[#EBFF00] dark:text-black font-[500] dark:border-[#EBFF00] "
               >
                 Update
               </button>
