@@ -17,7 +17,7 @@ const Home = () => {
   } = useQuery({
     queryKey: ["repoData"],
     queryFn: () =>
-      fetch(domain + `/single_student_data?roll=104`)
+      fetch(domain + `all`)
         .then((res) => res.json())
         .then((result) => setStudent(result[0])),
   });
@@ -131,52 +131,55 @@ const Home = () => {
     const group = from.group.value;
     const previousLeader = from.previous.value;
     const newLeader = from.new.value;
-
-    const PreviousStudentData = {
-      groupName: group,
-      roll: previousLeader,
-      status: "Student",
-    };
-    fetch(domain + `/Update_student_status`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(PreviousStudentData),
-    });
-
-    const newLeaderStudentData = {
-      groupName: group,
-      roll: newLeader,
-      status: "Leader",
-    };
-    fetch(domain + `/Update_student_status`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newLeaderStudentData),
-    });
-
-    // assign new leader to the group
-    const postData = {
-      groupName: group,
-      Leader: newLeader,
-    };
-    console.log(postData);
-    fetch(domain + `/assign_leader`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(postData),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        toast.success("your post has been added");
-        console.warn(result);
-        from.reset();
+    if (group === "" || previousLeader === "" || newLeader === "") {
+      toast.error("All fields required");
+    } else {
+      const PreviousStudentData = {
+        groupName: group,
+        roll: previousLeader,
+        status: "Student",
+      };
+      fetch(domain + `/Update_student_status`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(PreviousStudentData),
       });
+
+      const newLeaderStudentData = {
+        groupName: group,
+        roll: newLeader,
+        status: "Leader",
+      };
+      fetch(domain + `/Update_student_status`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newLeaderStudentData),
+      });
+
+      // assign new leader to the group
+      const postData = {
+        groupName: group,
+        Leader: newLeader,
+      };
+      console.log(postData);
+      fetch(domain + `/assign_leader`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          toast.success("your post has been added");
+          console.warn(result);
+          from.reset();
+        });
+    }
   };
 
   return (

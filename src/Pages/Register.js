@@ -1,7 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
+import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
+import domain from "../hooks/domain";
 
 const Register = () => {
+  const [group, setGroup] = useState([]);
+
+  // getting all the groups data
+  fetch(domain + `/all_groups`)
+    .then((res) => res.json())
+    .then((result) => setGroup(result));
+  // console.warn(group);
+
+  const registerForm = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.fullName.value;
+    const roll = form.roll.value;
+    const group = form.group.value;
+    const section = form.section.value;
+    const password = form.password.value;
+
+    const registerData = {
+      name: name,
+      roll: roll,
+      groupName: group,
+      section: section,
+      password: password,
+      status: "Student",
+      ban: "no",
+      // date: moment().format(),
+    };
+
+    fetch(domain + `/single_roll?roll=${roll}`)
+      .then((res) => res.json())
+      .then((result) => {
+        const arrayLength = result.length;
+        console.log(result)
+        if (arrayLength === 1) {
+          toast.error("Account already exist");
+        } else {
+          if (
+            roll === "" ||
+            roll === "" ||
+            group === "" ||
+            section === "" ||
+            password === ""
+          ) {
+            toast.error("All fields required");
+          } else {
+            fetch(domain + `/register`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(registerData),
+            })
+              .then((res) => res.json())
+              .then((result) => {
+                toast.success("Your account has been created");
+                console.warn(result);
+                form.reset();
+              });
+          }
+        }
+      });
+
+    console.warn(registerData);
+  };
+
   return (
     <div>
       <div className="register-wrapper-main block sm:flex">
@@ -9,7 +76,10 @@ const Register = () => {
           <div className="have-account border-b py-4 font-general font-[500] flex justify-center cursor-pointer bg-gray-50 sticky top-0 dark:bg-black dark:text-white">
             <h3 className="flex">
               Already have an account
-              <Link to={'/student_login'} className="ml-2 flex gap-1 text-violet-600 rounded-full bg-violet-100 px-2 duration-500 hover:bg-violet-200 dark:bg-[#ebff00] dark:text-black">
+              <Link
+                to={"/student_login"}
+                className="ml-2 flex gap-1 text-violet-600 rounded-full bg-violet-100 px-2 duration-500 hover:bg-violet-200 dark:bg-[#ebff00] dark:text-black"
+              >
                 {" "}
                 login
                 <svg
@@ -33,7 +103,7 @@ const Register = () => {
             <h1 className="text-[25px] font-general font-[600] text-left mb-10 dark:text-white">
               Open Source <sup className="font-[550]">beta</sup>
             </h1>
-            <form className="w-[18rem] text-left">
+            <form onSubmit={registerForm} className="w-[18rem] text-left">
               <div className="mb-6">
                 <label
                   for="email"
@@ -42,6 +112,7 @@ const Register = () => {
                   Full name
                 </label>
                 <input
+                  name="fullName"
                   type="text"
                   id="email"
                   className="text-black font-[500] bg-gray-50 border border-gray-300 text-sm rounded-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#ebff00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#ebff00] dark:focus:border-[#ebff00]"
@@ -57,6 +128,7 @@ const Register = () => {
                   Roll
                 </label>
                 <input
+                  name="roll"
                   type="number"
                   id="email"
                   className="text-black font-[500] bg-gray-50 border border-gray-300 text-sm rounded-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#ebff00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#ebff00] dark:focus:border-[#ebff00]"
@@ -73,14 +145,14 @@ const Register = () => {
                 Select group
               </label>
               <select
+                name="group"
                 id="countries"
                 class="font-[500] mb-6 h-[2.5rem] rounded-sm border border-gray-300 text-gray-900 text-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#ebff00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#ebff00] dark:focus:border-[#ebff00]"
               >
                 <option selected>Select group</option>
-                <option value="US">United States</option>
-                <option value="CA">Canada</option>
-                <option value="FR">France</option>
-                <option value="DE">Germany</option>
+                {group.map((data) => (
+                  <option value={data.groupName}>{data.groupName}</option>
+                ))}
               </select>
 
               {/* select section */}
@@ -91,6 +163,7 @@ const Register = () => {
                 Select section
               </label>
               <select
+                name="section"
                 id="countries"
                 class="font-[500] mb-6 h-[2.5rem] rounded-sm border border-gray-300 text-gray-900 text-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#ebff00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#ebff00] dark:focus:border-[#ebff00]"
               >
@@ -108,6 +181,7 @@ const Register = () => {
                   Password
                 </label>
                 <input
+                  name="password"
                   type="password"
                   id="password"
                   className="border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#ebff00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#ebff00] dark:focus:border-[#ebff00]"
