@@ -33,7 +33,7 @@ const Header = () => {
   const buttonControl = () => {
     setOpen(!open);
   };
-  console.log(theme);
+  // console.log(theme);
   // console.log(open);
   return (
     <>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
 import { useQuery } from "react-query";
 import Header from "../Components/Header";
 import domain from "../hooks/domain";
@@ -7,6 +8,7 @@ const Home = () => {
   // getting single student data
   const [student, setStudent] = useState([]);
   const [studentArrayLength, setStudentArrayLength] = useState([]);
+  const [group, setGroup] = useState([]);
 
   const {
     data: categorys,
@@ -32,6 +34,149 @@ const Home = () => {
         setStudentArrayLength(result);
       });
     refetch();
+  };
+
+  // create groups
+  const createGroup = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const group = form.GroupName.value.toUpperCase();
+
+    const groupData = {
+      groupName: group,
+    };
+
+    fetch(domain + `/single_group?group=${group}`)
+      .then((res) => res.json())
+      .then((result) => {
+        const arrayLength = result.length;
+        if (arrayLength === 1) {
+          toast.error("Group already exist");
+        } else {
+          if (group === "") {
+            toast.error("Field can not be empty");
+          } else {
+            fetch(domain + `/create_group`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(groupData),
+            })
+              .then((res) => res.json())
+              .then((result) => {
+                toast.success("your group has been created ");
+                console.warn(result);
+                form.reset();
+              });
+          }
+        }
+      });
+  };
+
+  // getting all the groups data
+  fetch(domain + `/all_groups`)
+    .then((res) => res.json())
+    .then((result) => setGroup(result));
+  // console.warn(group);
+
+  // assign group leader
+  const assignLeader = (e) => {
+    e.preventDefault();
+    const from = e.target;
+    const group = from.selectedGroup.value;
+    const roll = from.roll.value;
+
+    if (group === "" || roll === "") {
+      toast.error("Please fill up the required fields");
+    } else {
+      const postData = {
+        groupName: group,
+        Leader: roll,
+      };
+      console.log(postData);
+      fetch(domain + `/assign_leader`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          toast.success("your post has been added");
+          console.warn(result);
+          from.reset();
+        });
+
+      const studentData = {
+        groupName: group,
+        roll: roll,
+        status: "Leader",
+      };
+      fetch(domain + `/Update_student_status`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(studentData),
+      });
+    }
+  };
+
+  // update group leader
+  const updateGroupLeader = (e) => {
+    e.preventDefault();
+    const from = e.target;
+    const group = from.group.value;
+    const previousLeader = from.previous.value;
+    const newLeader = from.new.value;
+
+    const PreviousStudentData = {
+      groupName: group,
+      roll: previousLeader,
+      status: "Student",
+    };
+    fetch(domain + `/Update_student_status`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(PreviousStudentData),
+    });
+
+    const newLeaderStudentData = {
+      groupName: group,
+      roll: newLeader,
+      status: "Leader",
+    };
+    fetch(domain + `/Update_student_status`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newLeaderStudentData),
+    });
+
+    // assign new leader to the group
+    const postData = {
+      groupName: group,
+      Leader: newLeader,
+    };
+    console.log(postData);
+    fetch(domain + `/assign_leader`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postData),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        toast.success("your post has been added");
+        console.warn(result);
+        from.reset();
+      });
   };
 
   return (
@@ -130,19 +275,25 @@ const Home = () => {
                 </div>
               </>
             ) : (
-              <h1 className="text-xl font-general font-[500] text-center ml-[-6rem] text-gray-400">No student data found</h1>
+              <div className="image-holder">
+                <img className="ml-[3rem] w-[14rem]" src="/images/404.svg" />
+              </div>
             )}
           </div>
 
           <div className="left-part border-l pl-20 pr-16 py-20 font-general dark:text-white">
-            <form action="" className="flex flex-col items-start">
+            <form
+              onSubmit={createGroup}
+              action=""
+              className="flex flex-col items-start"
+            >
               <h2 className="font-[500] text-xl mb-3 dark:text-white">
                 Create A new group
               </h2>
               <div className="group-filed flex flex-col w-[80%]">
                 <input
                   type="text"
-                  name=""
+                  name="GroupName"
                   id=""
                   placeholder="group name"
                   className="h-[3rem] rounded-t-lg hover:ring-violet-600 dark:bg-black dark:ring-[#EBFF00] dark:border-[#EBFF00] dark:placeholder:text-white"
@@ -170,24 +321,31 @@ const Home = () => {
         {/* create group */}
         <div className="create-group-main font-general border-b grid grid-cols-3">
           <div className="left-part border-r pl-40 py-20 dark:text-white">
-            <form action="" className="flex flex-col items-start">
+            <form
+              onSubmit={assignLeader}
+              action=""
+              className="flex flex-col items-start"
+            >
               <h2 className="font-[500] text-xl mb-3 dark:text-white">
                 Assign a group leader
               </h2>
               <div className="group-filed flex flex-col w-[80%]">
+                <select
+                  name="selectedGroup"
+                  id="countries"
+                  class="h-[3rem] rounded-t-lg border-b-0 bg-gray-50 border text-gray-900 text-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#EBFF00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#EBFF00] dark:focus:border-[#EBFF00]"
+                >
+                  <option selected>Select group</option>
+                  {group.map((data) => (
+                    <option value={data.groupName}>{data.groupName}</option>
+                  ))}
+                </select>
                 <input
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder="group name"
-                  className="h-[3rem] rounded-t-lg hover:ring-violet-600 dark:bg-black dark:ring-[#EBFF00] dark:border-[#EBFF00] dark:placeholder:text-white"
-                />
-                <input
-                  type="text"
-                  name=""
+                  type="number"
+                  name="roll"
                   id=""
                   placeholder="group leader roll"
-                  className="h-[3rem] border-y-0 hover:ring-violet-600 dark:bg-black dark:ring-[#EBFF00] dark:border-[#EBFF00] dark:placeholder:text-white"
+                  className="h-[3rem] border-b-0 hover:ring-violet-600 dark:bg-black dark:ring-[#EBFF00] dark:border-[#EBFF00] dark:placeholder:text-white"
                 />
                 <button
                   type="text"
@@ -212,26 +370,32 @@ const Home = () => {
               All recently crated groups names
             </h1>
             {/* <h1 className="font-general font-[500] text-xl">No group found</h1> */}
-            <h1 className="font-general font-[500] text-xl text-left border-b py-2 dark:text-white flex justify-between">
-              A group leader name{" "}
-              <span className="text-red-600 dark:text-orange-400">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
-                  />
-                </svg>
-              </span>
-            </h1>
-            <h1 className="font-general font-[500] text-xl text-left border-b py-2 dark:text-white">
+            {group.map((data) => (
+              <h1 className="font-general font-[500] text-xl text-left border-b py-2 dark:text-white flex justify-between">
+                {data?.groupName}
+                {data?.Leader === 0 ? (
+                  <span className="text-red-600 dark:text-orange-400">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+                      />
+                    </svg>
+                  </span>
+                ) : (
+                  <p>{data?.Leader}</p>
+                )}
+              </h1>
+            ))}
+            {/* <h1 className="font-general font-[500] text-xl text-left border-b py-2 dark:text-white">
               A group leader name
             </h1>
             <h1 className="font-general font-[500] text-xl text-left border-b py-2 dark:text-white">
@@ -239,37 +403,41 @@ const Home = () => {
             </h1>
             <h1 className="font-general font-[500] text-xl text-left border-b py-2 dark:text-white">
               A group leader name
-            </h1>
+            </h1> */}
 
             {/* {document.body.style.backgroundColor === "light"? <img src="/images/group.svg" className="w-[18rem]" alt="" srcset="" />: <img src="/public/images/dark.svg" className="w-[18rem]" alt="" srcset="" />} */}
             {/* <img src="/images/group.svg" className="w-[18rem]" alt="" srcset="" /> */}
           </div>
-          <div className="right-part flex flex-col items-start justify-center pl-20 pr-16 py-20 dark:text-white">
-            <form action="" className="flex flex-col items-start w-full">
+          <div className="right-part flex flex-col items-start justify-start pl-20 pr-16 py-20 dark:text-white">
+            <form
+              onSubmit={updateGroupLeader}
+              action=""
+              className="flex flex-col items-start w-full"
+            >
               <h2 className="font-[500] text-xl mb-3 dark:text-white">
                 Update group leader
               </h2>
               <div className="group-filed flex flex-col w-[80%]">
                 <select
+                  name="group"
                   id="countries"
                   class="h-[3rem] rounded-t-lg border-b-0 bg-gray-50 border text-gray-900 text-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#EBFF00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#EBFF00] dark:focus:border-[#EBFF00]"
                 >
                   <option selected>Select group</option>
-                  <option value="US">United States</option>
-                  <option value="CA">Canada</option>
-                  <option value="FR">France</option>
-                  <option value="DE">Germany</option>
+                  {group.map((data) => (
+                    <option value={data.groupName}>{data.groupName}</option>
+                  ))}
                 </select>
                 <input
                   type="text"
-                  name=""
+                  name="previous"
                   id=""
                   placeholder="Previous group leader roll"
                   className="h-[3rem] hover:ring-violet-600 dark:hover:ring-[#EBFF00] dark:bg-black dark:border-[#EBFF00] dark:placeholder:text-white"
                 />
                 <input
                   type="text"
-                  name=""
+                  name="new"
                   id=""
                   placeholder="New group leader roll"
                   className="h-[3rem] border-y-0 hover:ring-violet-600 dark:hover:ring-[#EBFF00] dark:bg-black dark:border-[#EBFF00] dark:placeholder:text-white"

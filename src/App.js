@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import AddQuestion from "./Pages/AddQuestion";
@@ -25,6 +26,7 @@ function App() {
   return (
     <div className="App">
       <RouterProvider router={routs}></RouterProvider>
+      <Toaster></Toaster>
     </div>
   );
 }
