@@ -1,16 +1,26 @@
 import { Navbar } from "flowbite-react";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import secureLocalStorage from "react-secure-storage";
 import "../Css/Main.css";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [defaults, setDefault] = useState("light");
 
+  // navigate to login
+  const navigate = useNavigate();
+
   useEffect(() => {
     let themeStatus = localStorage.getItem("status");
     setDefault(themeStatus);
   });
+
+  // logout button
+  const logoutButton = () => {
+    secureLocalStorage.clear("userInfo");
+    navigate("/student_login");
+  };
 
   // set theme
   const [theme, setTheme] = useState("light");
@@ -75,6 +85,12 @@ const Header = () => {
             <Link to={"/more"} className="cursor-pointer">
               Know more
             </Link>
+            <button
+              onClick={logoutButton}
+              className="text-red-600 duration-500 hover:text-red-500"
+            >
+              Logout
+            </button>
             {/* dark mode toggle */}
             <div className="darkMode-button-group cursor-pointer">
               <div

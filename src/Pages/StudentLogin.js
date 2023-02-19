@@ -1,11 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import domain from "../hooks/domain";
 import secureLocalStorage from "react-secure-storage";
 
 const StudentLogin = () => {
+  // navigate to routs
   const navigate = useNavigate();
+  const userLocalStorageData = JSON.parse(
+    secureLocalStorage.getItem("userInfo")
+  );
+  useEffect(() => {
+    if (userLocalStorageData?.status === "Leader") {
+      console.warn(userLocalStorageData?.status)
+      navigate("/leader");
+    }
+  }, []);
+  useEffect(() => {
+    if (userLocalStorageData?.status === "Student") {
+      console.warn(userLocalStorageData?.status)
+      navigate("/student");
+    }
+  }, []);
   const loginFormSubmit = (e) => {
     e.preventDefault();
     const from = e.target;
@@ -26,6 +42,7 @@ const StudentLogin = () => {
           const userLocalStorageData = JSON.parse(
             secureLocalStorage.getItem("userInfo")
           );
+          console.log(userLocalStorageData);
           if (userLocalStorageData.status === "Leader") {
             navigate("/leader");
           } else if (userLocalStorageData.status === "Student") {
