@@ -1,6 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
+import secureLocalStorage from "react-secure-storage";
 import Header from "../Components/Header";
 import { AughtContext } from "../Context/MainContext";
 import domain from "../hooks/domain";
@@ -11,6 +13,17 @@ const Home = () => {
   const [student, setStudent] = useState([]);
   const [studentArrayLength, setStudentArrayLength] = useState([]);
   const [group, setGroup] = useState([]);
+
+  const navigate = useNavigate();
+  const AdminLocalStorageData = JSON.parse(
+    secureLocalStorage.getItem("adminInfo")
+  );
+
+  useEffect(() => {
+    if (AdminLocalStorageData?.status !== "Admin") {
+      navigate("/login");
+    }
+  }, []);
 
   const {
     data: categorys,

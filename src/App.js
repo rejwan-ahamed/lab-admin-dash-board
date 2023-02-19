@@ -18,7 +18,8 @@ import LeaderViewAns from "./Pages/LeaderPages/LeaderViewAns";
 
 function App() {
   const routs = createBrowserRouter([
-    { path: "/", element: <Home></Home> },
+    { path: "/", element: <StudentLogin></StudentLogin>},
+    { path: "/dashboard", element: <Home></Home> },
     { path: "/login", element: <Login></Login> },
     { path: "/leader", element: <LeaderDashBoard></LeaderDashBoard> },
     { path: "/register", element: <Register></Register> },

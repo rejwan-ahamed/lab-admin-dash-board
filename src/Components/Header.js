@@ -8,6 +8,7 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const [defaults, setDefault] = useState("light");
   const [user, setUser] = useState("light");
+  const [admin, setAdmin] = useState();
 
   useEffect(() => {
     const userLocalStorageData = JSON.parse(
@@ -15,6 +16,14 @@ const Header = () => {
     );
     setUser(userLocalStorageData);
   }, []);
+
+  useEffect(() => {
+    const AdminLocalStorageData = JSON.parse(
+      secureLocalStorage.getItem("adminInfo")
+    );
+    setAdmin(AdminLocalStorageData);
+  }, []);
+  // console.log(admin);
   // console.log(user);
 
   // navigate to login
@@ -29,6 +38,10 @@ const Header = () => {
   const logoutButton = () => {
     secureLocalStorage.clear("userInfo");
     navigate("/student_login");
+  };
+  const adminlogoutButton = () => {
+    secureLocalStorage.clear("adminInfo");
+    navigate("/login");
   };
 
   // set theme
@@ -70,12 +83,11 @@ const Header = () => {
           </Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse className="flex flex-row max-h-max items-center">
-            <Link to={"/"} active={true} className="cursor-pointer">
-              Dashboard
-            </Link>
-            <Link to={"/login"} className="cursor-pointer">
-              Admin login
-            </Link>
+            {admin?.status === "Admin" ? (
+              <Link to={"/dashboard"} active={true} className="cursor-pointer">
+                Dashboard
+              </Link>
+            ) : undefined}
 
             {user?.status === "Leader" ? (
               <>
@@ -116,6 +128,20 @@ const Header = () => {
                 </Link>
                 <Link to={"/student_login"} className="cursor-pointer">
                   Student login
+                </Link>
+              </>
+            )}
+            {admin ? (
+              <button
+                onClick={adminlogoutButton}
+                className="text-red-600 duration-500 hover:text-red-500"
+              >
+                Logout
+              </button>
+            ) : (
+              <>
+                <Link to={"/login"} className="cursor-pointer">
+                  Admin login
                 </Link>
               </>
             )}
@@ -204,31 +230,47 @@ const Header = () => {
             onClick={() => setOpen(!open)}
             className="z-[100] duration-500 sticky main-mobile-nav-section bg-gray-50 h-screen w-full flex flex-col gap-3  font-general font-[500] text-2xl text-left pt-10 dark:bg-black dark:text-white"
           >
-            <Link to={"/leader"} className="border-b pb-3 px-4">
-              Leader
-            </Link>
-            <Link to={"/login"} className="border-b pb-3 px-4">
-              Admin login
-            </Link>
-            <Link to={"/register"} className="border-b pb-3 px-4">
-              Register
-            </Link>
-            <Link to={"/student_login"} className="border-b pb-3 px-4">
-              Student login
-            </Link>
-            <Link to={"/add_question"} className="border-b pb-3 px-4">
-              Add Question
-            </Link>
-            <Link to={"/student"} className="border-b pb-3 px-4">
-              Home
-            </Link>
+            {user?.status === "Leader" ? (
+              <>
+                <Link to={"/leader"} className="border-b pb-3 px-4">
+                  Leader
+                </Link>
+
+                <Link to={"/add_question"} className="border-b pb-3 px-4">
+                  Add Question
+                </Link>
+                <Link to={"/LDBoard"} className="border-b pb-3 px-4">
+                  Home
+                </Link>
+              </>
+            ) : undefined}
+            {user?.status === "Student" ? (
+              <Link to={"/student"} className="border-b pb-3 px-4">
+                Home
+              </Link>
+            ) : undefined}
+
             <Link to={"/more"} className="border-b pb-3 px-4">
               More
             </Link>
+            {user ? undefined : (
+              <>
+                {" "}
+                <Link to={"/register"} className="border-b pb-3 px-4">
+                  Register
+                </Link>
+                <Link to={"/student_login"} className="border-b pb-3 px-4">
+                  Student login
+                </Link>
+              </>
+            )}
             <div className="bottom-section-group absolute bottom-44 flex justify-between items-center w-full pr-4">
-              <Link className=" text-white pt-2 px-6 py-1 pb-2 bg-red-600 max-w-max rounded-full ml-4 leading-none text-[18px] duration-300 border border-red-600 hover:bg-transparent hover:border-red-600 hover:text-red-600 dark:border-[#EBFF00] dark:bg-[#eaff006d] dark:text-[#EBFF00]">
+              <button
+                onClick={logoutButton}
+                className=" text-white pt-2 px-6 py-1 pb-2 bg-red-600 max-w-max rounded-full ml-4 leading-none text-[18px] duration-300 border border-red-600 hover:bg-transparent hover:border-red-600 hover:text-red-600 dark:border-[#EBFF00] dark:bg-[#eaff006d] dark:text-[#EBFF00]"
+              >
                 Logout
-              </Link>
+              </button>
 
               <div className="button-toggle-group dark:text-black">
                 {theme === "dark" ? (

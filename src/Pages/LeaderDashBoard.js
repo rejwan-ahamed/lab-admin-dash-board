@@ -6,6 +6,9 @@ import domain from "../hooks/domain";
 
 const LeaderDashBoard = () => {
   const [groupQuestion, setGroupQuestion] = useState([]);
+  const [groupData, setGroupData] = useState([]);
+  const [userLength, setUserLength] = useState();
+  const [groupLength, setGroupLength] = useState();
   const navigate = useNavigate();
   const userLocalStorageData = JSON.parse(
     secureLocalStorage.getItem("userInfo")
@@ -17,6 +20,28 @@ const LeaderDashBoard = () => {
     }
   }, []);
 
+  useEffect(() => {
+    fetch(domain + `/get_all_register?group=${userLocalStorageData?.groupName}`)
+      .then((res) => res.json())
+      .then((result) => setGroupData(result));
+  }, []);
+
+
+  // getting user answer list
+  // const userANS = (roll) => {
+  //   fetch(domain + `/get_single_user_answer_list?roll=${roll}`)
+  //     .then((res) => res.json())
+  //     .then((result) => setUserLength(result));
+  // };
+
+  // getting value by group
+  fetch(
+    domain +
+      `/get_group_question_name?groupName=${userLocalStorageData?.groupName}`
+  )
+    .then((res) => res.json())
+    .then((result) => setGroupLength(result.questions.length));
+  // console.log(groupData);
 
   // getting all question for the single leader by group
   fetch(
@@ -101,81 +126,33 @@ const LeaderDashBoard = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="bg-white border-b border-black dark:border-white dark:bg-black">
-                    <th
-                      scope="row"
-                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      A
-                    </th>
-                    <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
-                      Rejwan
-                    </td>
-                    <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
-                      106
-                    </td>
-                    <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
-                      Leader
-                    </td>
-                    <td class="px-3 py-4 text-violet-500 font-[500] dark:text-[#ebff00] border-l border-black sm:px-6 dark:border-l-white">
-                      <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-500">
-                        <div
-                          className="bg-violet-600 h-2.5 rounded-full duration-500 dark:bg-[#ebff00]"
-                          style={{ width: "95%" }}
-                        ></div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr class="bg-white border-b border-black dark:border-white dark:bg-black">
-                    <th
-                      scope="row"
-                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      A
-                    </th>
-                    <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
-                      Rejwan
-                    </td>
-                    <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
-                      106
-                    </td>
-                    <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
-                      Leader
-                    </td>
-                    <td class="px-3 py-4 text-violet-500 font-[500] dark:text-[#ebff00] border-l border-black sm:px-6 dark:border-l-white">
-                      <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-500">
-                        <div
-                          className="bg-violet-600 h-2.5 rounded-full duration-500 dark:bg-[#ebff00]"
-                          style={{ width: "95%" }}
-                        ></div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr class="bg-white border-b border-black dark:border-white dark:bg-black">
-                    <th
-                      scope="row"
-                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      A
-                    </th>
-                    <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
-                      Rejwan
-                    </td>
-                    <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
-                      106
-                    </td>
-                    <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
-                      Leader
-                    </td>
-                    <td class="px-3 py-4 text-violet-500 font-[500] dark:text-[#ebff00] border-l border-black sm:px-6 dark:border-l-white">
-                      <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-500">
-                        <div
-                          className="bg-violet-600 h-2.5 rounded-full duration-500 dark:bg-[#ebff00]"
-                          style={{ width: "95%" }}
-                        ></div>
-                      </div>
-                    </td>
-                  </tr>
+                  {groupData?.map((data) => (
+                    <tr class="bg-white border-b border-black dark:border-white dark:bg-black">
+                      <th
+                        scope="row"
+                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        {data?.groupName}
+                      </th>
+                      <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
+                        {data?.name}
+                      </td>
+                      <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
+                        {data?.roll}
+                      </td>
+                      <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
+                        {data?.status}
+                      </td>
+                      <td class="px-3 py-4 text-violet-500 font-[500] dark:text-[#ebff00] border-l border-black sm:px-6 dark:border-l-white">
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-500">
+                          <div
+                            className="bg-violet-600 h-2.5 rounded-full duration-500 dark:bg-[#ebff00]"
+                            style={{ width: `${userLength*100}/groupLength` }}
+                          ></div>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
