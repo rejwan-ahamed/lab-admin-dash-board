@@ -3,9 +3,32 @@ import ReactQuill from "react-quill";
 import Header from "../Components/Header";
 import "react-quill/dist/quill.snow.css";
 import { Dialog, Transition } from "@headlessui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import secureLocalStorage from "react-secure-storage";
+import domain from "../hooks/domain";
+import { toast } from "react-hot-toast";
 
 const AnswerQuestion = () => {
+  const [question, setQuestion] = useState();
+  const navigate = useNavigate();
+  const userLocalStorageData = JSON.parse(
+    secureLocalStorage.getItem("userInfo")
+  );
+
+  // getting question by params id
+  const ID = useParams();
+
+  fetch(domain + `/get_single_question?id=${ID.id}`)
+    .then((res) => res.json())
+    .then((result) => setQuestion(result[0]));
+  // console.log(question)
+
+  useEffect(() => {
+    if (userLocalStorageData?.status !== "Student") {
+      navigate("/student_login");
+    }
+  }, []);
+
   // for dialog control
   let [isOpen, setIsOpen] = useState(false);
 
@@ -18,12 +41,45 @@ const AnswerQuestion = () => {
   }
 
   // end here
-  useEffect(() => {
-    fetch("https://api.haithemfurniture.com/single_post/103")
-      .then((res) => res.json())
-      .then((result) => setValue(result[0]?.postBody));
-  }, []);
+  // load default data
+  // useEffect(() => {
+  //   fetch("https://api.haithemfurniture.com/single_post/103")
+  //     .then((res) => res.json())
+  //     .then((result) => setValue(result[0]?.postBody));
+  // }, []);
   const [value, setValue] = useState("");
+
+  const submitAns = () => {
+    if (value === "") {
+      toast.error("Please enter your answer");
+    } else {
+      const answerData = {
+        question: question?.question,
+        ans: value,
+        groupName: question?.groupName,
+        leader: question?.leader,
+        answer_by_roll: userLocalStorageData?.roll,
+        answer_by_name: userLocalStorageData?.name,
+        questionID: question?.id,
+      };
+
+      // console.log(answerData)
+
+      fetch(domain + `/answer`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(answerData),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          toast.success("your post has been added");
+          console.warn(result);
+          setValue("");
+        });
+    }
+  };
 
   return (
     <div className="duration-500">
@@ -90,7 +146,7 @@ const AnswerQuestion = () => {
 
                   <div className="mt-4 flex w-full">
                     <Link
-                    to={'/student'}
+                      to={"/student"}
                       type="button"
                       className="w-[50%] font-general font-[500] text-lg border-t border-r  border-black inline-flex justify-center bg-red-600 px-4 py-3 text-white duration-500 hover:bg-red-400 hover:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
@@ -116,7 +172,7 @@ const AnswerQuestion = () => {
 
       <div className="answer-question px-4 py-10 lg:px-20 lg:py-20 xl:px-40 xl:py-20">
         <h1 className="font-general text-xl font-[500] text-left mb-6 dark:text-white">
-          Name of the question
+          {question?.question}
         </h1>
         <ReactQuill
           theme="snow"
@@ -126,7 +182,10 @@ const AnswerQuestion = () => {
           className="dark:text-white"
         ></ReactQuill>
         <div className="button-group flex gap-2 justify-start w-full mt-6">
-          <button className="bg-violet-200 px-6 py-2 text-violet-600 border-violet-600 border rounded-sm font-general font-[550] duration-500 hover:bg-transparent hover:text-violet-600 hover:border-violet-500 dark:border-[#ebff00] dark:bg-[#eaff0069] dark:text-[#ebff00] dark:hover:bg-transparent">
+          <button
+            onClick={submitAns}
+            className="bg-violet-200 px-6 py-2 text-violet-600 border-violet-600 border rounded-sm font-general font-[550] duration-500 hover:bg-transparent hover:text-violet-600 hover:border-violet-500 dark:border-[#ebff00] dark:bg-[#eaff0069] dark:text-[#ebff00] dark:hover:bg-transparent"
+          >
             Submit Answer
           </button>
           <button

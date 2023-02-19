@@ -1,7 +1,10 @@
 import Header from "../Components/Header";
 import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import secureLocalStorage from "react-secure-storage";
+import { toast } from "react-hot-toast";
+import domain from "../hooks/domain";
 
 const AddQuestion = () => {
   // for dialog control
@@ -14,6 +17,50 @@ const AddQuestion = () => {
   function openModal() {
     setIsOpen(true);
   }
+
+  const navigate = useNavigate();
+  const userLocalStorageData = JSON.parse(
+    secureLocalStorage.getItem("userInfo")
+  );
+
+  useEffect(() => {
+    if (userLocalStorageData?.status !== "Leader") {
+      navigate("/student_login");
+    }
+  }, []);
+
+  // add new question
+  const addQuestion = (e) => {
+    e.preventDefault();
+    const from = e.target;
+    const question = from.question.value;
+    console.log(question);
+
+    const questionData = {
+      question: question,
+      groupName: userLocalStorageData.groupName,
+      leader: userLocalStorageData.roll,
+    };
+
+    if (question === "") {
+      toast.error("No question added");
+    } else {
+      fetch(domain + `/add_question`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(questionData),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          toast.success("your post has been added");
+          console.warn(result);
+          from.reset();
+        });
+    }
+  };
+
   return (
     <div>
       {/* modal start here  */}
@@ -105,33 +152,38 @@ const AddQuestion = () => {
       <div className="add-question-ma px-4 py-10 lg:px-20 lg:py-20 xl:px-40 xl:py-20 max-w-[1560px] mx-auto">
         <h1 className="text-2xl font-general font-[500] text-left dark:text-white">
           Add question for group{" "}
-          <samp className="text-violet-600 dark:text-[#ebff00]">A</samp>
+          <samp className="text-violet-600 dark:text-[#ebff00]">
+            {userLocalStorageData.groupName}
+          </samp>
         </h1>
 
         <div className="add-question text-left font-general font-[500] mt-10">
-          <label
-            for="message"
-            class="text-[18px] block mb-3 font-medium text-gray-900 dark:text-white"
-          >
-            Add your practice question
-          </label>
-          <textarea
-            id="message"
-            rows="4"
-            class="block p-2.5 w-full text-sm text-black rounded-sm border border-black focus:ring-violet-500 focus:border-violet-500 dark:bg-black dark:border-white dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#ebff00] dark:focus:border-[#ebff00]"
-            placeholder="Write your thoughts here..."
-          ></textarea>
-          <div className="button-group flex gap-2 items-center justify-start w-full mt-6">
-            <button className="bg-violet-200 px-6 py-2 text-violet-600 border-violet-600 border rounded-sm font-general font-[550] duration-500 hover:bg-transparent hover:text-violet-600 hover:border-violet-500 dark:border-[#ebff00] dark:bg-[#eaff0069] dark:text-[#ebff00] dark:hover:bg-transparent">
-              Submit Question
-            </button>
-            <button
-              onClick={openModal}
-              className="bg-red-200 px-6 py-2 border-red-600 text-red-600 border rounded-sm font-general font-[550] duration-500 hover:bg-transparent hover:text-red-600 hover:border-red-600 dark:bg-[#ff00003d] dark:hover:bg-transparent"
+          <form onSubmit={addQuestion}>
+            <label
+              for="message"
+              class="text-[18px] block mb-3 font-medium text-gray-900 dark:text-white"
             >
-              Cancel
-            </button>
-          </div>
+              Add your practice question
+            </label>
+            <textarea
+              id="message"
+              name="question"
+              rows="4"
+              class="block p-2.5 w-full text-sm text-black rounded-sm border border-black focus:ring-violet-500 focus:border-violet-500 dark:bg-black dark:border-white dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#ebff00] dark:focus:border-[#ebff00]"
+              placeholder="Write your thoughts here..."
+            ></textarea>
+            <div className="button-group w-full mt-6">
+              <button className="bg-violet-200 px-6 py-2 text-violet-600 border-violet-600 border rounded-sm font-general font-[550] duration-500 hover:bg-transparent hover:text-violet-600 hover:border-violet-500 dark:border-[#ebff00] dark:bg-[#eaff0069] dark:text-[#ebff00] dark:hover:bg-transparent">
+                Submit Question
+              </button>
+            </div>
+          </form>
+          <button
+            onClick={openModal}
+            className="bg-red-200 px-6 py-2 border-red-600 text-red-600 border rounded-sm font-general font-[550] duration-500 ml-[11.5rem] mt-[-2.6rem] absolute hover:bg-transparent hover:text-red-600 hover:border-red-600 dark:bg-[#ff00003d] dark:hover:bg-transparent"
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </div>

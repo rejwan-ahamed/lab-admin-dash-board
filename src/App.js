@@ -21,7 +21,7 @@ function App() {
     { path: "/student_login", element: <StudentLogin></StudentLogin> },
     { path: "/add_question", element: <AddQuestion></AddQuestion> },
     { path: "/student", element: <StudentDashboard></StudentDashboard> },
-    { path: "/ans", element: <AnswerQuestion></AnswerQuestion> },
+    { path: "/ans/:id", element: <AnswerQuestion></AnswerQuestion> },
     { path: "/more", element: <More></More> },
     { path: "/404", element: <NotValid></NotValid> },
   ]);

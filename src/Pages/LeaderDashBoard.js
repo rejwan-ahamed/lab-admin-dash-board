@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import Header from "../Components/Header";
+import domain from "../hooks/domain";
 
 const LeaderDashBoard = () => {
+  const [groupQuestion, setGroupQuestion] = useState([]);
   const navigate = useNavigate();
   const userLocalStorageData = JSON.parse(
     secureLocalStorage.getItem("userInfo")
@@ -14,6 +16,15 @@ const LeaderDashBoard = () => {
       navigate("/student_login");
     }
   }, []);
+
+
+  // getting all question for the single leader by group
+  fetch(
+    domain +
+      `/get_group_question?roll=${userLocalStorageData?.roll}&groupName=${userLocalStorageData?.groupName}`
+  )
+    .then((res) => res.json())
+    .then((result) => setGroupQuestion(result.questions));
   return (
     <div className="bg-white duration-500 dark:bg-black">
       <Header></Header>
@@ -22,12 +33,14 @@ const LeaderDashBoard = () => {
         <div className="group-details ">
           <h1 className="text-xl font-general text-left font-[500] sm:text-2xl dark:text-white">
             Group :{" "}
-            <span className="text-violet-500 dark:text-[#ebff00]">A</span>
+            <span className="text-violet-500 dark:text-[#ebff00]">
+              {userLocalStorageData?.groupName}
+            </span>
           </h1>
           <h1 className="text-xl font-general text-left font-[500] sm:text-2xl dark:text-white">
             welcome back leader :{" "}
             <span className="text-violet-500 dark:text-[#ebff00]">
-              Rejwan Ahamed
+              {userLocalStorageData?.name}
             </span>
           </h1>
 
@@ -35,70 +48,31 @@ const LeaderDashBoard = () => {
             <h3 className="text-left font-general font-[500] text-violet-600 mb-4 border border-violet-600 rounded-full py-1 px-4 max-w-max dark:text-[#ebff00] dark:border-[#ebff00]">
               All questions assign by group leader
             </h3>
-
-            <div className="question body border-b py-3">
-              <div className="question-main font-general text-xl text-left font-[500] flex justify-between items-center">
-                <h2 className="dark:text-white">Random question for ans</h2>
-                <div className="delete-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6 cursor-pointer duration-300 hover:text-red-600 dark:text-white dark:hover:text-[#ebff00]"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
+            {groupQuestion?.map((data) => (
+              <>
+                <div className="question body border-b py-3">
+                  <div className="question-main font-general text-xl text-left font-[500] flex justify-between items-center">
+                    <h2 className="dark:text-white">{data?.question}</h2>
+                    <div className="delete-icon">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6 cursor-pointer duration-300 hover:text-red-600 dark:text-white dark:hover:text-[#ebff00]"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div className="question body border-b py-3">
-              <div className="question-main font-general text-xl text-left font-[500] flex justify-between items-center">
-                <h2 className="dark:text-white">Random question for ans</h2>
-                <div className="delete-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6 cursor-pointer duration-300 hover:text-red-600 dark:text-white dark:hover:text-[#ebff00]"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div className="question body border-b py-3">
-              <div className="question-main font-general text-xl text-left font-[500] flex justify-between items-center">
-                <h2 className="dark:text-white">Random question for ans</h2>
-                <div className="delete-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6 cursor-pointer duration-300 hover:text-red-600 dark:text-white dark:hover:text-[#ebff00]"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
+              </>
+            ))}
           </div>
           <div className="group-table-list font-general mb-8 mt-16">
             <h3 className="text-left font-general font-[500] text-violet-600 mb-4 border border-violet-600 rounded-full py-1 px-4 max-w-max dark:text-[#ebff00] dark:border-[#ebff00]">
