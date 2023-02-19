@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
-import { json, Link } from "react-router-dom";
-import { AughtContext } from "../Context/MainContext";
+import { Link, useNavigate } from "react-router-dom";
 import domain from "../hooks/domain";
+import secureLocalStorage from "react-secure-storage";
 
 const StudentLogin = () => {
-  // const { login, setLogin } = useContext(AughtContext);
+  const navigate = useNavigate();
   const loginFormSubmit = (e) => {
     e.preventDefault();
     const from = e.target;
@@ -19,8 +19,20 @@ const StudentLogin = () => {
           toast.error("Roll or Password is incorrect");
         } else {
           toast.success("Login successful");
-          localStorage.setItem("userInfo", JSON.stringify(result.userData[0]));
-          console.warn(JSON.parse(localStorage.getItem('userInfo')))
+          secureLocalStorage.setItem(
+            "userInfo",
+            JSON.stringify(result.userData[0])
+          );
+          const userLocalStorageData = JSON.parse(
+            secureLocalStorage.getItem("userInfo")
+          );
+          if (userLocalStorageData.status === "Leader") {
+            navigate("/leader");
+          } else if (userLocalStorageData.status === "Student") {
+            navigate("/student");
+          } else {
+            navigate("/404");
+          }
         }
       });
   };

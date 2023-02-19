@@ -10,6 +10,7 @@ import More from "./Pages/More";
 import Register from "./Pages/Register";
 import StudentDashboard from "./Pages/StudentDashboard";
 import StudentLogin from "./Pages/StudentLogin";
+import NotValid from "./Pages/NotValid";
 
 function App() {
   const routs = createBrowserRouter([
@@ -22,6 +23,7 @@ function App() {
     { path: "/student", element: <StudentDashboard></StudentDashboard> },
     { path: "/ans", element: <AnswerQuestion></AnswerQuestion> },
     { path: "/more", element: <More></More> },
+    { path: "/404", element: <NotValid></NotValid> },
   ]);
   return (
     <div className="App">
