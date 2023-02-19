@@ -1,7 +1,29 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { toast } from "react-hot-toast";
+import { json, Link } from "react-router-dom";
+import { AughtContext } from "../Context/MainContext";
+import domain from "../hooks/domain";
 
 const StudentLogin = () => {
+  // const { login, setLogin } = useContext(AughtContext);
+  const loginFormSubmit = (e) => {
+    e.preventDefault();
+    const from = e.target;
+    const roll = from.roll.value;
+    const password = from.password.value;
+
+    fetch(domain + `/student_login?roll=${roll}&password=${password}`)
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.length === 0) {
+          toast.error("Roll or Password is incorrect");
+        } else {
+          toast.success("Login successful");
+          localStorage.setItem("userInfo", JSON.stringify(result.userData[0]));
+          console.warn(JSON.parse(localStorage.getItem('userInfo')))
+        }
+      });
+  };
   return (
     <div>
       <div className="register-wrapper-main block lg:flex">
@@ -9,7 +31,10 @@ const StudentLogin = () => {
           <div className="have-account border-b py-4 font-general font-[500] flex justify-center cursor-pointer bg-gray-50 sticky top-0 dark:bg-black dark:text-white">
             <h3 className="flex">
               Don't have an account
-              <Link to={'/register'} className="ml-2 flex gap-1 text-violet-600 rounded-full bg-violet-100 px-2 duration-500 hover:bg-violet-200 dark:bg-[#ebff00] dark:text-black">
+              <Link
+                to={"/register"}
+                className="ml-2 flex gap-1 text-violet-600 rounded-full bg-violet-100 px-2 duration-500 hover:bg-violet-200 dark:bg-[#ebff00] dark:text-black"
+              >
                 {" "}
                 register
                 <svg
@@ -33,17 +58,18 @@ const StudentLogin = () => {
             <h1 className="text-[25px] font-general font-[600] text-left mb-10 dark:text-white">
               Open Source <sup className="font-[550]">beta</sup>
             </h1>
-            <form className="w-[18rem] text-left">
+            <form onSubmit={loginFormSubmit} className="w-[18rem] text-left">
               <div className="mb-6">
                 <label
                   for="email"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Roll
+                  Class roll
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   id="email"
+                  name="roll"
                   className="text-black font-[500] border border-gray-300 text-sm rounded-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#ebff00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#ebff00] dark:focus:border-[#ebff00]"
                   placeholder="test subject 24"
                   required
@@ -60,6 +86,7 @@ const StudentLogin = () => {
                 <input
                   type="password"
                   id="password"
+                  name="password"
                   className="border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#ebff00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#ebff00] dark:focus:border-[#ebff00]"
                   placeholder="•••••••••"
                   required

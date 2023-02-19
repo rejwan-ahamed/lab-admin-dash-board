@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useQuery } from "react-query";
 import Header from "../Components/Header";
+import { AughtContext } from "../Context/MainContext";
 import domain from "../hooks/domain";
+
 
 const Home = () => {
   // getting single student data
@@ -181,6 +183,9 @@ const Home = () => {
         });
     }
   };
+
+  const data = useContext(AughtContext);
+  // console.log(data);
 
   return (
     <div>

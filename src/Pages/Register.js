@@ -73,7 +73,7 @@ const Register = () => {
     <div>
       <div className="register-wrapper-main block sm:flex">
         <div className="left-side w-full lg:w-[50%]">
-          <div className="have-account border-b py-4 font-general font-[500] flex justify-center cursor-pointer bg-gray-50 sticky top-0 dark:bg-black dark:text-white">
+          <div className="z-[50] have-account border-b py-4 font-general font-[500] flex justify-center cursor-pointer bg-gray-50 sticky top-0 dark:bg-black dark:text-white">
             <h3 className="flex">
               Already have an account
               <Link
@@ -99,7 +99,7 @@ const Register = () => {
               </Link>{" "}
             </h3>
           </div>
-          <div className="login-main w-full flex flex-col justify-center items-center h-screen sm:h-screen font-general">
+          <div className="login-main w-full flex flex-col justify-center items-center h-max my-10 sm:my-0 sm:h-screen font-general">
             <h1 className="text-[25px] font-general font-[600] text-left mb-10 dark:text-white">
               Open Source <sup className="font-[550]">beta</sup>
             </h1>

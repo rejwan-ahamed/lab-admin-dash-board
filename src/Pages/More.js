@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Header from "../Components/Header";
-import { TweenMax, Power3, gsap } from "gsap";
+import { TweenMax, Power3 } from "gsap";
 
 const More = () => {
   let img1 = useRef(null);
