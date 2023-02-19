@@ -12,6 +12,9 @@ import StudentDashboard from "./Pages/StudentDashboard";
 import StudentLogin from "./Pages/StudentLogin";
 import NotValid from "./Pages/NotValid";
 import ViewAns from "./Pages/ViewAns";
+import LDashboard from "./Pages/LeaderPages/LDashboard";
+import LeaderAddAns from "./Pages/LeaderPages/LeaderAddAns";
+import LeaderViewAns from "./Pages/LeaderPages/LeaderViewAns";
 
 function App() {
   const routs = createBrowserRouter([
@@ -25,6 +28,9 @@ function App() {
     { path: "/ans/:id", element: <AnswerQuestion></AnswerQuestion> },
     { path: "/more", element: <More></More> },
     { path: "/view/:id", element: <ViewAns></ViewAns> },
+    { path: "/LDBoard", element: <LDashboard></LDashboard> },
+    { path: "/leaderAns/:id", element: <LeaderAddAns></LeaderAddAns> },
+    { path: "/Lans/:id", element: <LeaderViewAns></LeaderViewAns> },
     { path: "/404", element: <NotValid></NotValid> },
   ]);
   return (

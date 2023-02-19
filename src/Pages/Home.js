@@ -106,7 +106,7 @@ const Home = () => {
       })
         .then((res) => res.json())
         .then((result) => {
-          toast.success("your post has been added");
+          toast.success("Leader assigned to group");
           console.warn(result);
           from.reset();
         });

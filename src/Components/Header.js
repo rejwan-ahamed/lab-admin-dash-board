@@ -86,6 +86,9 @@ const Header = () => {
                 <Link to={"/add_question"} className="cursor-pointer">
                   Add question
                 </Link>
+                <Link to={"/LDBoard"} className="cursor-pointer">
+                  Home
+                </Link>
               </>
             ) : undefined}
 
