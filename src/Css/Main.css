@@ -5,3 +5,11 @@ ul.mt-4.flex.flex-col.md\:mt-0.md\:flex-row.md\:space-x-8.md\:text-sm.md\:font-m
 .header-dark{
     background-color: red !important;
 }
+
+.ql-syntax{
+    background: #16191e !important;
+    color: rgb(13, 255, 0) !important;
+    padding: 1rem;
+    overflow-x: auto;
+    border-radius: 3px;
+}

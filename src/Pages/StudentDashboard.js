@@ -113,7 +113,7 @@ const StudentDashboard = () => {
                     className="question-main font-general text-xl text-left font-[500] flex justify-between items-center "
                   >
                     <h2>{data?.question}</h2>
-                    <Link to={`/ans/${data.id}`} className="delete-icon">
+                    <Link to={`/view/${data.id}`} className="delete-icon">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"

@@ -22,6 +22,7 @@ const StudentLogin = () => {
       navigate("/student");
     }
   }, []);
+
   const loginFormSubmit = (e) => {
     e.preventDefault();
     const from = e.target;

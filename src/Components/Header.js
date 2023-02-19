@@ -7,6 +7,15 @@ import "../Css/Main.css";
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [defaults, setDefault] = useState("light");
+  const [user, setUser] = useState("light");
+
+  useEffect(() => {
+    const userLocalStorageData = JSON.parse(
+      secureLocalStorage.getItem("userInfo")
+    );
+    setUser(userLocalStorageData);
+  }, []);
+  // console.log(user);
 
   // navigate to login
   const navigate = useNavigate();
@@ -64,33 +73,49 @@ const Header = () => {
             <Link to={"/"} active={true} className="cursor-pointer">
               Dashboard
             </Link>
-            <Link to={"/leader"} className="cursor-pointer">
-              Leader
-            </Link>
             <Link to={"/login"} className="cursor-pointer">
               Admin login
             </Link>
-            <Link to={"/register"} className="cursor-pointer">
-              Register
-            </Link>
-            <Link to={"/student_login"} className="cursor-pointer">
-              Student login
-            </Link>
-            <Link to={"/add_question"} className="cursor-pointer">
-              Add question
-            </Link>
-            <Link to={"/student"} className="cursor-pointer">
-              Home
-            </Link>
+
+            {user?.status === "Leader" ? (
+              <>
+                {" "}
+                <Link to={"/leader"} className="cursor-pointer">
+                  Leader
+                </Link>
+                <Link to={"/add_question"} className="cursor-pointer">
+                  Add question
+                </Link>
+              </>
+            ) : undefined}
+
+            {user?.status === "Student" ? (
+              <Link to={"/student"} className="cursor-pointer">
+                Home
+              </Link>
+            ) : undefined}
             <Link to={"/more"} className="cursor-pointer">
               Know more
             </Link>
-            <button
-              onClick={logoutButton}
-              className="text-red-600 duration-500 hover:text-red-500"
-            >
-              Logout
-            </button>
+
+            {user ? (
+              <button
+                onClick={logoutButton}
+                className="text-red-600 duration-500 hover:text-red-500"
+              >
+                Logout
+              </button>
+            ) : (
+              <>
+                {" "}
+                <Link to={"/register"} className="cursor-pointer">
+                  Register
+                </Link>
+                <Link to={"/student_login"} className="cursor-pointer">
+                  Student login
+                </Link>
+              </>
+            )}
             {/* dark mode toggle */}
             <div className="darkMode-button-group cursor-pointer">
               <div
