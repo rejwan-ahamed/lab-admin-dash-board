@@ -61,7 +61,7 @@ const LDashboard = () => {
 
             <div className="right-part mt-6 sm:mt-0">
               <h4 className="bg-violet-600 px-5 py-2 rounded-full font-general text-xl font-[550] max-w-max text-white dark:bg-[#ebff00] dark:text-black">
-                {(answers?.length * 100) / question?.length} %
+                {parseInt((answers?.length * 100) / question?.length)} %
               </h4>
             </div>
           </div>

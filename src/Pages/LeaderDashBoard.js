@@ -10,6 +10,7 @@ const LeaderDashBoard = () => {
   const [userLength, setUserLength] = useState();
   const [groupLength, setGroupLength] = useState();
   const navigate = useNavigate();
+  const width = 20;
   const userLocalStorageData = JSON.parse(
     secureLocalStorage.getItem("userInfo")
   );
@@ -25,7 +26,6 @@ const LeaderDashBoard = () => {
       .then((res) => res.json())
       .then((result) => setGroupData(result));
   }, []);
-
 
   // getting user answer list
   // const userANS = (roll) => {
@@ -145,9 +145,15 @@ const LeaderDashBoard = () => {
                       </td>
                       <td class="px-3 py-4 text-violet-500 font-[500] dark:text-[#ebff00] border-l border-black sm:px-6 dark:border-l-white">
                         <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-500">
+                          {/* {console.log(${userLength*100}/${data?.roll}` })} */}
+                          {/* {console.log((userLength * 100) / data?.roll)} */}
+                          {/* {console.log((12 * 100) / data?.roll)} */}
                           <div
                             className="bg-violet-600 h-2.5 rounded-full duration-500 dark:bg-[#ebff00]"
-                            style={{ width: `${userLength*100}/groupLength` }}
+                            
+                            style={{
+                              width: `${data?.submition}%`,
+                            }}
                           ></div>
                         </div>
                       </td>

@@ -9,11 +9,31 @@ import domain from "../../hooks/domain";
 import { toast } from "react-hot-toast";
 
 const LeaderAddAns = () => {
+  const [userAnsCount, setUserAnswerCount] = useState();
+  const [groupQuestionCount, setGroupQuestionCount] = useState();
   const [question, setQuestion] = useState();
   const navigate = useNavigate();
   const userLocalStorageData = JSON.parse(
     secureLocalStorage.getItem("userInfo")
   );
+
+  // getting user answer count
+  const userRoll = userLocalStorageData.roll;
+  useEffect(() => {
+    fetch(domain + `/get_single_user_answer_count?roll=${userRoll}`)
+      .then((res) => res.json())
+      .then((result) => setUserAnswerCount(result.length));
+  }, []);
+
+  // getting group question count
+  useEffect(() => {
+    fetch(
+      domain +
+        `/get_group_question_name?groupName=${userLocalStorageData?.groupName}`
+    )
+      .then((res) => res.json())
+      .then((result) => setGroupQuestionCount(result.questions.length));
+  }, []);
 
   // getting question by params id
   const ID = useParams();
@@ -49,6 +69,11 @@ const LeaderAddAns = () => {
   // }, []);
   const [value, setValue] = useState("");
 
+  // const mainCount = ((userAnsCount+1) * 100) / groupQuestionCount;
+  // console.log("user count"+ userAnsCount);
+  // console.log("question count"+ groupQuestionCount);
+  // console.log("Main answer"+ mainCount);
+
   const submitAns = () => {
     if (value === "") {
       toast.error("Please enter your answer");
@@ -74,9 +99,26 @@ const LeaderAddAns = () => {
       })
         .then((res) => res.json())
         .then((result) => {
-          toast.success("your post has been added");
+          toast.success("your answer has been submitted");
           console.warn(result);
           setValue("");
+          const mainCount = ((userAnsCount + 1) * 100) / groupQuestionCount;
+          const postCount = {
+            submition: mainCount,
+            roll: userLocalStorageData?.roll,
+          };
+          fetch(domain + `/user_ans_update_count`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(postCount),
+          })
+            .then((res) => res.json())
+            .then((result) => {
+              // toast.success("your post has been added");
+              console.warn(result);
+            });
         });
     }
   };
