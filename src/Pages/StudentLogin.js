@@ -12,13 +12,13 @@ const StudentLogin = () => {
   );
   useEffect(() => {
     if (userLocalStorageData?.status === "Leader") {
-      console.warn(userLocalStorageData?.status)
+      console.warn(userLocalStorageData?.status);
       navigate("/leader");
     }
   }, []);
   useEffect(() => {
     if (userLocalStorageData?.status === "Student") {
-      console.warn(userLocalStorageData?.status)
+      console.warn(userLocalStorageData?.status);
       navigate("/student");
     }
   }, []);
@@ -44,7 +44,7 @@ const StudentLogin = () => {
           const userLocalStorageData = JSON.parse(
             secureLocalStorage.getItem("userInfo")
           );
-          console.log(userLocalStorageData);
+          // console.log(userLocalStorageData);
           if (userLocalStorageData.status === "Leader") {
             navigate("/leader");
           } else if (userLocalStorageData.status === "Student") {
@@ -55,8 +55,11 @@ const StudentLogin = () => {
         }
       });
   };
+
+  // forget password start from here
+
   return (
-    <div>
+    <div className="bg-white duration-500 dark:bg-black">
       <div className="register-wrapper-main block lg:flex">
         <div className="left-side w-full lg:w-[50%]">
           <div className="have-account border-b py-4 font-general font-[500] flex justify-center cursor-pointer bg-gray-50 sticky top-0 dark:bg-black dark:text-white">
@@ -131,6 +134,12 @@ const StudentLogin = () => {
                 Login
               </button>
             </form>
+            <Link
+              to={"/forgetRoll"}
+              className="font-general text-left w-[18rem] font-[500] mt-3 dark:text-white"
+            >
+              Forget password
+            </Link>
           </div>
         </div>
         <div className=" right-side w-[50%] bg-[url('https://mir-s3-cdn-cf.behance.net/project_modules/1400/cf515c158457611.638c253d1adb8.jpg')] bg-cover bg-no-repeat bg-center hidden sm:block "></div>

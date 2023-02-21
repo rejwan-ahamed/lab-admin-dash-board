@@ -16,6 +16,7 @@ import LDashboard from "./Pages/LeaderPages/LDashboard";
 import LeaderAddAns from "./Pages/LeaderPages/LeaderAddAns";
 import LeaderViewAns from "./Pages/LeaderPages/LeaderViewAns";
 import UpdateQuestion from "./Pages/UpdateQuestion";
+import ForgetPasswordRoll from "./Pages/ForgetPasswordRoll";
 
 function App() {
   const routs = createBrowserRouter([
@@ -34,6 +35,7 @@ function App() {
     { path: "/leaderAns/:id", element: <LeaderAddAns></LeaderAddAns> },
     { path: "/Lans/:id", element: <LeaderViewAns></LeaderViewAns> },
     { path: "/update/:id", element: <UpdateQuestion></UpdateQuestion> },
+    { path: "/forgetRoll", element: <ForgetPasswordRoll></ForgetPasswordRoll> },
     { path: "/404", element: <NotValid></NotValid> },
   ]);
   return (
