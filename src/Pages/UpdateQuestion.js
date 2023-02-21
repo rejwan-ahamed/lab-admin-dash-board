@@ -1,12 +1,14 @@
 import Header from "../Components/Header";
 import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-hot-toast";
 import domain from "../hooks/domain";
 
-const AddQuestion = () => {
+const UpdateQuestion = () => {
+  const ID = useParams();
+  const [questionDefault, setDefaultQuestionValue] = useState();
   // for dialog control
   let [isOpen, setIsOpen] = useState(false);
 
@@ -29,6 +31,12 @@ const AddQuestion = () => {
     }
   }, []);
 
+  useEffect(() => {
+    fetch(domain + `/get_single_question?id=${ID?.id}`)
+      .then((res) => res.json())
+      .then((result) => setDefaultQuestionValue(result[0].question));
+  }, []);
+
   // add new question
   const addQuestion = (e) => {
     e.preventDefault();
@@ -38,15 +46,14 @@ const AddQuestion = () => {
 
     const questionData = {
       question: question,
-      groupName: userLocalStorageData.groupName,
-      leader: userLocalStorageData.roll,
+      id: ID.id,
     };
 
     if (question === "") {
       toast.error("No question added");
     } else {
-      fetch(domain + `/add_question`, {
-        method: "POST",
+      fetch(domain + `/update_question`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -57,7 +64,7 @@ const AddQuestion = () => {
           toast.success("your post has been added");
           console.warn(result);
           from.reset();
-          navigate('/leader')
+          navigate("/leader");
         });
     }
   };
@@ -154,7 +161,7 @@ const AddQuestion = () => {
         <h1 className="text-2xl font-general font-[500] text-left dark:text-white">
           Add question for group{" "}
           <samp className="text-violet-600 dark:text-[#ebff00]">
-            {userLocalStorageData.groupName}
+            {userLocalStorageData?.groupName}
           </samp>
         </h1>
 
@@ -167,6 +174,7 @@ const AddQuestion = () => {
               Add your practice question
             </label>
             <textarea
+              defaultValue={questionDefault}
               id="message"
               name="question"
               rows="4"
@@ -191,4 +199,4 @@ const AddQuestion = () => {
   );
 };
 
-export default AddQuestion;
+export default UpdateQuestion;

@@ -15,6 +15,7 @@ import ViewAns from "./Pages/ViewAns";
 import LDashboard from "./Pages/LeaderPages/LDashboard";
 import LeaderAddAns from "./Pages/LeaderPages/LeaderAddAns";
 import LeaderViewAns from "./Pages/LeaderPages/LeaderViewAns";
+import UpdateQuestion from "./Pages/UpdateQuestion";
 
 function App() {
   const routs = createBrowserRouter([
@@ -32,6 +33,7 @@ function App() {
     { path: "/LDBoard", element: <LDashboard></LDashboard> },
     { path: "/leaderAns/:id", element: <LeaderAddAns></LeaderAddAns> },
     { path: "/Lans/:id", element: <LeaderViewAns></LeaderViewAns> },
+    { path: "/update/:id", element: <UpdateQuestion></UpdateQuestion> },
     { path: "/404", element: <NotValid></NotValid> },
   ]);
   return (

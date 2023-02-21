@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import Header from "../Components/Header";
 import domain from "../hooks/domain";
@@ -21,18 +21,14 @@ const LeaderDashBoard = () => {
     }
   }, []);
 
+
+
   useEffect(() => {
     fetch(domain + `/get_all_register?group=${userLocalStorageData?.groupName}`)
       .then((res) => res.json())
       .then((result) => setGroupData(result));
   }, []);
 
-  // getting user answer list
-  // const userANS = (roll) => {
-  //   fetch(domain + `/get_single_user_answer_list?roll=${roll}`)
-  //     .then((res) => res.json())
-  //     .then((result) => setUserLength(result));
-  // };
 
   // getting value by group
   fetch(
@@ -78,14 +74,31 @@ const LeaderDashBoard = () => {
                 <div className="question body border-b py-3">
                   <div className="question-main font-general text-xl text-left font-[500] flex justify-between items-center">
                     <h2 className="dark:text-white">{data?.question}</h2>
-                    <div className="delete-icon">
+                    <div className="icon-group flex items-center gap-1 sm:gap-3 ">
+                      <Link to={`/update/${data.id}`}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.6}
+                          stroke="currentColor"
+                          className="border-2 rounded-full border-black w-5 h-5 duration-500 cursor-pointer hover:border-orange-500 hover:text-orange-500 dark:text-white dark:border-white dark:hover:text-orange-500 dark:hover:border-orange-500"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M12 6v12m6-6H6"
+                          />
+                        </svg>
+                      </Link>
+
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="w-6 h-6 cursor-pointer duration-300 hover:text-red-600 dark:text-white dark:hover:text-[#ebff00]"
+                        className="w-6 h-6 cursor-pointer duration-300 hover:text-red-600 dark:text-white dark:hover:text-red-600"
                       >
                         <path
                           strokeLinecap="round"
@@ -126,8 +139,7 @@ const LeaderDashBoard = () => {
                     <th scope="col" class="px-2 py-3">
                       %
                     </th>
-                    <th scope="col" class="px-1 py-3">
-                    </th>
+                    <th scope="col" class="px-1 py-3"></th>
                   </tr>
                 </thead>
                 <tbody>
