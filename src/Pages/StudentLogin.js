@@ -40,6 +40,7 @@ const StudentLogin = () => {
             "userInfo",
             JSON.stringify(result.userData[0])
           );
+          secureLocalStorage.removeItem("adminInfo");
           const userLocalStorageData = JSON.parse(
             secureLocalStorage.getItem("userInfo")
           );

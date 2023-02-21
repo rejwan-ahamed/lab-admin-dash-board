@@ -116,7 +116,7 @@ const Register = () => {
                   type="text"
                   id="email"
                   className="text-black font-[500] bg-gray-50 border border-gray-300 text-sm rounded-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#ebff00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#ebff00] dark:focus:border-[#ebff00]"
-                  placeholder="test subject 24"
+                  placeholder="Your name"
                   required
                 />
               </div>
@@ -132,7 +132,7 @@ const Register = () => {
                   type="number"
                   id="email"
                   className="text-black font-[500] bg-gray-50 border border-gray-300 text-sm rounded-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#ebff00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#ebff00] dark:focus:border-[#ebff00]"
-                  placeholder="john.doe@company.com"
+                  placeholder="Class roll"
                   required
                 />
               </div>

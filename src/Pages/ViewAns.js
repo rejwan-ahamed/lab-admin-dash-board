@@ -16,7 +16,7 @@ const ViewAns = () => {
     <div>
       <Header></Header>
       <div className="answer-body text-left font-general font-[500] px-4 py-10 lg:px-20 lg:py-20 xl:px-40 xl:py-20">
-        <h1 className="text-2xl mb-4 dark:text-white">main question</h1>
+        <h1 className="text-2xl mb-4 dark:text-white">{question?.question}</h1>
         <p
           className="main_post text-sm dark:text-white"
           dangerouslySetInnerHTML={{ __html: question?.ans }}

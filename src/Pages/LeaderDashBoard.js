@@ -123,6 +123,11 @@ const LeaderDashBoard = () => {
                     <th scope="col" class="px-6 py-3">
                       Task status
                     </th>
+                    <th scope="col" class="px-2 py-3">
+                      %
+                    </th>
+                    <th scope="col" class="px-1 py-3">
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -144,18 +149,38 @@ const LeaderDashBoard = () => {
                         {data?.status}
                       </td>
                       <td class="px-3 py-4 text-violet-500 font-[500] dark:text-[#ebff00] border-l border-black sm:px-6 dark:border-l-white">
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-500">
+                        <div class=" w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-500">
                           {/* {console.log(${userLength*100}/${data?.roll}` })} */}
                           {/* {console.log((userLength * 100) / data?.roll)} */}
                           {/* {console.log((12 * 100) / data?.roll)} */}
                           <div
                             className="bg-violet-600 h-2.5 rounded-full duration-500 dark:bg-[#ebff00]"
-                            
                             style={{
                               width: `${data?.submition}%`,
                             }}
                           ></div>
                         </div>
+                      </td>
+                      <td class=" border-black px-2 py-4 text-violet-500 font-[500] dark:text-[#ebff00] dark:border-l-white">
+                        {data?.submition}%
+                      </td>
+                      <td class="flex justify-center border-l border-black px-2 py-4 text-violet-500 font-[500] dark:text-[#ebff00] dark:border-l-white">
+                        <button>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-6 h-6"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M4.5 15.75l7.5-7.5 7.5 7.5"
+                            />
+                          </svg>
+                        </button>
                       </td>
                     </tr>
                   ))}

@@ -7,12 +7,12 @@ import Header from "../Components/Header";
 import { AughtContext } from "../Context/MainContext";
 import domain from "../hooks/domain";
 
-
 const Home = () => {
   // getting single student data
   const [student, setStudent] = useState([]);
   const [studentArrayLength, setStudentArrayLength] = useState([]);
   const [group, setGroup] = useState([]);
+  const [groupData, setGroupData] = useState([]);
 
   const navigate = useNavigate();
   const AdminLocalStorageData = JSON.parse(
@@ -199,6 +199,18 @@ const Home = () => {
 
   const data = useContext(AughtContext);
   // console.log(data);
+
+  useEffect(() => {
+    fetch(domain + `/get_all_register?group=E`)
+      .then((res) => res.json())
+      .then((result) => setGroupData(result));
+  }, []);
+  const groupSelect = (e) => {
+    var groupName = e.target.value;
+    fetch(domain + `/get_all_register?group=${groupName}`)
+      .then((res) => res.json())
+      .then((result) => setGroupData(result));
+  };
 
   return (
     <div>
@@ -491,117 +503,104 @@ const Home = () => {
               Select group
             </label>
             <select
+              onChange={groupSelect}
+              name="groups"
               id="countries"
               class="bg-gray-50 border border-black text-gray-900 text-sm rounded-sm  focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-white dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#EBFF00] dark:focus:border-[#EBFF00]"
             >
-              <option selected>Choose a country</option>
-              <option value="US">United States</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
+              <option selected>Select group</option>
+              {group.map((data) => (
+                <option value={data.groupName}>{data.groupName}</option>
+              ))}
             </select>
           </div>
 
           <div className="group-table-list mt-10 font-general">
             <div class="relative overflow-x-auto">
-              <table class="border border-black w-full text-sm text-left text-black dark:text-white dark:border-white">
-                <thead class="text-xs text-black uppercase border-b border-black dark:text-white dark:border-b-white">
-                  <tr>
-                    <th scope="col" class="px-6 py-3">
-                      group name
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                      Student name
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                      Roll
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                      Status
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                      Task status
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="bg-white border-b border-black dark:border-white dark:bg-black">
-                    <th
-                      scope="row"
-                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      A
-                    </th>
-                    <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
-                      Rejwan
-                    </td>
-                    <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
-                      106
-                    </td>
-                    <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
-                      Leader
-                    </td>
-                    <td class="px-3 py-4 text-violet-500 font-[500] dark:text-[#ebff00] border-l border-black sm:px-6 dark:border-l-white">
-                      <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-500">
-                        <div
-                          className="bg-violet-600 h-2.5 rounded-full duration-500 dark:bg-[#ebff00]"
-                          style={{ width: "95%" }}
-                        ></div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr class="bg-white border-b border-black dark:border-white dark:bg-black">
-                    <th
-                      scope="row"
-                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      A
-                    </th>
-                    <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
-                      Rejwan
-                    </td>
-                    <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
-                      106
-                    </td>
-                    <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
-                      Leader
-                    </td>
-                    <td class="px-3 py-4 text-violet-500 font-[500] dark:text-[#ebff00] border-l border-black sm:px-6 dark:border-l-white">
-                      <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-500">
-                        <div
-                          className="bg-violet-600 h-2.5 rounded-full duration-500 dark:bg-[#ebff00]"
-                          style={{ width: "95%" }}
-                        ></div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr class="bg-white border-b border-black dark:border-white dark:bg-black">
-                    <th
-                      scope="row"
-                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      A
-                    </th>
-                    <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
-                      Rejwan
-                    </td>
-                    <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
-                      106
-                    </td>
-                    <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
-                      Leader
-                    </td>
-                    <td class="px-3 py-4 text-violet-500 font-[500] dark:text-[#ebff00] border-l border-black sm:px-6 dark:border-l-white">
-                      <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-500">
-                        <div
-                          className="bg-violet-600 h-2.5 rounded-full duration-500 dark:bg-[#ebff00]"
-                          style={{ width: "95%" }}
-                        ></div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              {groupData.length === 0 ? (
+                <h1 className="dark:text-white">No data found</h1>
+              ) : (
+                <table class="border border-black w-full text-sm text-left text-black dark:text-white dark:border-white">
+                  <thead class="text-xs text-black uppercase border-b border-black dark:text-white dark:border-b-white">
+                    <tr>
+                      <th scope="col" class="px-6 py-3">
+                        group name
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Student name
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Roll
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Status
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Task status
+                      </th>
+                      <th scope="col" class="px-2 py-3">
+                        %
+                      </th>
+                      <th scope="col" class="px-1 py-3"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {groupData?.map((data) => (
+                      <tr class="bg-white border-b border-black dark:border-white dark:bg-black">
+                        <th
+                          scope="row"
+                          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        >
+                          {data?.groupName}
+                        </th>
+                        <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
+                          {data?.name}
+                        </td>
+                        <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
+                          {data?.roll}
+                        </td>
+                        <td class="px-6 py-4 text-violet-500 font-[500] dark:text-[#ebff00]">
+                          {data?.status}
+                        </td>
+                        <td class="px-3 py-4 text-violet-500 font-[500] dark:text-[#ebff00] border-l border-black sm:px-6 dark:border-l-white">
+                          <div class=" w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-500">
+                            {/* {console.log(${userLength*100}/${data?.roll}` })} */}
+                            {/* {console.log((userLength * 100) / data?.roll)} */}
+                            {/* {console.log((12 * 100) / data?.roll)} */}
+                            <div
+                              className="bg-violet-600 h-2.5 rounded-full duration-500 dark:bg-[#ebff00]"
+                              style={{
+                                width: `${data?.submition}%`,
+                              }}
+                            ></div>
+                          </div>
+                        </td>
+                        <td class=" border-black px-2 py-4 text-violet-500 font-[500] dark:text-[#ebff00] dark:border-l-white">
+                          {data?.submition}%
+                        </td>
+                        <td class="flex justify-center border-l border-black px-2 py-4 text-violet-500 font-[500] dark:text-[#ebff00] dark:border-l-white">
+                          <button>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth={1.5}
+                              stroke="currentColor"
+                              className="w-6 h-6"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M4.5 15.75l7.5-7.5 7.5 7.5"
+                              />
+                            </svg>
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
             </div>
           </div>
         </div>

@@ -11,11 +11,18 @@ import { toast } from "react-hot-toast";
 const AnswerQuestion = () => {
   const [userAnsCount, setUserAnswerCount] = useState();
   const [groupQuestionCount, setGroupQuestionCount] = useState();
+  const [existCount, setExistCount] = useState();
   const [question, setQuestion] = useState();
   const navigate = useNavigate();
   const userLocalStorageData = JSON.parse(
     secureLocalStorage.getItem("userInfo")
   );
+
+  useEffect(() => {
+    if (userLocalStorageData?.status !== "Student") {
+      navigate("/student_login");
+    }
+  }, []);
 
   // getting user answer count
   const userRoll = userLocalStorageData.roll;
@@ -37,6 +44,15 @@ const AnswerQuestion = () => {
 
   // getting question by params id
   const ID = useParams();
+
+  // getting question exist
+  useEffect(() => {
+    fetch(domain + `/answer_exist?id=${ID.id}&roll=${userRoll}`)
+      .then((res) => res.json())
+      .then((result) => setExistCount(result.length));
+  }, []);
+
+  // console.log(existCount);
 
   fetch(domain + `/get_single_question?id=${ID.id}`)
     .then((res) => res.json())
@@ -78,48 +94,54 @@ const AnswerQuestion = () => {
     if (value === "") {
       toast.error("Please enter your answer");
     } else {
-      const answerData = {
-        question: question?.question,
-        ans: value,
-        groupName: question?.groupName,
-        leader: question?.leader,
-        answer_by_roll: userLocalStorageData?.roll,
-        answer_by_name: userLocalStorageData?.name,
-        questionID: question?.id,
-      };
+      if (existCount > 0) {
+        toast.error("You have already answered the question");
+        navigate("/student");
+      } else {
+        const answerData = {
+          question: question?.question,
+          ans: value,
+          groupName: question?.groupName,
+          leader: question?.leader,
+          answer_by_roll: userLocalStorageData?.roll,
+          answer_by_name: userLocalStorageData?.name,
+          questionID: question?.id,
+        };
 
-      // console.log(answerData)
+        // console.log(answerData)
 
-      fetch(domain + `/answer`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(answerData),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          toast.success("your answer has been submitted");
-          console.warn(result);
-          setValue("");
-          const mainCount = ((userAnsCount + 1) * 100) / groupQuestionCount;
-          const postCount = {
-            submition: mainCount,
-            roll: userLocalStorageData?.roll,
-          };
-          fetch(domain + `/user_ans_update_count`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(postCount),
-          })
-            .then((res) => res.json())
-            .then((result) => {
-              // toast.success("your post has been added");
-              console.warn(result);
-            });
-        });
+        fetch(domain + `/answer`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(answerData),
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            toast.success("your answer has been submitted");
+            console.warn(result);
+            setValue("");
+            const mainCount = ((userAnsCount + 1) * 100) / groupQuestionCount;
+            const postCount = {
+              submition: mainCount,
+              roll: userLocalStorageData?.roll,
+            };
+            fetch(domain + `/user_ans_update_count`, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(postCount),
+            })
+              .then((res) => res.json())
+              .then((result) => {
+                // toast.success("your post has been added");
+                console.warn(result);
+              });
+            navigate("/student");
+          });
+      }
     }
   };
 

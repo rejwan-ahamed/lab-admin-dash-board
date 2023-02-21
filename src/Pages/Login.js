@@ -31,6 +31,7 @@ const Login = () => {
         if (result.length === 0) {
           toast.error("Email or Password is incorrect");
         } else {
+          secureLocalStorage.removeItem("userInfo");
           toast.success("Login successful");
           secureLocalStorage.setItem(
             "adminInfo",
