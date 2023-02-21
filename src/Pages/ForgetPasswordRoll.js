@@ -9,7 +9,7 @@ const ForgetPasswordRoll = () => {
     e.preventDefault();
     const form = e.target;
     const recoveryRoll = form.roll.value;
-    fetch(domain + `/single_student_data?roll=${recoveryRoll}`)
+    fetch(domain + `/otp_data?roll=${recoveryRoll}`)
       .then((res) => res.json())
       .then((result) => {
         if (result.length === 0) {
@@ -18,6 +18,7 @@ const ForgetPasswordRoll = () => {
           const userEmail = result[0].email;
           console.log(userEmail)
           sessionStorage.setItem("email", userEmail);
+          sessionStorage.setItem("roll", recoveryRoll);
           navigate("/forgetEmail");
         }
       });

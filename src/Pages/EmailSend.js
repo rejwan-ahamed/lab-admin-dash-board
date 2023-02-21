@@ -1,18 +1,54 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import domain from "../hooks/domain";
 
 const EmailSend = () => {
+  const navigate = useNavigate();
   const [defaultEmail, setDefaultEmail] = useState();
   useEffect(() => {
     const s = sessionStorage.getItem("email");
+    if (s === null) {
+      navigate("/forgetRoll");
+    }
+  }, []);
+
+  useEffect(() => {
+    const s = sessionStorage.getItem("email");
     setDefaultEmail(s);
-    console.log(s);
+  }, []);
+
+  useEffect(() => {
+    const test = () => {
+      const random = Math.floor(Math.random() * 1000000 + 1);
+      console.log(random);
+
+      const OTPdata = {
+        otp: random,
+        email: sessionStorage.getItem("email"),
+      };
+      console.log(OTPdata);
+      fetch(domain + `/update_otp`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(OTPdata),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          console.warn(result);
+        });
+    };
+    setTimeout(test, 10);
   }, []);
 
   return (
     <div className="main bg-white duration-500 dark:bg-black">
       <div className="absolute flex justify-center items-center w-full h-screen flex-col">
-        <p className="text-lg font-general mb-2 text-orange-400 font-[500]">**We send an OTP in this {defaultEmail} account. Please check your email.</p>
+        <p className="text-lg font-general mb-2 text-orange-400 font-[500]">
+          **We send an OTP in this {defaultEmail} account. Please check your
+          email.
+        </p>
         <h1 className="text-[25px] font-general font-[600] text-left mb-10 dark:text-white flex">
           Open Source{" "}
           <sub className="font-[550]">
@@ -34,7 +70,7 @@ const EmailSend = () => {
         </h1>
         <div className="upper-text w-[18rem] font-general font-[500] text-xl mb-3">
           <h4 className="text-left text-black dark:text-white">
-            Please enter your roll below
+            Please enter your OTP
           </h4>
         </div>
         <form action="" className="flex flex-col w-[18rem] items-start">
@@ -43,7 +79,7 @@ const EmailSend = () => {
             id="password"
             name="roll"
             className="border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#ebff00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#ebff00] dark:focus:border-[#ebff00]"
-            placeholder="Enter your roll"
+            placeholder="Enter your OTP"
             required
           />
           <button
