@@ -28,7 +28,7 @@ const LDashboard = () => {
   }, []);
 
   // console.log(answers)
-
+  const count = parseInt((answers?.length * 100) / question?.length);
   // getting value by Group
   fetch(
     domain +
@@ -36,6 +36,7 @@ const LDashboard = () => {
   )
     .then((res) => res.json())
     .then((result) => setQuestion(result.questions));
+
   // console.log(question)
   return (
     <div className="bg-white dark:bg-black duration-500">
@@ -61,7 +62,7 @@ const LDashboard = () => {
 
             <div className="right-part mt-6 sm:mt-0">
               <h4 className="bg-violet-600 px-5 py-2 rounded-full font-general text-xl font-[550] max-w-max text-white dark:bg-[#ebff00] dark:text-black">
-                {parseInt((answers?.length * 100) / question?.length)} %
+                {count >= 100 ? "100%" : count + "%"}
               </h4>
             </div>
           </div>

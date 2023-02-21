@@ -61,7 +61,7 @@ const UpdateQuestion = () => {
       })
         .then((res) => res.json())
         .then((result) => {
-          toast.success("your post has been added");
+          toast.success("your question has been updated");
           console.warn(result);
           from.reset();
           navigate("/leader");

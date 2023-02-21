@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import Header from "../Components/Header";
@@ -21,14 +22,23 @@ const LeaderDashBoard = () => {
     }
   }, []);
 
-
-
   useEffect(() => {
     fetch(domain + `/get_all_register?group=${userLocalStorageData?.groupName}`)
       .then((res) => res.json())
       .then((result) => setGroupData(result));
   }, []);
 
+  const deleteData = (e) => {
+    console.log(e);
+    fetch(domain + `/delete_question?id=${e}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        toast.error("your question has been deleted");
+      });
+  };
 
   // getting value by group
   fetch(
@@ -92,20 +102,23 @@ const LeaderDashBoard = () => {
                         </svg>
                       </Link>
 
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-6 h-6 cursor-pointer duration-300 hover:text-red-600 dark:text-white dark:hover:text-red-600"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
+                      {/* this delete  button is dis-active */}
+                      {/* <button onClick={() => deleteData(data.id)}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-6 h-6 cursor-pointer duration-300 hover:text-red-600 dark:text-white dark:hover:text-red-600"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                      </button> */}
                     </div>
                   </div>
                 </div>
