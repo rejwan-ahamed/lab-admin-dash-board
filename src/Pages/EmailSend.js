@@ -12,35 +12,32 @@ const EmailSend = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const s = sessionStorage.getItem("email");
-    setDefaultEmail(s);
-  }, []);
+  //   useEffect(() => {
+  //     const s = sessionStorage.getItem("email");
+  //     setDefaultEmail(s);
+  //   }, []);
 
   useEffect(() => {
-    const test = () => {
-      const random = Math.floor(Math.random() * 1000000 + 1);
-      console.log(random);
+    const random = Math.floor(Math.random() * 1000000 + 1);
+    console.log(random);
 
-      const OTPdata = {
-        otp: random,
-        email: sessionStorage.getItem("email"),
-      };
-      console.log(OTPdata);
-      fetch(domain + `/update_otp`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(OTPdata),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          console.warn(result);
-        });
+    const OTPdata = {
+      otp: random,
+      email: sessionStorage.getItem("email"),
     };
-    setTimeout(test, 10);
-  }, []);
+    console.log(OTPdata);
+    fetch(domain + `/update_otp`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(OTPdata),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.warn(result);
+      }, [random]);
+  });
 
   return (
     <div className="main bg-white duration-500 dark:bg-black">
