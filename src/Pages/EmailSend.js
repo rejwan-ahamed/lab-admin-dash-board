@@ -1,32 +1,18 @@
-import React, { useRef } from "react";
-import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import domain from "../hooks/domain";
+import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
-const ForgetPasswordRoll = () => {
-  const navigate = useNavigate();
-  const forgetPass = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const recoveryRoll = form.roll.value;
-    fetch(domain + `/single_student_data?roll=${recoveryRoll}`)
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.length === 0) {
-          toast.error("No account found");
-        } else {
-          const userEmail = result[0].email;
-          console.log(userEmail)
-          sessionStorage.setItem("email", userEmail);
-          navigate("/forgetEmail");
-        }
-      });
+const EmailSend = () => {
+  const [defaultEmail, setDefaultEmail] = useState();
+  useEffect(() => {
+    const s = sessionStorage.getItem("email");
+    setDefaultEmail(s);
+    console.log(s);
+  }, []);
 
-    // navigate("/forgetEmail");
-  };
   return (
     <div className="main bg-white duration-500 dark:bg-black">
       <div className="absolute flex justify-center items-center w-full h-screen flex-col">
+        <p className="text-lg font-general mb-2 text-orange-400 font-[500]">**We send an OTP in this {defaultEmail} account. Please check your email.</p>
         <h1 className="text-[25px] font-general font-[600] text-left mb-10 dark:text-white flex">
           Open Source{" "}
           <sub className="font-[550]">
@@ -51,11 +37,7 @@ const ForgetPasswordRoll = () => {
             Please enter your roll below
           </h4>
         </div>
-        <form
-          onSubmit={forgetPass}
-          action=""
-          className="flex flex-col w-[18rem] items-start"
-        >
+        <form action="" className="flex flex-col w-[18rem] items-start">
           <input
             type="number"
             id="password"
@@ -66,7 +48,7 @@ const ForgetPasswordRoll = () => {
           />
           <button
             type="submit"
-            className="mt-4 w-[6rem] flex justify-center items-center text-white border border-violet-600 bg-violet-600 rounded-sm py-2 font-[550] duration-300 hover:border-violet-600 hover:bg-transparent hover:text-violet-600 dark:bg-[#ebff00] dark:text-black dark:border-[#ebff00] dark:hover:bg-transparent dark:duration-500 dark:hover:text-[#ebff00]"
+            className="mt-4 ml-[7.5rem] w-[6rem] flex justify-center items-center text-white border border-violet-600 bg-violet-600 rounded-sm py-2 font-[550] duration-300 hover:border-violet-600 hover:bg-transparent hover:text-violet-600 dark:bg-[#ebff00] dark:text-black dark:border-[#ebff00] dark:hover:bg-transparent dark:duration-500 dark:hover:text-[#ebff00]"
           >
             Next{" "}
             <svg
@@ -85,9 +67,30 @@ const ForgetPasswordRoll = () => {
             </svg>
           </button>
         </form>
+        <Link
+          to={"/forgetRoll"}
+          type="submit"
+          className="ml-[-11rem] mt-[-2.6rem] w-max px-3 flex justify-center items-center text-white border border-violet-600 bg-violet-600 rounded-sm py-2 font-[550] duration-300 hover:border-violet-600 hover:bg-transparent hover:text-violet-600 dark:bg-[#ebff00] dark:text-black dark:border-[#ebff00] dark:hover:bg-transparent dark:duration-500 dark:hover:text-[#ebff00]"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
+            />
+          </svg>
+          Previous{" "}
+        </Link>
       </div>
     </div>
   );
 };
 
-export default ForgetPasswordRoll;
+export default EmailSend;

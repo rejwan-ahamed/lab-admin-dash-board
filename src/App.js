@@ -17,6 +17,7 @@ import LeaderAddAns from "./Pages/LeaderPages/LeaderAddAns";
 import LeaderViewAns from "./Pages/LeaderPages/LeaderViewAns";
 import UpdateQuestion from "./Pages/UpdateQuestion";
 import ForgetPasswordRoll from "./Pages/ForgetPasswordRoll";
+import EmailSend from "./Pages/EmailSend";
 
 function App() {
   const routs = createBrowserRouter([
@@ -36,6 +37,7 @@ function App() {
     { path: "/Lans/:id", element: <LeaderViewAns></LeaderViewAns> },
     { path: "/update/:id", element: <UpdateQuestion></UpdateQuestion> },
     { path: "/forgetRoll", element: <ForgetPasswordRoll></ForgetPasswordRoll> },
+    { path: "/forgetEmail", element: <EmailSend></EmailSend> },
     { path: "/404", element: <NotValid></NotValid> },
   ]);
   return (
