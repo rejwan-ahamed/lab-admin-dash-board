@@ -16,9 +16,33 @@ const ForgetPasswordRoll = () => {
           toast.error("No account found");
         } else {
           const userEmail = result[0].email;
-          console.log(userEmail)
+          console.log(userEmail);
           sessionStorage.setItem("email", userEmail);
           sessionStorage.setItem("roll", recoveryRoll);
+
+          const test = () => {
+            const random = Math.floor(Math.random() * 1000000 + 1);
+            console.log(random);
+
+            const OTPdata = {
+              otp: random,
+              email: sessionStorage.getItem("email"),
+            };
+            console.log(OTPdata);
+            fetch(domain + `/update_otp`, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(OTPdata),
+            })
+              .then((res) => res.json())
+              .then((result) => {
+                console.warn(result);
+              });
+          };
+          test();
+
           navigate("/forgetEmail");
         }
       });

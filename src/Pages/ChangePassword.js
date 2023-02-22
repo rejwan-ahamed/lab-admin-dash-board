@@ -3,46 +3,66 @@ import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import domain from "../hooks/domain";
 
-const EmailSend = () => {
+const ChangePassword = () => {
   const navigate = useNavigate();
-  const [defaultEmail, setDefaultEmail] = useState();
+  const [Status, setStatus] = useState(false);
+  const [timer, setTimer] = useState();
   useEffect(() => {
-    const s = sessionStorage.getItem("email");
-    if (s === null) {
+    const s = sessionStorage.getItem("status");
+    if (s === !true || !s) {
       navigate("/forgetRoll");
     }
-  }, []);
-
-  useEffect(() => {
-    const s = sessionStorage.getItem("email");
-    setDefaultEmail(s);
   }, []);
 
   const otpCheck = (e) => {
     e.preventDefault();
     const from = e.target;
-    const otp = from.OTP.value;
-    console.log(otp);
+    const password = from.Password.value;
+    const rPassword = from.rPassword.value;
+    console.log(password, rPassword);
 
-    fetch(domain + `/otp_match?email=${defaultEmail}&otp=${otp}`)
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.length === 0) {
-          toast.error("Your OTP does not match");
-        } else {
-          sessionStorage.setItem("status", "true");
-          navigate("/reset");
-        }
-      });
+    const newPassword = {
+      email: sessionStorage.getItem("email"),
+      password: password,
+    };
+
+    if (password !== rPassword) {
+      toast.error("Password and confirm password does not match");
+    } else {
+      fetch(domain + `/update_password`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newPassword),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          setStatus(true);
+          console.warn(result);
+          from.reset();
+          var timeleft = 5;
+          setInterval(function () {
+            setTimer(timeleft);
+            if (timeleft === 0) {
+              navigate("/student_login");
+              sessionStorage.clear();
+            }
+            timeleft -= 1;
+          }, 1000);
+        });
+    }
   };
 
   return (
     <div className="main bg-white duration-500 dark:bg-black">
       <div className="absolute flex justify-center items-center w-full h-screen flex-col">
-        <p className="text-lg font-general mb-2 text-orange-400 font-[500]">
-          **We send an OTP in this {defaultEmail} account. Please check your
-          email.
-        </p>
+        {Status && (
+          <p className="text-lg font-general mb-2 text-orange-400 font-[500]">
+            **Your password has been updated. Redirecting you to login in{" "}
+            {timer} seconds.
+          </p>
+        )}
         <h1 className="text-[25px] font-general font-[600] text-left mb-10 dark:text-white flex">
           Open Source{" "}
           <sub className="font-[550]">
@@ -64,7 +84,7 @@ const EmailSend = () => {
         </h1>
         <div className="upper-text w-[18rem] font-general font-[500] text-xl mb-3">
           <h4 className="text-left text-black dark:text-white">
-            Please enter your OTP
+            Enter new password
           </h4>
         </div>
         <form
@@ -73,16 +93,24 @@ const EmailSend = () => {
           className="flex flex-col w-[18rem] items-start"
         >
           <input
-            type="number"
+            type="password"
             id="password"
-            name="OTP"
+            name="Password"
+            className="mb-2 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#ebff00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#ebff00] dark:focus:border-[#ebff00]"
+            placeholder="Enter password"
+            required
+          />
+          <input
+            type="password"
+            id="password"
+            name="rPassword"
             className="border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#ebff00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#ebff00] dark:focus:border-[#ebff00]"
-            placeholder="Enter your OTP"
+            placeholder="Confirm password"
             required
           />
           <button
             type="submit"
-            className="mt-4 ml-[7.5rem] w-[6rem] flex justify-center items-center text-white border border-violet-600 bg-violet-600 rounded-sm py-2 font-[550] duration-300 hover:border-violet-600 hover:bg-transparent hover:text-violet-600 dark:bg-[#ebff00] dark:text-black dark:border-[#ebff00] dark:hover:bg-transparent dark:duration-500 dark:hover:text-[#ebff00]"
+            className="mt-4 w-[6rem] flex justify-center items-center text-white border border-violet-600 bg-violet-600 rounded-sm py-2 font-[550] duration-300 hover:border-violet-600 hover:bg-transparent hover:text-violet-600 dark:bg-[#ebff00] dark:text-black dark:border-[#ebff00] dark:hover:bg-transparent dark:duration-500 dark:hover:text-[#ebff00]"
           >
             Next{" "}
             <svg
@@ -101,30 +129,9 @@ const EmailSend = () => {
             </svg>
           </button>
         </form>
-        <Link
-          to={"/forgetRoll"}
-          type="submit"
-          className="ml-[-11rem] mt-[-2.6rem] w-max px-3 flex justify-center items-center text-white border border-violet-600 bg-violet-600 rounded-sm py-2 font-[550] duration-300 hover:border-violet-600 hover:bg-transparent hover:text-violet-600 dark:bg-[#ebff00] dark:text-black dark:border-[#ebff00] dark:hover:bg-transparent dark:duration-500 dark:hover:text-[#ebff00]"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
-            />
-          </svg>
-          Previous{" "}
-        </Link>
       </div>
     </div>
   );
 };
 
-export default EmailSend;
+export default ChangePassword;
