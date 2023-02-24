@@ -65,7 +65,7 @@ const AllAnsList = () => {
           {ans?.map((data) => (
             <div className="ans-list-body border-b py-4 dark:text-white dark:border-[#EBFF00]">
               <h2 className="text-2xl">{data.question}</h2>
-              <Link to={`/leaderViewAns/${data?.questionID}`} className="flex gap-1 items-center text-lg mt-2">
+              <Link to={`/leaderViewAns/${data?.id}`} className="flex gap-1 items-center text-lg mt-2">
                 view ans{" "}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

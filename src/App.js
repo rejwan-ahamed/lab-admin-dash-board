@@ -21,6 +21,8 @@ import EmailSend from "./Pages/EmailSend";
 import ChangePassword from "./Pages/ChangePassword";
 import AllAnsList from "./Pages/AllAnsList";
 import LeaderViweQuestionAns from "./Pages/LeaderViweQuestionAns";
+import UpdateAns from "./Pages/UpdateAns";
+import LeaderUpdateAns from "./Pages/LeaderUpdateAns";
 
 function App() {
   const routs = createBrowserRouter([
@@ -44,6 +46,8 @@ function App() {
     { path: "/reset", element: <ChangePassword></ChangePassword> },
     { path: "/allANS/:id", element: <AllAnsList></AllAnsList> },
     { path: "/leaderViewAns/:id", element: <LeaderViweQuestionAns></LeaderViweQuestionAns> },
+    { path: "/updateANS/:id", element: <UpdateAns></UpdateAns> },
+    { path: "/LeaderUpdateANS/:id", element: <LeaderUpdateAns></LeaderUpdateAns> },
     { path: "/404", element: <NotValid></NotValid> },
   ]);
   return (

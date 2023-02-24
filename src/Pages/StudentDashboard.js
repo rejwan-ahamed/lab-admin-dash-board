@@ -116,22 +116,44 @@ const StudentDashboard = () => {
                     className="question-main font-general text-xl text-left font-[500] flex justify-between items-center "
                   >
                     <h2>{data?.question}</h2>
-                    <Link to={`/view/${data.id}`} className="delete-icon">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-6 h-6 cursor-pointer duration-300 hover:text-violet-600 dark:hover:text-[#ebff00]"
+                    <div className="button-group flex gap-3">
+                      <Link to={`/view/${data.id}`} className="delete-icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-5 h-5 cursor-pointer duration-300 hover:text-violet-600 dark:hover:text-[#ebff00]"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+                          />
+                        </svg>
+                      </Link>
+
+                      <Link
+                        to={`/updateANS/${data.id}`}
+                        className="delete-icon"
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
-                        />
-                      </svg>
-                    </Link>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-5 h-5"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"
+                          />
+                        </svg>
+                      </Link>
+                    </div>
                   </Link>
                 </div>
               </>
