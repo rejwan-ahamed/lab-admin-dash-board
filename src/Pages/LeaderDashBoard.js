@@ -190,7 +190,7 @@ const LeaderDashBoard = () => {
                         {data?.submition}%
                       </td>
                       <td class="flex justify-center border-l border-black px-2 py-4 text-violet-500 font-[500] dark:text-[#ebff00] dark:border-l-white">
-                        <button>
+                        <Link to={`/allANS/${data?.roll}`}>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -205,7 +205,7 @@ const LeaderDashBoard = () => {
                               d="M4.5 15.75l7.5-7.5 7.5 7.5"
                             />
                           </svg>
-                        </button>
+                        </Link>
                       </td>
                     </tr>
                   ))}

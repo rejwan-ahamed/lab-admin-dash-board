@@ -74,10 +74,10 @@ const Header = () => {
         <Navbar
           fluid={true}
           rounded={true}
-          className=" xl:px-40 font-general max-w-[1560px] mx-auto rounded-none duration-500 bg-white dark:bg-transparent dark:text-white"
+          className=" xl:px-40 font-general max-w-[1560px] mx-auto rounded-none duration-75 bg-white dark:bg-transparent dark:text-white"
         >
           <Navbar.Brand to="/navbars">
-            <span className="self-center whitespace-nowrap text-xl font-semibold text-black dark:text-[#ebff00] dark:duration-500">
+            <span className="self-center whitespace-nowrap text-xl font-semibold text-black dark:text-[#ebff00] dark:duration-75">
               Open Source <sup className="">beta</sup>
             </span>
           </Navbar.Brand>
@@ -116,7 +116,7 @@ const Header = () => {
             {user ? (
               <button
                 onClick={logoutButton}
-                className="text-red-600 duration-500 hover:text-red-500"
+                className="text-red-600 duration-75 hover:text-red-500"
               >
                 Logout
               </button>
@@ -134,7 +134,7 @@ const Header = () => {
             {admin ? (
               <button
                 onClick={adminlogoutButton}
-                className="text-red-600 duration-500 hover:text-red-500"
+                className="text-red-600 duration-75 hover:text-red-500"
               >
                 Logout
               </button>
@@ -228,7 +228,7 @@ const Header = () => {
         {open ? (
           <div
             onClick={() => setOpen(!open)}
-            className="z-[100] duration-500 sticky main-mobile-nav-section bg-gray-50 h-screen w-full flex flex-col gap-3  font-general font-[500] text-2xl text-left pt-10 dark:bg-black dark:text-white"
+            className="z-[100] duration-75 sticky main-mobile-nav-section bg-gray-50 h-screen w-full flex flex-col gap-3  font-general font-[500] text-2xl text-left pt-10 dark:bg-black dark:text-white"
           >
             {user?.status === "Leader" ? (
               <>

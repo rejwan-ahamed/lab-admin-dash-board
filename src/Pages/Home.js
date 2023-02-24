@@ -345,8 +345,7 @@ const Home = () => {
             </form>
 
             <p className="text-left text-violet-600 mt-4 w-[90%] font-[500] dark:text-[#EBFF00]">
-              ** Enter enter a valid group name for ex:(A) and assign a valid
-              roll to create a group leader for the group.
+              ** Enter enter a valid group name for ex:(A)
             </p>
           </div>
         </div>
@@ -393,14 +392,13 @@ const Home = () => {
             </form>
 
             <p className="text-left text-violet-600 mt-4 w-[90%] font-[500] dark:text-[#EBFF00]">
-              ** Enter enter a valid group name for ex:(A) and assign a valid
-              roll to create a group leader for the group.
+              ** Select group group and assign group leader.
             </p>
           </div>
           {/* right side */}
           <div className="middle-part pl-20 pr-20 py-20  flex flex-col justify-start border-r">
             <h1 className="mb-4 text-sm font-general font-[500] text-left rounded-full px-3 py-[3px] max-w-max border border-violet-600 text-violet-600 dark:border-[#EBFF00]  dark:text-[#EBFF00]">
-              All recently crated groups names
+              All recently crated group names
             </h1>
             {/* <h1 className="font-general font-[500] text-xl">No group found</h1> */}
             {group.map((data) => (

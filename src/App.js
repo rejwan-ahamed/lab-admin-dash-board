@@ -19,6 +19,8 @@ import UpdateQuestion from "./Pages/UpdateQuestion";
 import ForgetPasswordRoll from "./Pages/ForgetPasswordRoll";
 import EmailSend from "./Pages/EmailSend";
 import ChangePassword from "./Pages/ChangePassword";
+import AllAnsList from "./Pages/AllAnsList";
+import LeaderViweQuestionAns from "./Pages/LeaderViweQuestionAns";
 
 function App() {
   const routs = createBrowserRouter([
@@ -40,6 +42,8 @@ function App() {
     { path: "/forgetRoll", element: <ForgetPasswordRoll></ForgetPasswordRoll> },
     { path: "/forgetEmail", element: <EmailSend></EmailSend> },
     { path: "/reset", element: <ChangePassword></ChangePassword> },
+    { path: "/allANS/:id", element: <AllAnsList></AllAnsList> },
+    { path: "/leaderViewAns/:id", element: <LeaderViweQuestionAns></LeaderViweQuestionAns> },
     { path: "/404", element: <NotValid></NotValid> },
   ]);
   return (

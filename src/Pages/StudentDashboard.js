@@ -37,6 +37,9 @@ const StudentDashboard = () => {
     .then((res) => res.json())
     .then((result) => setQuestion(result.questions));
   // console.log(question)
+
+  const count = parseInt((answers?.length * 100) / question?.length);
+
   return (
     <div className="bg-white dark:bg-black duration-500">
       <Header></Header>
@@ -62,7 +65,7 @@ const StudentDashboard = () => {
             <div className="right-part mt-6 sm:mt-0">
               <h4 className="bg-violet-600 px-5 py-2 rounded-full font-general text-xl font-[550] max-w-max text-white dark:bg-[#ebff00] dark:text-black">
                 {/* {(answers?.length * 100) / question?.length} % */}
-                {parseInt((answers?.length * 100) / question?.length)} %
+                {count >= 100 ? "100%" : count + "%"}
               </h4>
             </div>
           </div>
