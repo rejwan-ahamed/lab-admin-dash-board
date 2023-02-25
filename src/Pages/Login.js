@@ -14,7 +14,7 @@ const Login = () => {
   useEffect(() => {
     if (userLocalStorageData?.status === "Admin") {
       console.warn(userLocalStorageData?.status);
-      navigate("/login");
+      navigate("/dashboard");
     }
   }, []);
 

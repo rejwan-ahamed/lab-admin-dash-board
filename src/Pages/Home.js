@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import Header from "../Components/Header";
 import { AughtContext } from "../Context/MainContext";
@@ -201,7 +201,7 @@ const Home = () => {
   // console.log(data);
 
   useEffect(() => {
-    fetch(domain + `/get_all_register?group=E`)
+    fetch(domain + `/get_all_register?group=A`)
       .then((res) => res.json())
       .then((result) => setGroupData(result));
   }, []);
@@ -577,7 +577,7 @@ const Home = () => {
                           {data?.submition}%
                         </td>
                         <td class="flex justify-center border-l border-black px-2 py-4 text-violet-500 font-[500] dark:text-[#ebff00] dark:border-l-white">
-                          <button>
+                          <Link to={`/AdminAllANS/${data?.roll}`}>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -592,7 +592,7 @@ const Home = () => {
                                 d="M4.5 15.75l7.5-7.5 7.5 7.5"
                               />
                             </svg>
-                          </button>
+                          </Link>
                         </td>
                       </tr>
                     ))}

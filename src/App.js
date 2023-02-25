@@ -23,6 +23,8 @@ import AllAnsList from "./Pages/AllAnsList";
 import LeaderViweQuestionAns from "./Pages/LeaderViweQuestionAns";
 import UpdateAns from "./Pages/UpdateAns";
 import LeaderUpdateAns from "./Pages/LeaderUpdateAns";
+import AdminViewAnsList from "./Pages/AdminViewAnsList";
+import AdminViewAns from "./Pages/AdminViewAns";
 
 function App() {
   const routs = createBrowserRouter([
@@ -44,11 +46,16 @@ function App() {
     { path: "/forgetRoll", element: <ForgetPasswordRoll></ForgetPasswordRoll> },
     { path: "/forgetEmail", element: <EmailSend></EmailSend> },
     { path: "/reset", element: <ChangePassword></ChangePassword> },
-    { path: "/allANS/:id", element: <AllAnsList></AllAnsList> },
+    { path: "/AdminAllANS/:id", element: <AdminViewAnsList></AdminViewAnsList> },
+    { path: "/adminViewANS/:id", element: <AdminViewAns></AdminViewAns> },
     { path: "/leaderViewAns/:id", element: <LeaderViweQuestionAns></LeaderViweQuestionAns> },
+    { path: "/allANS/:id", element: <AllAnsList></AllAnsList> },
     { path: "/updateANS/:id", element: <UpdateAns></UpdateAns> },
     { path: "/LeaderUpdateANS/:id", element: <LeaderUpdateAns></LeaderUpdateAns> },
     { path: "/404", element: <NotValid></NotValid> },
+    {
+      path:'*', element:<NotValid></NotValid>
+    }
   ]);
   return (
     <div className="App">

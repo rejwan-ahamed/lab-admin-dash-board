@@ -77,7 +77,7 @@ const LDashboard = () => {
                 <div className="question body border-b py-3 px-3  cursor-pointer duration-300 hover:text-violet-600 dark:hover:text-[#ebff00] dark:text-white ">
                   <Link
                     to={`/leaderAns/${data.id}`}
-                    className="question-main font-general text-xl text-left font-[500] flex justify-between items-center "
+                    className="question-main font-general text-xl text-left font-[500] flex justify-between items-center gap-3"
                   >
                     <h2>{data?.question}</h2>
                     <Link to={`/leaderAns/${data.id}`} className="delete-icon">
@@ -111,7 +111,7 @@ const LDashboard = () => {
                 <div className="question body border-b py-3 px-3  cursor-pointer duration-300 hover:text-violet-600 dark:hover:text-[#ebff00] dark:text-white ">
                   <Link
                     to={`/Lans/${data.id}`}
-                    className="question-main font-general text-xl text-left font-[500] flex justify-between items-center "
+                    className="question-main font-general text-xl text-left font-[500] flex justify-between items-center gap-3"
                   >
                     <h2>{data?.question}</h2>
                     <div className="button-group flex gap-3">

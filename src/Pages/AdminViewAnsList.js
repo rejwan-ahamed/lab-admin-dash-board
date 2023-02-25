@@ -4,7 +4,7 @@ import secureLocalStorage from "react-secure-storage";
 import Header from "../Components/Header";
 import domain from "../hooks/domain";
 
-const AllAnsList = () => {
+const AdminViewAnsList = () => {
   const ID = useParams();
 
   const [question, setQuestion] = useState();
@@ -23,12 +23,15 @@ const AllAnsList = () => {
   }, []);
 
   // console.log(answers)
+  const [userData, setUserData] = useState();
+  useEffect(() => {
+    fetch(domain + `/single_student_data?roll=${ID?.id}`)
+      .then((res) => res.json())
+      .then((result) => setUserData(result[0]));
+  }, []);
 
   // getting value by Group
-  fetch(
-    domain +
-      `/get_group_question_name?groupName=${userLocalStorageData?.groupName}`
-  )
+  fetch(domain + `/get_group_question_name?groupName=${userData?.groupName}`)
     .then((res) => res.json())
     .then((result) => setQuestion(result.questions));
   // console.log(question)
@@ -50,9 +53,7 @@ const AllAnsList = () => {
         <div className="wrapper-top flex justify-between items-center">
           <h2 className="font-[500] font-general text-left text-2xl dark:text-white">
             All question answer by :{" "}
-            <span className="text-violet-600 dark:text-[#EBFF00]">
-              {ID.id}
-            </span>
+            <span className="text-violet-600 dark:text-[#EBFF00]">{userData?.name}</span>
           </h2>
           <div className="right-part mt-6 sm:mt-0">
             <h4 className="bg-violet-600 px-5 py-2 rounded-full font-general text-xl font-[550] max-w-max text-white dark:bg-[#ebff00] dark:text-black">
@@ -66,7 +67,7 @@ const AllAnsList = () => {
             <div className="ans-list-body border-b py-4 dark:text-white dark:border-[#EBFF00]">
               <h2 className="text-2xl">{data.question}</h2>
               <Link
-                to={`/leaderViewAns/${data?.id}`}
+                to={`/adminViewANS/${data?.id}`}
                 className="flex gap-1 items-center text-lg mt-2"
               >
                 view ans{" "}
@@ -93,4 +94,4 @@ const AllAnsList = () => {
   );
 };
 
-export default AllAnsList;
+export default AdminViewAnsList;
