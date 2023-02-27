@@ -12,13 +12,13 @@ const StudentLogin = () => {
   );
   useEffect(() => {
     if (userLocalStorageData?.status === "Leader") {
-      console.warn(userLocalStorageData?.status);
+      // console.warn(userLocalStorageData?.status);
       navigate("/leader");
     }
   }, []);
   useEffect(() => {
     if (userLocalStorageData?.status === "Student") {
-      console.warn(userLocalStorageData?.status);
+      // console.warn(userLocalStorageData?.status);
       navigate("/student");
     }
   }, []);

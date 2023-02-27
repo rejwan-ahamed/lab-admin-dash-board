@@ -34,7 +34,7 @@ const AddQuestion = () => {
     e.preventDefault();
     const from = e.target;
     const question = from.question.value;
-    console.log(question);
+    // console.log(question);
 
     const questionData = {
       question: question,
@@ -55,7 +55,7 @@ const AddQuestion = () => {
         .then((res) => res.json())
         .then((result) => {
           toast.success("your post has been added");
-          console.warn(result);
+          // console.warn(result);
           from.reset();
           navigate('/leader')
         });

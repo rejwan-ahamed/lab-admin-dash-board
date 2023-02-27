@@ -5,8 +5,15 @@ import Header from "../Components/Header";
 import domain from "../hooks/domain";
 
 const StudentDashboard = () => {
+  let serialNumber = 1;
   const [question, setQuestion] = useState();
   const [answers, setAnswers] = useState();
+  // set array
+  const [array, setArray] = useState([]);
+  // set filtered question
+  const [filteredQuestion, setFilteredQuestion] = useState([]);
+  // final filtered question
+  const [finalQuestion, setFinalQuestion] = useState([]);
   const navigate = useNavigate();
   const userLocalStorageData = JSON.parse(
     secureLocalStorage.getItem("userInfo")
@@ -27,7 +34,26 @@ const StudentDashboard = () => {
       .then((result) => setAnswers(result));
   }, []);
 
-  // console.log(answers)
+  useEffect(() => {
+    answers?.map((data) => setArray((ls) => [...ls, data?.questionID]));
+  }, [answers]);
+
+  let arrayConvertString = array;
+  // console.log(arrayConvertString)
+
+  useEffect(() => {
+    fetch(domain + `/search?group=A&a=${arrayConvertString}`)
+      .then((res) => res.json())
+      .then((result) => setFilteredQuestion(result));
+  }, [arrayConvertString]);
+
+  useEffect(() => {
+    filteredQuestion?.map((data) =>
+      data.groupName === userLocalStorageData?.groupName
+        ? setFinalQuestion((dl) => [...dl, data])
+        : undefined
+    );
+  }, [filteredQuestion]);
 
   // getting value by Group
   fetch(
@@ -75,14 +101,17 @@ const StudentDashboard = () => {
               All questions assign by group leader
             </h3>
 
-            {question?.map((data) => (
+            {finalQuestion?.map((data) => (
               <>
                 <div className="question body border-b py-3 px-3  cursor-pointer duration-300 hover:text-violet-600 dark:hover:text-[#ebff00] dark:text-white ">
                   <Link
                     to={`/ans/${data.id}`}
                     className="question-main font-general text-xl text-left font-[500] flex justify-between items-center gap-3"
                   >
-                    <h2>{data?.question}</h2>
+                    <div className="flex gap-3">
+                      <p>{serialNumber++ + "."}</p>
+                      <h2 className="text-left">{data?.question}</h2>
+                    </div>
                     <Link to={`/ans/${data.id}`} className="delete-icon">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

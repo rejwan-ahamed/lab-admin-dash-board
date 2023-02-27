@@ -5,8 +5,15 @@ import Header from "../../Components/Header";
 import domain from "../../hooks/domain";
 
 const LDashboard = () => {
+  let serialNumber = 1;
   const [question, setQuestion] = useState();
   const [answers, setAnswers] = useState();
+  // set array
+  const [array, setArray] = useState([]);
+  // set filtered question
+  const [filteredQuestion, setFilteredQuestion] = useState([]);
+  // final filtered question
+  const [finalQuestion, setFinalQuestion] = useState([]);
   const navigate = useNavigate();
   const userLocalStorageData = JSON.parse(
     secureLocalStorage.getItem("userInfo")
@@ -27,8 +34,27 @@ const LDashboard = () => {
       .then((result) => setAnswers(result));
   }, []);
 
-  // console.log(answers)
-  const count = parseInt((answers?.length * 100) / question?.length);
+  useEffect(() => {
+    answers?.map((data) => setArray((ls) => [...ls, data?.questionID]));
+  }, [answers]);
+
+  let arrayConvertString = array;
+  // console.log(arrayConvertString)
+
+  useEffect(() => {
+    fetch(domain + `/search?group=A&a=${arrayConvertString}`)
+      .then((res) => res.json())
+      .then((result) => setFilteredQuestion(result));
+  }, [arrayConvertString]);
+
+  useEffect(() => {
+    filteredQuestion?.map((data) =>
+      data.groupName === userLocalStorageData?.groupName
+        ? setFinalQuestion((dl) => [...dl, data])
+        : undefined
+    );
+  }, [filteredQuestion]);
+
   // getting value by Group
   fetch(
     domain +
@@ -36,8 +62,10 @@ const LDashboard = () => {
   )
     .then((res) => res.json())
     .then((result) => setQuestion(result.questions));
-
   // console.log(question)
+
+  const count = parseInt((answers?.length * 100) / question?.length);
+
   return (
     <div className="bg-white dark:bg-black duration-500">
       <Header></Header>
@@ -62,6 +90,7 @@ const LDashboard = () => {
 
             <div className="right-part mt-6 sm:mt-0">
               <h4 className="bg-violet-600 px-5 py-2 rounded-full font-general text-xl font-[550] max-w-max text-white dark:bg-[#ebff00] dark:text-black">
+                {/* {(answers?.length * 100) / question?.length} % */}
                 {count >= 100 ? "100%" : count + "%"}
               </h4>
             </div>
@@ -72,14 +101,17 @@ const LDashboard = () => {
               All questions assign by group leader
             </h3>
 
-            {question?.map((data) => (
+            {finalQuestion?.map((data) => (
               <>
                 <div className="question body border-b py-3 px-3  cursor-pointer duration-300 hover:text-violet-600 dark:hover:text-[#ebff00] dark:text-white ">
                   <Link
                     to={`/leaderAns/${data.id}`}
                     className="question-main font-general text-xl text-left font-[500] flex justify-between items-center gap-3"
                   >
-                    <h2>{data?.question}</h2>
+                    <div className="flex gap-3">
+                      <p>{serialNumber++ + "."}</p>
+                      <h2 className="text-left">{data?.question}</h2>
+                    </div>
                     <Link to={`/leaderAns/${data.id}`} className="delete-icon">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +137,6 @@ const LDashboard = () => {
             <h3 className="text-left font-general font-[500] text-violet-600 mb-4 border border-violet-600 rounded-full py-1 px-4 max-w-max dark:border-[#ebff00] dark:text-[#ebff00]">
               Your answer list
             </h3>
-
             {answers?.map((data) => (
               <>
                 <div className="question body border-b py-3 px-3  cursor-pointer duration-300 hover:text-violet-600 dark:hover:text-[#ebff00] dark:text-white ">
@@ -131,6 +162,7 @@ const LDashboard = () => {
                           />
                         </svg>
                       </Link>
+
                       <Link
                         to={`/LeaderUpdateANS/${data.id}`}
                         className="delete-icon"

@@ -19,7 +19,7 @@ const ChangePassword = () => {
     const from = e.target;
     const password = from.Password.value;
     const rPassword = from.rPassword.value;
-    console.log(password, rPassword);
+    // console.log(password, rPassword);
 
     const newPassword = {
       email: sessionStorage.getItem("email"),
@@ -39,7 +39,7 @@ const ChangePassword = () => {
         .then((res) => res.json())
         .then((result) => {
           setStatus(true);
-          console.warn(result);
+          // console.warn(result);
           from.reset();
           var timeleft = 5;
           setInterval(function () {

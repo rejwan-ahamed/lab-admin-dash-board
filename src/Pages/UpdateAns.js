@@ -71,7 +71,7 @@ const UpdateAns = () => {
         .then((res) => res.json())
         .then((result) => {
           toast.success("your ans has been updated");
-          console.warn(result);
+          // console.warn(result);
           navigate("/student");
         });
     }

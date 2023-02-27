@@ -71,8 +71,8 @@ const LeaderUpdateAns = () => {
         .then((res) => res.json())
         .then((result) => {
           toast.success("your ans has been updated");
-          console.warn(result);
-          navigate("/student");
+          // console.warn(result);
+          navigate("/LDBoard");
         });
     }
   };

@@ -29,13 +29,13 @@ const LeaderDashBoard = () => {
   }, []);
 
   const deleteData = (e) => {
-    console.log(e);
+    // console.log(e);
     fetch(domain + `/delete_question?id=${e}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         toast.error("your question has been deleted");
       });
   };

@@ -42,7 +42,7 @@ const UpdateQuestion = () => {
     e.preventDefault();
     const from = e.target;
     const question = from.question.value;
-    console.log(question);
+    // console.log(question);
 
     const questionData = {
       question: question,
@@ -62,7 +62,7 @@ const UpdateQuestion = () => {
         .then((res) => res.json())
         .then((result) => {
           toast.success("your question has been updated");
-          console.warn(result);
+          // console.warn(result);
           from.reset();
           navigate("/leader");
         });

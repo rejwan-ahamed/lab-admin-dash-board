@@ -39,7 +39,7 @@ const Register = () => {
       .then((res) => res.json())
       .then((result) => {
         const arrayLength = result.length;
-        console.log(result)
+        // console.log(result)
         if (arrayLength === 1) {
           toast.error("Account already exist");
         } else {
@@ -63,14 +63,14 @@ const Register = () => {
               .then((res) => res.json())
               .then((result) => {
                 toast.success("Your account has been created");
-                console.warn(result);
+                // console.warn(result);
                 form.reset();
               });
           }
         }
       });
 
-    console.warn(registerData);
+    // console.warn(registerData);
   };
 
   return (

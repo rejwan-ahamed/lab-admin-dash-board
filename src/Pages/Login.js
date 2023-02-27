@@ -13,7 +13,7 @@ const Login = () => {
 
   useEffect(() => {
     if (userLocalStorageData?.status === "Admin") {
-      console.warn(userLocalStorageData?.status);
+      // console.warn(userLocalStorageData?.status);
       navigate("/dashboard");
     }
   }, []);
@@ -23,7 +23,7 @@ const Login = () => {
     const from = e.target;
     const email = from.email.value;
     const password = from.password.value;
-    console.log(email, password);
+    // console.log(email, password);
 
     fetch(domain + `/admin_login?email=${email}&password=${password}`)
       .then((res) => res.json())
@@ -40,7 +40,7 @@ const Login = () => {
           const userLocalStorageData = JSON.parse(
             secureLocalStorage.getItem("adminInfo")
           );
-          console.log(userLocalStorageData);
+          // console.log(userLocalStorageData);
           if (userLocalStorageData.status === "Admin") {
             navigate("/dashboard");
           }

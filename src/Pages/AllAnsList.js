@@ -41,8 +41,8 @@ const AllAnsList = () => {
       .then((res) => res.json())
       .then((result) => setAns(result));
   }, []);
-  console.log(ans);
-  console.log(ID);
+  // console.log(ans);
+  // console.log(ID);
   return (
     <div>
       <Header></Header>

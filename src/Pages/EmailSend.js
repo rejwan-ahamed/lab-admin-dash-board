@@ -22,7 +22,7 @@ const EmailSend = () => {
     e.preventDefault();
     const from = e.target;
     const otp = from.OTP.value;
-    console.log(otp);
+    // console.log(otp);
 
     fetch(domain + `/otp_match?email=${defaultEmail}&otp=${otp}`)
       .then((res) => res.json())

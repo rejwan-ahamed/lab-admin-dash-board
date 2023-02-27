@@ -60,7 +60,7 @@ const LeaderViweQuestionAns = () => {
         .then((res) => res.json())
         .then((result) => {
           // toast.success("your post has been added");
-          console.warn(result);
+          // console.warn(result);
           from.reset();
           refetch();
         });

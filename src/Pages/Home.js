@@ -81,7 +81,7 @@ const Home = () => {
               .then((res) => res.json())
               .then((result) => {
                 toast.success("your group has been created ");
-                console.warn(result);
+                // console.warn(result);
                 form.reset();
               });
           }
@@ -109,7 +109,7 @@ const Home = () => {
         groupName: group,
         Leader: roll,
       };
-      console.log(postData);
+      // console.log(postData);
       fetch(domain + `/assign_leader`, {
         method: "PUT",
         headers: {
@@ -120,7 +120,7 @@ const Home = () => {
         .then((res) => res.json())
         .then((result) => {
           toast.success("Leader assigned to group");
-          console.warn(result);
+          // console.warn(result);
           from.reset();
         });
 
@@ -180,7 +180,7 @@ const Home = () => {
         groupName: group,
         Leader: newLeader,
       };
-      console.log(postData);
+      // console.log(postData);
       fetch(domain + `/assign_leader`, {
         method: "PUT",
         headers: {
@@ -191,7 +191,7 @@ const Home = () => {
         .then((res) => res.json())
         .then((result) => {
           toast.success("your post has been added");
-          console.warn(result);
+          // console.warn(result);
           from.reset();
         });
     }
