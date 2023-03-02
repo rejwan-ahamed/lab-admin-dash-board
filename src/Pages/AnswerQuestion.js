@@ -26,8 +26,11 @@ const AnswerQuestion = () => {
 
   // getting user answer count
   const userRoll = userLocalStorageData.roll;
+  const group = userLocalStorageData.groupName;
   useEffect(() => {
-    fetch(domain + `/get_single_user_answer_count?roll=${userRoll}`)
+    fetch(
+      domain + `/get_single_user_answer_count?roll=${userRoll}&group=${group}`
+    )
       .then((res) => res.json())
       .then((result) => setUserAnswerCount(result.length));
   }, []);

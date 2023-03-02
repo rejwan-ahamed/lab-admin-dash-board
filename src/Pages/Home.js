@@ -302,7 +302,7 @@ const Home = () => {
                   <p className="font-[500] text-violet-400 text-[18px] dark:text-[#eaff00ab]">
                     Task submission:{" "}
                     <span className="text-violet-600 dark:text-[#EBFF00]">
-                      23
+                      {student?.submition+"%"}
                     </span>
                   </p>
                 </div>

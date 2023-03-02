@@ -26,8 +26,9 @@ const LeaderAddAns = () => {
 
   // getting user answer count
   const userRoll = userLocalStorageData.roll;
+  const group = userLocalStorageData.groupName;
   useEffect(() => {
-    fetch(domain + `/get_single_user_answer_count?roll=${userRoll}`)
+    fetch(domain + `/get_single_user_answer_count?roll=${userRoll}&group=${group}`)
       .then((res) => res.json())
       .then((result) => setUserAnswerCount(result.length));
   }, []);
@@ -211,7 +212,7 @@ const LeaderAddAns = () => {
 
                   <div className="mt-4 flex w-full">
                     <Link
-                      to={"/student"}
+                      to={"/LDBoard"}
                       type="button"
                       className="w-[50%] font-general font-[500] text-lg border-t border-r  border-black inline-flex justify-center bg-red-600 px-4 py-3 text-white duration-500 hover:bg-red-400 hover:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
