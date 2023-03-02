@@ -1,10 +1,40 @@
 import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { Link, useNavigate } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import Header from "../Components/Header";
 import domain from "../hooks/domain";
 
 const StudentDashboard = () => {
+  const [agree, setAgree] = useState();
+  const navigate = useNavigate();
+  const userLocalStorageData = JSON.parse(
+    secureLocalStorage.getItem("userInfo")
+  );
+
+  // react query start here
+
+  useEffect(() => {
+    fetch(
+      domain +
+        `/search_condition?roll=${userLocalStorageData.roll}&question=Trams and conditions`
+    )
+      .then((res) => res.json())
+      .then((result) => setAgree(result.length));
+  }, []);
+
+  const {
+    data: categorys,
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["repoData"],
+    queryFn: () =>
+      fetch(domain + `/single_ans_comments?id=${1}`).then((res) => res.json()),
+  });
+
+  // react query end here
+
   let serialNumber = 1;
   const [question, setQuestion] = useState();
   const [answers, setAnswers] = useState();
@@ -14,10 +44,6 @@ const StudentDashboard = () => {
   const [filteredQuestion, setFilteredQuestion] = useState([]);
   // final filtered question
   const [finalQuestion, setFinalQuestion] = useState([]);
-  const navigate = useNavigate();
-  const userLocalStorageData = JSON.parse(
-    secureLocalStorage.getItem("userInfo")
-  );
 
   useEffect(() => {
     if (userLocalStorageData?.status !== "Student") {
@@ -42,7 +68,10 @@ const StudentDashboard = () => {
   // console.log(arrayConvertString)
 
   useEffect(() => {
-    fetch(domain + `/search?group=A&a=${arrayConvertString}`)
+    fetch(
+      domain +
+        `/search?group=${userLocalStorageData?.groupName}&a=${arrayConvertString}`
+    )
       .then((res) => res.json())
       .then((result) => setFilteredQuestion(result));
   }, [arrayConvertString]);
@@ -64,11 +93,98 @@ const StudentDashboard = () => {
     .then((result) => setQuestion(result.questions));
   // console.log(question)
 
+  const notAgree = () => {
+    secureLocalStorage.clear("userInfo");
+    navigate("/student_login");
+  };
+
+  const agreeCondition = () => {
+    const answerData = {
+      question: "Trams and conditions",
+      ans: "I agree all the trams and conditions.",
+      groupName: question?.groupName,
+      answer_by_roll: userLocalStorageData?.roll,
+      answer_by_name: userLocalStorageData?.name,
+    };
+    fetch(domain + `/answer`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(answerData),
+    });
+    refetch();
+    navigate("/student_login");
+  };
+
   const count = parseInt((answers?.length * 100) / question?.length);
 
   return (
     <div className="bg-white dark:bg-black duration-500">
+      {agree >= 1 ? undefined : (
+        <div className="trams bg-gray-50 h-screen w-screen flex justify-center items-center fixed z-[60]">
+          <div className="modal w-[20rem] border border-gray-300 h-max bg-white rounded-lg">
+            <div className="icon w-full flex justify-center items-center mt-10">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-14 h-14 text-blue-600 border rounded-full p-2 bg-blue-100 border-blue-600"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z"
+                />
+              </svg>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.2}
+                stroke="currentColor"
+                className="w-14 h-14 text-blue-600 border rounded-full p-2 bg-blue-100 border-blue-600 ml-[-.5rem]"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M10.05 4.575a1.575 1.575 0 10-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 013.15 0v1.5m-3.15 0l.075 5.925m3.075.75V4.575m0 0a1.575 1.575 0 013.15 0V15M6.9 7.575a1.575 1.575 0 10-3.15 0v8.175a6.75 6.75 0 006.75 6.75h2.018a5.25 5.25 0 003.712-1.538l1.732-1.732a5.25 5.25 0 001.538-3.712l.003-2.024a.668.668 0 01.198-.471 1.575 1.575 0 10-2.228-2.228 3.818 3.818 0 00-1.12 2.687M6.9 7.575V12m6.27 4.318A4.49 4.49 0 0116.35 15m.002 0h-.002"
+                />
+              </svg>
+            </div>
+            <p className="text-xl font-[500] font-general mt-4">
+              Trams and conditions
+            </p>
+            <p className="text-sm font-[500] font-general mt-4 text-gray-400 px-8">
+              Do you agree our trams and conditions. If you agree click on yes.
+              Then you will able to prosed. If you don't want to agree the trams
+              and conditions please leave the page.
+            </p>
+            <p className="text-sm font-[500] font-general mt-4 text-blue-600 px-8 text-left">
+              Read the trams & conditions.
+            </p>
+            <div className="button-group gap-2 p-4 flex mt-10">
+              <button
+                onClick={agreeCondition}
+                className="w-[50%] bg-blue-600 text-white font-general font-[500] rounded-sm py-2"
+              >
+                Yes
+              </button>
+              <button
+                onClick={notAgree}
+                className="w-[50%] bg-red-600 text-white font-general font-[500] rounded-sm py-2"
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <Header></Header>
+
       {/* search the student my class roll */}
       <div className="main-wrapper px-4 py-10 lg:py-20 lg:px-20 xl:px-40 xl:py-20 max-w-[1560px] mx-auto">
         <div className="group-details ">
