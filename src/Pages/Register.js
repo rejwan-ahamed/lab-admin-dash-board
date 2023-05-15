@@ -34,7 +34,6 @@ const Register = () => {
       // date: moment().format(),
     };
 
-
     fetch(domain + `/single_roll?roll=${roll}`)
       .then((res) => res.json())
       .then((result) => {
@@ -208,6 +207,31 @@ const Register = () => {
                   placeholder="•••••••••"
                   required
                 />
+              </div>
+
+              {/* trams and condition here */}
+
+              <div class="flex items-center mb-4">
+                <input
+                  id="link-checkbox"
+                  type="checkbox"
+                  value=""
+                  required
+                  class="w-4 h-4 text-violet-600 bg-gray-100 border-gray-300 rounded focus:ring-violet-500 dark:focus:ring-violet-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  for="link-checkbox"
+                  class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  I agree with the{" "}
+                  <Link
+                    to="/trams"
+                    class="text-violet-600 dark:text-violet-500 hover:underline"
+                  >
+                    terms and conditions
+                  </Link>
+                  .
+                </label>
               </div>
 
               <button

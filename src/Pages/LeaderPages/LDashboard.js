@@ -17,7 +17,7 @@ const LDashboard = () => {
   useEffect(() => {
     fetch(
       domain +
-        `/search_condition?roll=${userLocalStorageData.roll}&question=Trams and conditions`
+        `/search_condition?roll=${userLocalStorageData.roll}&question=Terms and conditions`
     )
       .then((res) => res.json())
       .then((result) => setAgree(result.length));
@@ -100,8 +100,8 @@ const LDashboard = () => {
 
   const agreeCondition = () => {
     const answerData = {
-      question: "Trams and conditions",
-      ans: "I agree all the trams and conditions.",
+      question: "Terms and conditions",
+      ans: "I agree all the terms and conditions.",
       groupName: question?.groupName,
       answer_by_roll: userLocalStorageData?.roll,
       answer_by_name: userLocalStorageData?.name,
@@ -112,9 +112,9 @@ const LDashboard = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(answerData),
-    });
-    refetch();
-    navigate("/student_login");
+    })
+      .then((res) => res.json())
+      .then((result) => navigate("/student_login"));
   };
 
   const count = parseInt((answers?.length * 100) / question?.length);
@@ -156,16 +156,19 @@ const LDashboard = () => {
               </svg>
             </div>
             <p className="text-xl font-[500] font-general mt-4">
-              Trams and conditions
+              Terms and conditions
             </p>
             <p className="text-sm font-[500] font-general mt-4 text-gray-400 px-8">
-              Do you agree our trams and conditions. If you agree click on yes.
-              Then you will able to prosed. If you don't want to agree the trams
-              and conditions please leave the page.
+              Do you agree our terms and conditions. If you agree click on yes.
+              Then you will able to proceed. If you don't want to agree the
+              terms and conditions please leave the page.
             </p>
-            <p className="text-sm font-[500] font-general mt-4 text-blue-600 px-8 text-left">
-              Read the trams & conditions.
-            </p>
+            <Link
+              to={"/trams"}
+              className="text-sm font-[500] font-general pt-4 text-blue-600 px-8 text-left cursor-pointer"
+            >
+              Read the terms and conditions
+            </Link>
             <div className="button-group gap-2 p-4 flex mt-10">
               <button
                 onClick={agreeCondition}

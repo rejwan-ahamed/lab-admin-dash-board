@@ -25,37 +25,144 @@ import UpdateAns from "./Pages/UpdateAns";
 import LeaderUpdateAns from "./Pages/LeaderUpdateAns";
 import AdminViewAnsList from "./Pages/AdminViewAnsList";
 import AdminViewAns from "./Pages/AdminViewAns";
+import Trams from "./Pages/Trams";
 
 function App() {
   const routs = createBrowserRouter([
-    { path: "/", element: <StudentLogin></StudentLogin>},
-    { path: "/dashboard", element: <Home></Home> },
-    { path: "/login", element: <Login></Login> },
-    { path: "/leader", element: <LeaderDashBoard></LeaderDashBoard> },
-    { path: "/register", element: <Register></Register> },
-    { path: "/student_login", element: <StudentLogin></StudentLogin> },
-    { path: "/add_question", element: <AddQuestion></AddQuestion> },
-    { path: "/student", element: <StudentDashboard></StudentDashboard> },
-    { path: "/ans/:id", element: <AnswerQuestion></AnswerQuestion> },
-    { path: "/more", element: <More></More> },
-    { path: "/view/:id", element: <ViewAns></ViewAns> },
-    { path: "/LDBoard", element: <LDashboard></LDashboard> },
-    { path: "/leaderAns/:id", element: <LeaderAddAns></LeaderAddAns> },
-    { path: "/Lans/:id", element: <LeaderViewAns></LeaderViewAns> },
-    { path: "/update/:id", element: <UpdateQuestion></UpdateQuestion> },
-    { path: "/forgetRoll", element: <ForgetPasswordRoll></ForgetPasswordRoll> },
-    { path: "/forgetEmail", element: <EmailSend></EmailSend> },
-    { path: "/reset", element: <ChangePassword></ChangePassword> },
-    { path: "/AdminAllANS/:id", element: <AdminViewAnsList></AdminViewAnsList> },
-    { path: "/adminViewANS/:id", element: <AdminViewAns></AdminViewAns> },
-    { path: "/leaderViewAns/:id", element: <LeaderViweQuestionAns></LeaderViweQuestionAns> },
-    { path: "/allANS/:id", element: <AllAnsList></AllAnsList> },
-    { path: "/updateANS/:id", element: <UpdateAns></UpdateAns> },
-    { path: "/LeaderUpdateANS/:id", element: <LeaderUpdateAns></LeaderUpdateAns> },
-    { path: "/404", element: <NotValid></NotValid> },
     {
-      path:'*', element:<NotValid></NotValid>
-    }
+      path: "/",
+      element: <StudentLogin></StudentLogin>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/dashboard",
+      element: <Home></Home>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/login",
+      element: <Login></Login>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/leader",
+      element: <LeaderDashBoard></LeaderDashBoard>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/register",
+      element: <Register></Register>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/student_login",
+      element: <StudentLogin></StudentLogin>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/add_question",
+      element: <AddQuestion></AddQuestion>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/student",
+      element: <StudentDashboard></StudentDashboard>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/ans/:id",
+      element: <AnswerQuestion></AnswerQuestion>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/more",
+      element: <More></More>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/view/:id",
+      element: <ViewAns></ViewAns>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/LDBoard",
+      element: <LDashboard></LDashboard>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/leaderAns/:id",
+      element: <LeaderAddAns></LeaderAddAns>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/Lans/:id",
+      element: <LeaderViewAns></LeaderViewAns>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/update/:id",
+      element: <UpdateQuestion></UpdateQuestion>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/forgetRoll",
+      element: <ForgetPasswordRoll></ForgetPasswordRoll>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/forgetEmail",
+      element: <EmailSend></EmailSend>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/reset",
+      element: <ChangePassword></ChangePassword>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/AdminAllANS/:id",
+      element: <AdminViewAnsList></AdminViewAnsList>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/adminViewANS/:id",
+      element: <AdminViewAns></AdminViewAns>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/leaderViewAns/:id",
+      element: <LeaderViweQuestionAns></LeaderViweQuestionAns>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/allANS/:id",
+      element: <AllAnsList></AllAnsList>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/updateANS/:id",
+      element: <UpdateAns></UpdateAns>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/LeaderUpdateANS/:id",
+      element: <LeaderUpdateAns></LeaderUpdateAns>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/404",
+      element: <NotValid></NotValid>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "/trams",
+      element: <Trams></Trams>,
+      errorElement: <NotValid></NotValid>,
+    },
+    {
+      path: "*",
+      element: <NotValid></NotValid>,
+    },
   ]);
   return (
     <div className="App">
