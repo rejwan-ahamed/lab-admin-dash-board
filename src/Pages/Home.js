@@ -25,11 +25,7 @@ const Home = () => {
     }
   }, []);
 
-  const {
-    data: categorys,
-    refetch,
-    isLoading,
-  } = useQuery({
+  const { data: categorys, refetch, isLoading } = useQuery({
     queryKey: ["repoData"],
     queryFn: () =>
       fetch(domain + `all`)
@@ -302,7 +298,7 @@ const Home = () => {
                   <p className="font-[500] text-violet-400 text-[18px] dark:text-[#eaff00ab]">
                     Task submission:{" "}
                     <span className="text-violet-600 dark:text-[#EBFF00]">
-                      {student?.submition+"%"}
+                      {student?.submition + "%"}
                     </span>
                   </p>
                 </div>
@@ -426,18 +422,6 @@ const Home = () => {
                 )}
               </h1>
             ))}
-            {/* <h1 className="font-general font-[500] text-xl text-left border-b py-2 dark:text-white">
-              A group leader name
-            </h1>
-            <h1 className="font-general font-[500] text-xl text-left border-b py-2 dark:text-white">
-              A group leader name
-            </h1>
-            <h1 className="font-general font-[500] text-xl text-left border-b py-2 dark:text-white">
-              A group leader name
-            </h1> */}
-
-            {/* {document.body.style.backgroundColor === "light"? <img src="/images/group.svg" className="w-[18rem]" alt="" srcset="" />: <img src="/public/images/dark.svg" className="w-[18rem]" alt="" srcset="" />} */}
-            {/* <img src="/images/group.svg" className="w-[18rem]" alt="" srcset="" /> */}
           </div>
           <div className="right-part flex flex-col items-start justify-start pl-20 pr-16 py-20 dark:text-white">
             <form
@@ -562,19 +546,18 @@ const Home = () => {
                         </td>
                         <td class="px-3 py-4 text-violet-500 font-[500] dark:text-[#ebff00] border-l border-black sm:px-6 dark:border-l-white">
                           <div class=" w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-500">
-                            {/* {console.log(${userLength*100}/${data?.roll}` })} */}
-                            {/* {console.log((userLength * 100) / data?.roll)} */}
-                            {/* {console.log((12 * 100) / data?.roll)} */}
                             <div
                               className="bg-violet-600 h-2.5 rounded-full duration-500 dark:bg-[#ebff00]"
                               style={{
-                                width: `${data?.submition}%`,
+                                width: `${
+                                  data?.submition > 100 ? 100 : data?.submition
+                                }%`,
                               }}
                             ></div>
                           </div>
                         </td>
                         <td class=" border-black px-2 py-4 text-violet-500 font-[500] dark:text-[#ebff00] dark:border-l-white">
-                          {data?.submition}%
+                          {data?.submition > 100 ? 100 : data?.submition}%
                         </td>
                         <td class="flex justify-center border-l border-black px-2 py-4 text-violet-500 font-[500] dark:text-[#ebff00] dark:border-l-white">
                           <Link to={`/AdminAllANS/${data?.roll}`}>
