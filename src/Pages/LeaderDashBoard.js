@@ -175,19 +175,16 @@ const LeaderDashBoard = () => {
                       </td>
                       <td class="px-3 py-4 text-violet-500 font-[500] dark:text-[#ebff00] border-l border-black sm:px-6 dark:border-l-white">
                         <div class=" w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-500">
-                          {/* {console.log(${userLength*100}/${data?.roll}` })} */}
-                          {/* {console.log((userLength * 100) / data?.roll)} */}
-                          {/* {console.log((12 * 100) / data?.roll)} */}
                           <div
                             className="bg-violet-600 h-2.5 rounded-full duration-500 dark:bg-[#ebff00]"
                             style={{
-                              width: `${data?.submition}%`,
+                              width: `${data?.submition>100?100:data?.submition}%`,
                             }}
                           ></div>
                         </div>
                       </td>
                       <td class=" border-black px-2 py-4 text-violet-500 font-[500] dark:text-[#ebff00] dark:border-l-white">
-                        {data?.submition}%
+                        {data?.submition>100?100:data?.submition}%
                       </td>
                       <td class="flex justify-center border-l border-black px-2 py-4 text-violet-500 font-[500] dark:text-[#ebff00] dark:border-l-white">
                         <Link to={`/allANS/${data?.roll}`}>
