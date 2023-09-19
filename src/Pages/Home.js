@@ -7,6 +7,7 @@ import Header from "../Components/Header";
 import { AughtContext } from "../Context/MainContext";
 import domain from "../hooks/domain";
 
+
 const Home = () => {
   // getting single student data
   const [student, setStudent] = useState([]);

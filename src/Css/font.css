@@ -1,0 +1,58 @@
+@font-face {
+  font-family: "neue-black";
+  src: url("/public/fonts/NeueMachina-Black.woff");
+  font-weight: 900;
+}
+@font-face {
+  font-family: "neue-bold";
+  src: url("/public/fonts/NeueMachina-Bold.woff");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "neue-light";
+  src: url("/public/fonts/NeueMachina-Light.woff");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "neue-medium";
+  src: url("/public/fonts/NeueMachina-Medium.woff");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "neue-regular";
+  src: url("/public/fonts/NeueMachina-Regular.woff");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "neue-ub";
+  src: url("/public/fonts/NeueMachina-Ultrabold.woff");
+  font-weight: 800;
+}
+@font-face {
+  font-family: "neue-ul";
+  src: url("/public/fonts/NeueMachina-Ultralight.woff");
+  font-weight: 200;
+}
+
+/* react app font styling start form here */
+.punch-line h1 {
+  font-family: "neue-bold" !important;
+}
+.nav-main {
+  font-family: "neue-medium" !important;
+}
+
+.test-header-left-section h1,
+.hero-email {
+  font-family: "neue-bold" !important;
+}
+
+.font-nm {
+  font-family: "neue-medium" !important;
+}
+.font-nb {
+  font-family: "neue-bold" !important;
+}
+.font-nr {
+  font-family: "neue-regular" !important;
+}

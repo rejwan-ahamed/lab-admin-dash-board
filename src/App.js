@@ -27,6 +27,8 @@ import AdminViewAnsList from "./Pages/AdminViewAnsList";
 import AdminViewAns from "./Pages/AdminViewAns";
 import Trams from "./Pages/Trams";
 
+import "../src/Css/font.css";
+
 function App() {
   const routs = createBrowserRouter([
     {

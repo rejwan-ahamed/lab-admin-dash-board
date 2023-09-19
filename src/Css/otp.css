@@ -1,0 +1,22 @@
+.OTP>input{
+    width: 5rem !important;
+    height: 5rem !important;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+}
+
+.otp-holder >div{
+    display: flex;
+    gap: 1rem;
+    
+}
+
+.OTP>input{
+    width: 5rem;
+    height: 6rem;
+    background-color: transparent;
+    border: 1px solid rgb(43, 106, 255);
+    font-size: 40px;
+    border-radius: 4px;
+}
