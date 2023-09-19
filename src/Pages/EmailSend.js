@@ -39,11 +39,11 @@ const EmailSend = () => {
   return (
     <div className="main bg-white duration-500 dark:bg-black">
       <div className="absolute flex justify-center items-center w-full h-screen flex-col">
-        <p className="text-lg font-general mb-2 text-orange-400 font-[500]">
+        <p className="text-lg font-nr mb-2 text-orange-400 font-[500]">
           **We send an OTP in this {defaultEmail} account. Please check your
           email.
         </p>
-        <h1 className="text-[25px] font-general font-[600] text-left mb-10 dark:text-white flex">
+        <h1 className="text-[25px] font-nr font-[600] text-left mb-10 dark:text-white flex">
           Open Source{" "}
           <sub className="font-[550]">
             <svg
@@ -62,7 +62,7 @@ const EmailSend = () => {
             </svg>
           </sub>
         </h1>
-        <div className="upper-text w-[18rem] font-general font-[500] text-xl mb-3">
+        <div className="upper-text w-[18rem] font-nr font-[500] text-xl mb-3">
           <h4 className="text-left text-black dark:text-white">
             Please enter your OTP
           </h4>
@@ -76,13 +76,13 @@ const EmailSend = () => {
             type="number"
             id="password"
             name="OTP"
-            className="border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#ebff00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#ebff00] dark:focus:border-[#ebff00]"
+            className="font-nr border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-black dark:border-[#ebff00] dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#ebff00] dark:focus:border-[#ebff00]"
             placeholder="Enter your OTP"
             required
           />
           <button
             type="submit"
-            className="mt-4 ml-[7.5rem] w-[6rem] flex justify-center items-center text-white border border-violet-600 bg-violet-600 rounded-sm py-2 font-[550] duration-300 hover:border-violet-600 hover:bg-transparent hover:text-violet-600 dark:bg-[#ebff00] dark:text-black dark:border-[#ebff00] dark:hover:bg-transparent dark:duration-500 dark:hover:text-[#ebff00]"
+            className="font-nb mt-4 ml-[7.5rem] w-[6rem] flex justify-center items-center text-white border border-violet-600 bg-violet-600 rounded-sm py-2 font-[550] duration-300 hover:border-violet-600 hover:bg-transparent hover:text-violet-600 dark:bg-[#ebff00] dark:text-black dark:border-[#ebff00] dark:hover:bg-transparent dark:duration-500 dark:hover:text-[#ebff00]"
           >
             Next{" "}
             <svg
@@ -104,7 +104,7 @@ const EmailSend = () => {
         <Link
           to={"/forgetRoll"}
           type="submit"
-          className="ml-[-11rem] mt-[-2.6rem] w-max px-3 flex justify-center items-center text-white border border-violet-600 bg-violet-600 rounded-sm py-2 font-[550] duration-300 hover:border-violet-600 hover:bg-transparent hover:text-violet-600 dark:bg-[#ebff00] dark:text-black dark:border-[#ebff00] dark:hover:bg-transparent dark:duration-500 dark:hover:text-[#ebff00]"
+          className="font-nb ml-[-11rem] mt-[-2.6rem] w-max px-3 flex justify-center items-center text-white border border-violet-600 bg-violet-600 rounded-sm py-2 font-[550] duration-300 hover:border-violet-600 hover:bg-transparent hover:text-violet-600 dark:bg-[#ebff00] dark:text-black dark:border-[#ebff00] dark:hover:bg-transparent dark:duration-500 dark:hover:text-[#ebff00]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

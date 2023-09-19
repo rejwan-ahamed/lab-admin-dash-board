@@ -75,7 +75,7 @@ const ViewAns = () => {
   return (
     <div>
       <Header></Header>
-      <div className="answer-body text-left font-general font-[500] px-4 py-10 lg:px-20 lg:py-20 xl:px-40 xl:py-20">
+      <div className="answer-body text-left font-nr font-[500] px-4 py-10 lg:px-20 lg:py-20 xl:px-40 xl:py-20">
         <h1 className="text-2xl mb-4 dark:text-white">{question?.question}</h1>
         <p
           className="main_post text-sm dark:text-white"
@@ -84,11 +84,11 @@ const ViewAns = () => {
       </div>
       {/* comments part start here */}
       <div className="comments-mai px-4 py-10 lg:px-20 lg:py-20 xl:px-40 xl:py-20 ">
-        <p className="font-general font-[500] text-xl text-left dark:text-white">
+        <p className="font-nr font-[500] text-xl text-left dark:text-white">
           Comments :
         </p>
 
-        <div className="main-comments dark:text-white text-left font-[500] text-lg font-general mt-10">
+        <div className="main-comments dark:text-white text-left font-[500] text-lg font-nr mt-10">
           {comments?.map((data) => (
             <div className="comment_holder border-b py-2">
               <p className="text-gray-400 mt-2">{data?.commentBY}</p>
@@ -107,7 +107,7 @@ const ViewAns = () => {
               placeholder="Write your thoughts here..."
             ></textarea>
             <div className="button-group w-full mt-6">
-              <button className="bg-violet-200 px-6 py-2 text-violet-600 border-violet-600 border rounded-sm font-general font-[550] duration-500 hover:bg-transparent hover:text-violet-600 hover:border-violet-500 dark:border-[#ebff00] dark:bg-[#eaff0069] dark:text-[#ebff00] dark:hover:bg-transparent">
+              <button className="bg-violet-200 px-6 py-2 text-violet-600 border-violet-600 border rounded-sm font-nr font-[550] duration-500 hover:bg-transparent hover:text-violet-600 hover:border-violet-500 dark:border-[#ebff00] dark:bg-[#eaff0069] dark:text-[#ebff00] dark:hover:bg-transparent">
                 Comment
               </button>
             </div>

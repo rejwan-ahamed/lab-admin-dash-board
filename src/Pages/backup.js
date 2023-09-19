@@ -15,7 +15,7 @@
           <form
             onSubmit={student_roll_search}
             action=""
-            className="flex flex-col items-center mt-10 w-full font-general"
+            className="flex flex-col items-center mt-10 w-full font-nr"
           >
             <div className="search-main flex items-center justify-center gap-2 rounded-sm w-full">
               <input

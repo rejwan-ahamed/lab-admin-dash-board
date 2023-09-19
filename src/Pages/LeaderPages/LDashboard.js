@@ -155,30 +155,30 @@ const LDashboard = () => {
                 />
               </svg>
             </div>
-            <p className="text-xl font-[500] font-general mt-4">
+            <p className="text-xl font-[500] font-nr mt-4">
               Terms and conditions
             </p>
-            <p className="text-sm font-[500] font-general mt-4 text-gray-400 px-8">
+            <p className="text-sm font-[500] font-nr mt-4 text-gray-400 px-8">
               Do you agree our terms and conditions. If you agree click on yes.
               Then you will able to proceed. If you don't want to agree the
               terms and conditions please leave the page.
             </p>
             <Link
               to={"/trams"}
-              className="text-sm font-[500] font-general pt-4 text-blue-600 px-8 text-left cursor-pointer"
+              className="text-sm font-[500] font-nr pt-4 text-blue-600 px-8 text-left cursor-pointer"
             >
               Read the terms and conditions
             </Link>
             <div className="button-group gap-2 p-4 flex mt-10">
               <button
                 onClick={agreeCondition}
-                className="w-[50%] bg-blue-600 text-white font-general font-[500] rounded-sm py-2"
+                className="w-[50%] bg-blue-600 text-white font-nr font-[500] rounded-sm py-2"
               >
                 Yes
               </button>
               <button
                 onClick={notAgree}
-                className="w-[50%] bg-red-600 text-white font-general font-[500] rounded-sm py-2"
+                className="w-[50%] bg-red-600 text-white font-nr font-[500] rounded-sm py-2"
               >
                 No
               </button>
@@ -193,13 +193,13 @@ const LDashboard = () => {
         <div className="group-details ">
           <div className="upper-part block justify-between items-center sm:flex">
             <div className="left-part">
-              <h1 className="text-xl font-general text-left font-[500] sm:text-2xl dark:text-white">
+              <h1 className="text-xl font-nr text-left font-[500] sm:text-2xl dark:text-white">
                 Member of group :{" "}
                 <span className="text-violet-500 dark:text-[#ebff00]">
                   {userLocalStorageData?.groupName}
                 </span>
               </h1>
-              <h1 className="text-xl font-general text-left font-[500] sm:text-2xl dark:text-white">
+              <h1 className="text-xl font-nr text-left font-[500] sm:text-2xl dark:text-white">
                 Welcome back :{" "}
                 <span className="text-violet-500 dark:text-[#ebff00]">
                   {userLocalStorageData?.name}
@@ -208,7 +208,7 @@ const LDashboard = () => {
             </div>
 
             <div className="right-part mt-6 sm:mt-0">
-              <h4 className="bg-violet-600 px-5 py-2 rounded-full font-general text-xl font-[550] max-w-max text-white dark:bg-[#ebff00] dark:text-black">
+              <h4 className="bg-violet-600 px-5 py-2 rounded-full font-nr text-xl font-[550] max-w-max text-white dark:bg-[#ebff00] dark:text-black">
                 {/* {(answers?.length * 100) / question?.length} % */}
                 {count >= 100 ? "100%" : count + "%"}
               </h4>
@@ -216,7 +216,7 @@ const LDashboard = () => {
           </div>
 
           <div className="all-questions mt-16">
-            <h3 className="text-left font-general font-[500] text-violet-600 mb-4 border border-violet-600 rounded-full py-1 px-4 max-w-max dark:border-[#ebff00] dark:text-[#ebff00]">
+            <h3 className="text-left font-nr font-[500] text-violet-600 mb-4 border border-violet-600 rounded-full py-1 px-4 max-w-max dark:border-[#ebff00] dark:text-[#ebff00]">
               All questions assign by group leader
             </h3>
 
@@ -225,7 +225,7 @@ const LDashboard = () => {
                 <div className="question body border-b py-3 px-3  cursor-pointer duration-300 hover:text-violet-600 dark:hover:text-[#ebff00] dark:text-white ">
                   <Link
                     to={`/leaderAns/${data.id}`}
-                    className="question-main font-general text-xl text-left font-[500] flex justify-between items-center gap-3"
+                    className="question-main font-nr text-xl text-left font-[500] flex justify-between items-center gap-3"
                   >
                     <div className="flex gap-3">
                       <p>{serialNumber++ + "."}</p>
@@ -253,7 +253,7 @@ const LDashboard = () => {
             ))}
           </div>
           <div className="all-questions mt-16">
-            <h3 className="text-left font-general font-[500] text-violet-600 mb-4 border border-violet-600 rounded-full py-1 px-4 max-w-max dark:border-[#ebff00] dark:text-[#ebff00]">
+            <h3 className="text-left font-nr font-[500] text-violet-600 mb-4 border border-violet-600 rounded-full py-1 px-4 max-w-max dark:border-[#ebff00] dark:text-[#ebff00]">
               Your answer list
             </h3>
             {answers?.map((data) => (
@@ -261,7 +261,7 @@ const LDashboard = () => {
                 <div className="question body border-b py-3 px-3  cursor-pointer duration-300 hover:text-violet-600 dark:hover:text-[#ebff00] dark:text-white ">
                   <Link
                     to={`/Lans/${data.id}`}
-                    className="question-main font-general text-xl text-left font-[500] flex justify-between items-center gap-3"
+                    className="question-main font-nr text-xl text-left font-[500] flex justify-between items-center gap-3"
                   >
                     <h2>{data?.question}</h2>
                     <div className="button-group flex gap-3">

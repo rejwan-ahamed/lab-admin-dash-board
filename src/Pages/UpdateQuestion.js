@@ -121,12 +121,12 @@ const UpdateQuestion = () => {
                   </div>
                   <Dialog.Title
                     as="h3"
-                    className=" px-6 leading-6 text-red-600 font-general font-[550] text-xl mt-4 mb-3"
+                    className=" px-6 leading-6 text-red-600 font-nr font-[550] text-xl mt-4 mb-3"
                   >
                     Warning
                   </Dialog.Title>
                   <div className="mt-2 px-6 ">
-                    <p className="text-lg text-black font-general font-[500] ">
+                    <p className="text-lg text-black font-nr font-[500] ">
                       Do you want to discard. click on yes to discard or cancel
                       to go back.
                     </p>
@@ -136,14 +136,14 @@ const UpdateQuestion = () => {
                     <Link
                       to={"/leader"}
                       type="button"
-                      className="w-[50%] font-general font-[500] text-lg border-t border-r border-b-0  border inline-flex justify-center white px-4 py-3 text-black duration-500 hover:bg-red-600 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="w-[50%] font-nr font-[500] text-lg border-t border-r border-b-0  border inline-flex justify-center white px-4 py-3 text-black duration-500 hover:bg-red-600 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
                       Yes
                     </Link>
                     <button
                       type="button"
-                      className="w-[50%] font-general font-[500] text-lg border-t border-b-0 border-l-0 border inline-flex justify-center bg-white px-4 py-3 text-black duration-500 hover:bg-blue-600 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="w-[50%] font-nr font-[500] text-lg border-t border-b-0 border-l-0 border inline-flex justify-center bg-white px-4 py-3 text-black duration-500 hover:bg-blue-600 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
                       Cancel
@@ -158,14 +158,14 @@ const UpdateQuestion = () => {
       {/* modal end here  */}
       <Header></Header>
       <div className="add-question-ma px-4 py-10 lg:px-20 lg:py-20 xl:px-40 xl:py-20 max-w-[1560px] mx-auto">
-        <h1 className="text-2xl font-general font-[500] text-left dark:text-white">
+        <h1 className="text-2xl font-nr font-[500] text-left dark:text-white">
           Add question for group{" "}
           <samp className="text-violet-600 dark:text-[#ebff00]">
             {userLocalStorageData?.groupName}
           </samp>
         </h1>
 
-        <div className="add-question text-left font-general font-[500] mt-10">
+        <div className="add-question text-left font-nr font-[500] mt-10">
           <form onSubmit={addQuestion}>
             <label
               for="message"
@@ -182,14 +182,14 @@ const UpdateQuestion = () => {
               placeholder="Write your thoughts here..."
             ></textarea>
             <div className="button-group w-full mt-6">
-              <button className="bg-violet-200 px-6 py-2 text-violet-600 border-violet-600 border rounded-sm font-general font-[550] duration-500 hover:bg-transparent hover:text-violet-600 hover:border-violet-500 dark:border-[#ebff00] dark:bg-[#eaff0069] dark:text-[#ebff00] dark:hover:bg-transparent">
+              <button className="bg-violet-200 px-6 py-2 text-violet-600 border-violet-600 border rounded-sm font-nr font-[550] duration-500 hover:bg-transparent hover:text-violet-600 hover:border-violet-500 dark:border-[#ebff00] dark:bg-[#eaff0069] dark:text-[#ebff00] dark:hover:bg-transparent">
                 Submit Question
               </button>
             </div>
           </form>
           <button
             onClick={openModal}
-            className="bg-red-200 px-6 py-2 border-red-600 text-red-600 border rounded-sm font-general font-[550] duration-500 ml-[11.5rem] mt-[-2.6rem] absolute hover:bg-transparent hover:text-red-600 hover:border-red-600 dark:bg-[#ff00003d] dark:hover:bg-transparent"
+            className="bg-red-200 px-6 py-2 border-red-600 text-red-600 border rounded-sm font-nr font-[550] duration-500 ml-[11.5rem] mt-[-2.6rem] absolute hover:bg-transparent hover:text-red-600 hover:border-red-600 dark:bg-[#ff00003d] dark:hover:bg-transparent"
           >
             Cancel
           </button>

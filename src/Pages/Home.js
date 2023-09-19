@@ -219,7 +219,7 @@ const Home = () => {
             <form
               onSubmit={student_roll_search}
               action=""
-              className="flex flex-col items-start w-[25rem] font-general"
+              className="flex flex-col items-start w-[25rem] font-nr"
             >
               <label
                 htmlFor="student_roll"
@@ -253,13 +253,13 @@ const Home = () => {
               </div>
             </form>
 
-            <p className="text-left text-violet-600 mt-3 w-[80%] font-[500] dark:text-[#EBFF00] font-general">
+            <p className="text-left text-violet-600 mt-3 w-[80%] font-[500] dark:text-[#EBFF00] font-nr">
               ** Enter student class roll to get the details of the student.
               Please enter valid student roll.
             </p>
           </div>
           {/* right side */}
-          <div className="right-part pl-20 py-20 font-general">
+          <div className="right-part pl-20 py-20 font-nr">
             {studentArrayLength.length ? (
               <>
                 <h1 className="font-[500] text-violet-600 dark:text-[#EBFF00] text-xl underline text-left mb-2">
@@ -311,7 +311,7 @@ const Home = () => {
             )}
           </div>
 
-          <div className="left-part border-l pl-20 pr-16 py-20 font-general dark:text-white">
+          <div className="left-part border-l pl-20 pr-16 py-20 font-nr dark:text-white">
             <form
               onSubmit={createGroup}
               action=""
@@ -348,7 +348,7 @@ const Home = () => {
         </div>
 
         {/* create group */}
-        <div className="create-group-main font-general border-b grid grid-cols-3">
+        <div className="create-group-main font-nr border-b grid grid-cols-3">
           <div className="left-part border-r pl-40 py-20 dark:text-white">
             <form
               onSubmit={assignLeader}
@@ -394,12 +394,12 @@ const Home = () => {
           </div>
           {/* right side */}
           <div className="middle-part pl-20 pr-20 py-20  flex flex-col justify-start border-r">
-            <h1 className="mb-4 text-sm font-general font-[500] text-left rounded-full px-3 py-[3px] max-w-max border border-violet-600 text-violet-600 dark:border-[#EBFF00]  dark:text-[#EBFF00]">
+            <h1 className="mb-4 text-sm font-nr font-[500] text-left rounded-full px-3 py-[3px] max-w-max border border-violet-600 text-violet-600 dark:border-[#EBFF00]  dark:text-[#EBFF00]">
               All recently crated group names
             </h1>
-            {/* <h1 className="font-general font-[500] text-xl">No group found</h1> */}
+            {/* <h1 className="font-nr font-[500] text-xl">No group found</h1> */}
             {group.map((data) => (
-              <h1 className="font-general font-[500] text-xl text-left border-b py-2 dark:text-white flex justify-between">
+              <h1 className="font-nr font-[500] text-xl text-left border-b py-2 dark:text-white flex justify-between">
                 {data?.groupName}
                 {data?.Leader === 0 ? (
                   <span className="text-red-600 dark:text-orange-400">
@@ -478,7 +478,7 @@ const Home = () => {
 
         <div className="group-details sm:px-20   xl:px-40 py-20">
           {/* select group */}
-          <div className="select-group-details w-[15rem] text-left font-general">
+          <div className="select-group-details w-[15rem] text-left font-nr">
             <label
               for="countries"
               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -498,7 +498,7 @@ const Home = () => {
             </select>
           </div>
 
-          <div className="group-table-list mt-10 font-general">
+          <div className="group-table-list mt-10 font-nr">
             <div class="relative overflow-x-auto">
               {groupData.length === 0 ? (
                 <h1 className="dark:text-white">No data found</h1>
@@ -588,7 +588,7 @@ const Home = () => {
         </div>
 
         {/* delete data section start here */}
-        <div className="data-delete-section w-full border-t px-40 py-40">
+        <div className="data-delete-section w-full border-t px-40 py-40 font-nr">
           <p className="text-black text-[18px] font-[500] dark:text-[#EBFF00]">
             Danger zone please take stapes at your own risk. No data will be
             recovered after deleting.<br></br>If you want to delete all data
@@ -598,14 +598,14 @@ const Home = () => {
 
           <p className="text-gray-600 mt-6 text-[18px] font-[500] dark:text-[#EBFF00]">
             <br />
-            <span className="font-mono text-red-600 pt-10">delete all</span>
+            <span className="font-nr text-red-600 pt-10">delete all</span>
           </p>
 
           {/* delete all dta button here */}
           <form
             onSubmit={student_roll_search}
             action=""
-            className="flex flex-col items-center mt-10 w-full font-general"
+            className="flex flex-col items-center mt-10 w-full font-nr"
           >
             <div className="search-main flex items-center justify-center gap-2 rounded-sm w-full">
               <input

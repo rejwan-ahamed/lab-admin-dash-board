@@ -3,7 +3,7 @@ import React from "react";
 const Trams = () => {
   return (
     <div>
-      <p className="text-left font-[500] px-4 py-20 font-general sm:px-40 sm:py-20 sm:w-[60%]">
+      <p className="text-left font-[500] px-4 py-20 font-nr sm:px-40 sm:py-20 sm:w-[60%]">
         <h1 className="text-2xl mb-6 ">Terms and conditions.</h1>
         A terms and conditions agreement for student login is an important legal
         document that outlines the rules and guidelines that students must

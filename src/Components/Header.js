@@ -74,7 +74,7 @@ const Header = () => {
         <Navbar
           fluid={true}
           rounded={true}
-          className=" xl:px-40 font-general max-w-[1560px] mx-auto rounded-none duration-75 bg-white dark:bg-transparent dark:text-white"
+          className=" xl:px-40 font-nr max-w-[1560px] mx-auto rounded-none duration-75 bg-white dark:bg-transparent dark:text-white"
         >
           <Navbar.Brand to="/navbars">
             <span className="self-center whitespace-nowrap text-xl font-semibold text-black dark:text-[#ebff00] dark:duration-75">
@@ -182,7 +182,7 @@ const Header = () => {
 
       {/* mobile nav */}
       <div className="mobile-nav-main block sm:hidden">
-        <div className="mobile-nav font-general border-b px-4 flex justify-between items-center">
+        <div className="mobile-nav font-nr border-b px-4 flex justify-between items-center">
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
             Open Source <sup className="">beta</sup>
           </span>
@@ -228,7 +228,7 @@ const Header = () => {
         {open ? (
           <div
             onClick={() => setOpen(!open)}
-            className="z-[100] duration-75 sticky main-mobile-nav-section bg-gray-50 h-screen w-full flex flex-col gap-3  font-general font-[500] text-2xl text-left pt-10 dark:bg-black dark:text-white"
+            className="z-[100] duration-75 sticky main-mobile-nav-section bg-gray-50 h-screen w-full flex flex-col gap-3  font-nr font-[500] text-2xl text-left pt-10 dark:bg-black dark:text-white"
           >
             {user?.status === "Leader" ? (
               <>

@@ -62,13 +62,13 @@ const LeaderDashBoard = () => {
       {/* search the student my class roll */}
       <div className="main-wrapper px-4 py-10 lg:px-20 lg:py-20 xl:px-40 xl:py-20 max-w-[1560px] mx-auto">
         <div className="group-details ">
-          <h1 className="text-xl font-general text-left font-[500] sm:text-2xl dark:text-white">
+          <h1 className="text-xl font-nr text-left font-[500] sm:text-2xl dark:text-white">
             Group :{" "}
             <span className="text-violet-500 dark:text-[#ebff00]">
               {userLocalStorageData?.groupName}
             </span>
           </h1>
-          <h1 className="text-xl font-general text-left font-[500] sm:text-2xl dark:text-white">
+          <h1 className="text-xl font-nr text-left font-[500] sm:text-2xl dark:text-white">
             welcome back leader :{" "}
             <span className="text-violet-500 dark:text-[#ebff00]">
               {userLocalStorageData?.name}
@@ -76,13 +76,13 @@ const LeaderDashBoard = () => {
           </h1>
 
           <div className="all-questions mt-16">
-            <h3 className="text-left font-general font-[500] text-violet-600 mb-4 border border-violet-600 rounded-full py-1 px-4 max-w-max dark:text-[#ebff00] dark:border-[#ebff00]">
+            <h3 className="text-left font-nr font-[500] text-violet-600 mb-4 border border-violet-600 rounded-full py-1 px-4 max-w-max dark:text-[#ebff00] dark:border-[#ebff00]">
               All questions assign by group leader
             </h3>
             {groupQuestion?.map((data) => (
               <>
                 <div className="question body border-b py-3">
-                  <div className="question-main font-general text-xl text-left font-[500] flex justify-between items-center">
+                  <div className="question-main font-nr text-xl text-left font-[500] flex justify-between items-center">
                     <h2 className="dark:text-white">{data?.question}</h2>
                     <div className="icon-group flex items-center gap-1 sm:gap-3 ">
                       <Link to={`/update/${data.id}`}>
@@ -125,8 +125,8 @@ const LeaderDashBoard = () => {
               </>
             ))}
           </div>
-          <div className="group-table-list font-general mb-8 mt-16">
-            <h3 className="text-left font-general font-[500] text-violet-600 mb-4 border border-violet-600 rounded-full py-1 px-4 max-w-max dark:text-[#ebff00] dark:border-[#ebff00]">
+          <div className="group-table-list font-nr mb-8 mt-16">
+            <h3 className="text-left font-nr font-[500] text-violet-600 mb-4 border border-violet-600 rounded-full py-1 px-4 max-w-max dark:text-[#ebff00] dark:border-[#ebff00]">
               All group member status
             </h3>
 

@@ -58,20 +58,20 @@ const AdminViewAnsList = () => {
       <Header></Header>
       <div className="main-part px-4 py-10 lg:py-20 lg:px-20 xl:px-40 xl:py-20 max-w-[1560px] mx-auto">
         <div className="wrapper-top flex justify-between items-center">
-          <h2 className="font-[500] font-general text-left text-2xl dark:text-white">
+          <h2 className="font-[500] font-nr text-left text-2xl dark:text-white">
             All question answer by :{" "}
             <span className="text-violet-600 dark:text-[#EBFF00]">
               {userData?.name}
             </span>
           </h2>
           <div className="right-part mt-6 sm:mt-0">
-            <h4 className="bg-violet-600 px-5 py-2 rounded-full font-general text-xl font-[550] max-w-max text-white dark:bg-[#ebff00] dark:text-black">
+            <h4 className="bg-violet-600 px-5 py-2 rounded-full font-nr text-xl font-[550] max-w-max text-white dark:bg-[#ebff00] dark:text-black">
               {/* {(answers?.length * 100) / question?.length} % */}
               {count > 100 ? "100%" : count + "%"}
             </h4>
           </div>
         </div>
-        <div className="all-ans-list mt-10 text-left font-general font-[500]">
+        <div className="all-ans-list mt-10 text-left font-nr font-[500]">
           {ans?.map((data) => (
             <div className="ans-list-body border-b py-4 dark:text-white dark:border-[#EBFF00]">
               <h2 className="text-2xl">{data.question}</h2>
