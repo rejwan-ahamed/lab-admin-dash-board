@@ -7,7 +7,6 @@ import Header from "../Components/Header";
 import { AughtContext } from "../Context/MainContext";
 import domain from "../hooks/domain";
 
-
 const Home = () => {
   // getting single student data
   const [student, setStudent] = useState([]);
@@ -190,6 +189,29 @@ const Home = () => {
           toast.success("your post has been added");
           // console.warn(result);
           from.reset();
+        });
+    }
+  };
+
+  // delete all data
+  const delete_all_data = (e) => {
+    e.preventDefault();
+    const from = e.target;
+    const delete_commands = from.delete_command.value;
+    if (delete_commands !== "delete all") {
+      toast.error("Command does match");
+    } else {
+      fetch(domain + `/delete_all_data`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          // console.warn(result);
+          from.reset();
+          toast.success("All data deleted");
         });
     }
   };
@@ -603,7 +625,7 @@ const Home = () => {
 
           {/* delete all dta button here */}
           <form
-            onSubmit={student_roll_search}
+            onSubmit={delete_all_data}
             action=""
             className="flex flex-col items-center mt-10 w-full font-nr"
           >

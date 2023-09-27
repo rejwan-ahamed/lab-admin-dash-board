@@ -1,2 +1,2 @@
-const domain = `http://localhost:5000`;
+const domain = `https://portfolio.api2023.xyz`;
 export default domain;

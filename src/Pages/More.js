@@ -64,7 +64,7 @@ const More = () => {
             It's a story that will touch your soul and remind you of the power
             we all have to make a difference.<br></br>
             <br></br>
-            Thank you for listening.
+            Thank you for reading.
           </p>
         </div>
         <div className="right-part hidden lg:w-[50%] lg:flex relative">
@@ -90,26 +90,10 @@ const More = () => {
           Want to contribute on the project mail me at rejwanahamed85@gmail.com
           or join me telegram at +880 1725281740
         </mark>
-        {/* <p className="mt-4">
-          <span className="text-blue-600 cursor-pointer ">
-            rejwanahamed85@gmail.com
-          </span>
-        </p>
-        <p className="mt-2">
-          <span className="text-blue-600 cursor-pointer ">github</span>
-        </p>
-        <p className="mt-2">
-          <span className="text-blue-600 cursor-pointer ">facebook</span>
-        </p>
-        <p className="mt-2">
-          <span className="text-blue-600 cursor-pointer ">instagram</span>
-        </p>
-        <p className="mt-2">
-          <span className="text-blue-600 cursor-pointer ">Bechance</span>
-        </p>
-        <p className="mt-2 mb-4">
-          <span className="text-blue-600 cursor-pointer ">dribbble</span>
-        </p> */}
+
+        <p className="mt-4"><a href="https://rejwan-ahamed-portfolio.web.app/">Website</a></p>
+        <p className="leading-8"><a href="https://github.com/rejwan-ahamed">Github</a></p>
+        <p><a href="https://www.linkedin.com/in/rejwan-ahamed-73baa723b/">Linkedin</a></p>
       </div>
     </div>
   );
